@@ -9,6 +9,7 @@ body {
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
+    overflow: hidden;
 }
 
 p {
@@ -29,6 +30,7 @@ img {
 }
 
 .center {
+    margin-top: 10px;
     height: 100vh;
     display: flex;
     flex-wrap: wrap;
