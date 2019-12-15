@@ -1,0 +1,12 @@
+.progress-bar {
+    background-color: #eeeeee;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    border-radius: 32px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.progress-bar div {
+    background-color: #eeeeee;
+    width: 0%;
+}
