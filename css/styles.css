@@ -128,18 +128,30 @@ img {
     align-content: center;
 }
 
-@media (max-width: 600px){
+.item img {
+    margin: 0 auto;
+    max-width: 75%;
+}
+
+.item img:hover {
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.75);
+    transition: 0.15s;
+}
+
+@media (max-width: 500px) {
     .item {
         max-width: 25%;
     }
 }
 
-@media (max-width: 500px){
+@media (max-width: 400px) {
     .item {
-        max-width: 23%;
+        max-width: 24%;
     }
 }
 
-.item img {
-    max-width: 50%;
+@media (max-width: 320px) {
+    .item {
+        max-width: 23%;
+    }
 }
