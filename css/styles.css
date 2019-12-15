@@ -94,26 +94,32 @@ img {
 }
 
 .card {
+    background-color: rgba(255, 255, 255, 0.8);
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     transition: 0.6s;
     border-radius: 5px;
     text-align: center;
+    align-items: center;
+    align-content: center;
 }
 
-.card-img {
+.card-anim {
     position: relative;
     transition: transform 0.6s;
     transform-style: preserve-3d;
 }
 
-.card .card-img:hover {
+.card .card-anim:hover {
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.5);
     transform: rotateY(180deg);
 }
 
+.card-anim>img {
+    backface-visibility: hidden;
+}
+
 .container {
     padding: 2px 16px;
-    background-color: rgba(255, 255, 255, 0.8);
 }
 
 .container>p {

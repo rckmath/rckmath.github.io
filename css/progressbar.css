@@ -1,12 +1,16 @@
+.progress>h1 {
+    margin-bottom: 0px;
+    padding-bottom: 0px;
+}
+
 .progress-bar {
     background-color: #eeeeee;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-    border-radius: 32px;
-    width: 100%;
+    width: 80%;
     margin: 0 auto;
 }
 
 .progress-bar div {
-    background-color: #eeeeee;
+    background-color: #3a3a3a;
     width: 0%;
 }
