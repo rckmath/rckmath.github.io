@@ -128,11 +128,6 @@ img {
     align-content: center;
 }
 
-.item img {
-    margin: 0 auto;
-    max-width: 75%;
-}
-
 .item img:hover {
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.75);
     transition: 0.15s;
