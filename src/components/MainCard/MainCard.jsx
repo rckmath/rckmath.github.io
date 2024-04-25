@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { useMediaQuery } from "react-responsive";
 
 import { red } from "@mui/material/colors";
 import { styled } from "@mui/material/styles";
@@ -7,7 +8,6 @@ import { Card, CardHeader, CardContent, CardActions, Avatar, IconButton, Typogra
 import FlipIcon from "@mui/icons-material/Flip";
 import ShareIcon from "@mui/icons-material/Share";
 import FavoriteIcon from "@mui/icons-material/Favorite";
-import { useMediaQuery } from "react-responsive";
 
 const FlipCardButton = styled((props) => {
   const { expand, ...other } = props;
@@ -62,7 +62,7 @@ const MainCard = ({ title, content = "", setExpandPicture }) => {
   }, []);
 
   return (
-    <Card sx={{ width: isMobile ? 345 : 400, fontSize: isMobile ? "1.2rem" : "1rem" }}>
+    <Card sx={{ width: isMobile ? 345 : 400, fontSize: isMobile ? "1.1rem" : "1rem" }}>
       <CardHeader
         avatar={
           <Avatar
@@ -88,7 +88,7 @@ const MainCard = ({ title, content = "", setExpandPicture }) => {
           </Typography>
         }
         subheader={
-          <Typography variant="body2" color="text.secondary" fontSize="inherit">
+          <Typography variant="body2" color="text.secondary" fontSize="0.9rem">
             {`${today} at ${time}`}
           </Typography>
         }
@@ -110,6 +110,9 @@ const MainCard = ({ title, content = "", setExpandPicture }) => {
         <IconButton aria-label="share" size={isMobile ? "large" : "medium"}>
           <ShareIcon fontSize="inherit" />
         </IconButton>
+        <Typography variant="body2" sx={{ fontSize: "0.75rem", color: "text.secondary", ml: "auto", mr: "1vw" }}>
+          Published by Erick M. L. Pacheco
+        </Typography>
       </CardActions>
     </Card>
   );

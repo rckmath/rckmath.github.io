@@ -9,12 +9,13 @@ import GitHubIcon from "@mui/icons-material/GitHub";
 
 const Footer = () => {
   const isMobile = useMediaQuery({ maxWidth: 767 });
+  const fontSize = isMobile ? "3rem" : "3.25rem";
 
   return (
     <Grid
-      gap={10}
       container
       component="footer"
+      gap={isMobile ? 8 : 10}
       sx={{
         marginTop: 5,
         display: "flex",
@@ -31,7 +32,7 @@ const Footer = () => {
           aria-label="Email"
           onClick={() => (window.location.href = "mailto:ericklopes02@outlook.com")}
         >
-          <EmailIcon sx={{ fontSize: "3.5rem" }} />
+          <EmailIcon sx={{ fontSize }} />
         </IconButton>
       </Tooltip>
 
@@ -42,7 +43,7 @@ const Footer = () => {
           aria-label="GitHub"
           onClick={() => window.open("https://github.com/rckmath", "_blank")}
         >
-          <GitHubIcon sx={{ fontSize: "3.5rem" }} />
+          <GitHubIcon sx={{ fontSize }} />
         </IconButton>
       </Tooltip>
 
@@ -53,7 +54,7 @@ const Footer = () => {
           aria-label="LinkedIn"
           onClick={() => window.open("https://www.linkedin.com/in/rckmath", "_blank")}
         >
-          <LinkedInIcon sx={{ fontSize: "3.5rem" }} />
+          <LinkedInIcon sx={{ fontSize }} />
         </IconButton>
       </Tooltip>
     </Grid>

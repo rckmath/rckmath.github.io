@@ -1,7 +1,7 @@
 import React, { useState, Fragment } from "react";
+import { useMediaQuery } from "react-responsive";
 
 import { Grid } from "@mui/material";
-import { useMediaQuery } from "react-responsive";
 
 import Header from "../components/Header";
 import Footer from "../components/Footer";

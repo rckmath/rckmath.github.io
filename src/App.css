@@ -22,9 +22,6 @@ body {
   flex-direction: column;
 }
 
-#root:before {
-}
-
 main {
   flex: 1;
   display: flex;
