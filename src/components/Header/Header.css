@@ -1,0 +1,16 @@
+.header {
+  box-shadow: none;
+  padding: 0.5rem 1rem;
+  color: rgba(0, 0, 0, 0.54);
+  background-color: transparent;
+}
+
+.MuiAppBar-root {
+  box-shadow: none;
+}
+
+.MuiToolbar-root {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

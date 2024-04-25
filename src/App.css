@@ -1,0 +1,68 @@
+html,
+body,
+#root {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+#root {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+#root:before {
+
+}
+
+main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+section {
+  width: 100%;
+  flex-grow: 1;
+}
+
+html {
+  font-size: 100%;
+}
+
+@media (max-width: 768px) {
+  html {
+    font-size: 90%;
+  }
+}
+
+@media (max-width: 480px) {
+  html {
+    font-size: 80%;
+  }
+}
+
+@media (min-width: 481px) {
+  /* Scaled up styles for larger devices */
+}
+
+@media (min-width: 769px) {
+  /* Scaled up styles for larger devices */
+}
+
+footer {
+  width: 100%;
+  position: sticky;
+  bottom: 0;
+}
+
+.AppBar {
+  flex-shrink: 0;
+}
