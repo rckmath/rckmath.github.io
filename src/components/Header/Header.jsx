@@ -1,14 +1,14 @@
 import React from "react";
 
-import "./Header.css";
+import "./HeaderStyles.css";
 
 import TerminalIcon from "@mui/icons-material/Terminal";
 import { AppBar, Toolbar, Typography, IconButton, Box } from "@mui/material";
 
 const Header = () => {
   return (
-    <AppBar position="static" sx={{ background: "transparent", boxShadow: "none", paddingTop: "1rem" }}>
-      <Toolbar sx={{ justifyContent: "center", alignItems: "center", padding: "0.5rem 1rem" }}>
+    <AppBar position="static" sx={{ background: "transparent", boxShadow: "none", paddingTop: "2rem" }}>
+      <Toolbar sx={{ justifyContent: "center", alignItems: "center" }}>
         <IconButton
           size="large"
           href="/cmd"

@@ -1,22 +1,41 @@
-import React from "react";
+import React, { useState, Fragment } from "react";
+
+import { Grid } from "@mui/material";
+import { useMediaQuery } from "react-responsive";
 
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import MainCard from "../components/MainCard";
+import ProfilePictureModal from "../components/ProfilePictureModal";
 
-import { Grid } from "@mui/material";
+import { MainCard, CardContent, CardContentTitles } from "../components/MainCard";
 
 const Home = () => {
+  const isMobile = useMediaQuery({ maxWidth: 767 });
+  const [expandPicture, setExpandPicture] = useState(false);
+
   return (
-    <React.Fragment>
+    <Fragment>
       <Header />
-      <Grid container spacing={2} component="main" justifyContent="center" alignItems="center">
-        <MainCard title="About me" />
-        <MainCard title="Languages" />
-        <MainCard title="Frameworks" />
+      <Grid
+        container
+        component="main"
+        gap={isMobile ? 5 : 10}
+        sx={{ alignItems: "center", justifyContent: "center", marginTop: "3vh" }}
+      >
+        {CardContentTitles.map((title, index) => {
+          return (
+            <MainCard
+              key={index}
+              title={title}
+              content={CardContent[title].content}
+              setExpandPicture={setExpandPicture}
+            />
+          );
+        })}
       </Grid>
       <Footer />
-    </React.Fragment>
+      <ProfilePictureModal open={expandPicture} setOpen={setExpandPicture} />
+    </Fragment>
   );
 };
 

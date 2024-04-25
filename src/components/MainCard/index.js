@@ -1,3 +1,4 @@
 import MainCard from "./MainCard";
+import { CardContent, CardContentTitles } from "./CardContent";
 
-export default MainCard;
+export { MainCard, CardContent, CardContentTitles };
