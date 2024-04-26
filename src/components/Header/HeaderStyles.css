@@ -1,9 +1,0 @@
-.MuiAppBar-root {
-  box-shadow: none;
-}
-
-.MuiToolbar-root {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}

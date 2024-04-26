@@ -1,11 +1,12 @@
 import React from "react";
 import { useMediaQuery } from "react-responsive";
 
-import { Grid, IconButton, Tooltip } from "@mui/material";
+import { Icon, Grid, IconButton, Tooltip } from "@mui/material";
 
+import SteamIcon from "/steam.svg";
 import EmailIcon from "@mui/icons-material/Email";
-import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import GitHubIcon from "@mui/icons-material/GitHub";
+import LinkedInIcon from "@mui/icons-material/LinkedIn";
 
 const Footer = () => {
   const isMobile = useMediaQuery({ maxWidth: 767 });
@@ -15,7 +16,7 @@ const Footer = () => {
     <Grid
       container
       component="footer"
-      gap={isMobile ? 8 : 10}
+      gap={isMobile ? 4 : 10}
       sx={{
         marginTop: 5,
         display: "flex",
@@ -33,6 +34,19 @@ const Footer = () => {
           onClick={() => (window.location.href = "mailto:ericklopes02@outlook.com")}
         >
           <EmailIcon sx={{ fontSize }} />
+        </IconButton>
+      </Tooltip>
+
+      <Tooltip title="https://steamcommunity.com/id/BossBR" placement="top" arrow>
+        <IconButton
+          size="large"
+          color="inherit"
+          aria-label="Steam"
+          onClick={() => window.open("https://steamcommunity.com/id/BossBR", "_blank")}
+        >
+          <Icon sx={{ fontSize }}>
+            <img src={SteamIcon} />
+          </Icon>
         </IconButton>
       </Tooltip>
 
