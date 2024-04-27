@@ -59,7 +59,7 @@ const MainCard = ({ title, headerIcon, setExpandPicture, backContent = "", front
 
   return (
     <Box component="div" sx={{ perspective: "1000px" }}>
-      <FlippingCard flip={flipped} sx={{ width: isMobile ? 345 : 430, fontSize: isMobile ? "1.1rem" : "1rem" }}>
+      <FlippingCard flip={flipped} sx={{ width: isMobile ? 345 : 420, fontSize: isMobile ? "1.1rem" : "1rem" }}>
         {!flipped && (
           <Fragment>
             <CardHeader

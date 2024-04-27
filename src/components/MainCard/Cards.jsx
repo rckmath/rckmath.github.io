@@ -21,7 +21,7 @@ export const Cards = (isMobile) => ({
   "My skills": {
     backContent: <MySkillsBackContent />,
     frontContent:
-      "Used to work with the best practices of software development and architecture like design patterns, SOLID, TDD/BDD, Git Flow and more. Experienced with Javascript stack (Node, React), C# (.NET Framework, .NET 8, EF Core), AWS tools, Docker and more.",
+      "Used to work with the best practices of software development and architecture like design patterns, SOLID, TDD/BDD, Git Flow and more. Experienced with JavaScript stacks, C# (.NET Framework, .NET 8, EF Core), AWS tools, Docker and more.",
     icon: (
       <Box component="div" color="text.secondary" fontSize={isMobile ? "1.75rem" : "1.5rem"} sx={{ display: "flex" }}>
         <CodeIcon fontSize="inherit" />

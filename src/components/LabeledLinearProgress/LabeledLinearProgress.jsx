@@ -79,7 +79,7 @@ const LabeledLinearProgress = ({ value, label, labelPos = "end" }) => {
             variant="body2"
             color="text.secondary"
             fontSize="inherit"
-            lineHeight={isMobile ? "1.53rem" : "1.22rem"}
+            lineHeight={isMobile ? "1.53rem" : "1.215rem"}
           >
             {label}
           </Typography>
