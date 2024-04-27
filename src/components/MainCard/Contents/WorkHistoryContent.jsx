@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import { Typography, Grid, Box, Chip } from "@mui/material";
+import { Typography, Grid, Stack, Chip } from "@mui/material";
 
 import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
@@ -14,7 +14,7 @@ const workExperiences = [
     briefDescription: "Architecture and development of APIs, front-end development (mobile & web) and many more.",
   },
   {
-    at: "Centro Paula Souza - ETEC",
+    at: "ETEC de Hortolândia",
     role: "IT Teacher",
     howLong: "Aug 2023 - Present",
     stack: ["Shell script", "Linux", "MS Office", "Virtualization"],
@@ -47,7 +47,6 @@ const WorkHistoryBackContent = () => {
   return (
     <Grid container sx={{ width: "100%", alignItems: "center" }}>
       <Grid
-        item
         xs={1}
         sx={{
           textAlign: "left",
@@ -55,27 +54,27 @@ const WorkHistoryBackContent = () => {
           visibility: currentPage === 0 ? "hidden" : "visible",
           color: currentPage === 0 ? "text.disabled" : "text.secondary",
         }}
+        item
       >
         <KeyboardArrowLeftIcon onClick={handleGoBackPage} />
       </Grid>
-      <Grid item xs={10}>
+      <Grid xs={10} item>
         <Typography variant="caption" color="text.secondary" fontSize="0.8rem" align="justify">
           {work.howLong}
         </Typography>
         <Typography variant="body2" color="text.secondary" fontSize="inherit" align="justify" mb={0.5}>
           <b>{work.role}</b> at {work.at}
         </Typography>
-        <Box display="flex" alignItems="center" gap={0.5} width="100%" mb={4}>
+        <Stack direction="row" alignItems="center" spacing={0.5} mb={4}>
           {work.stack.map((technology, key) => {
             return <Chip key={key} label={technology} size="small" variant="outlined" />;
           })}
-        </Box>
+        </Stack>
         <Typography variant="body2" color="text.secondary" fontSize="inherit" align="justify">
           {work.briefDescription}
         </Typography>
       </Grid>
       <Grid
-        item
         xs={1}
         sx={{
           textAlign: "right",
@@ -83,6 +82,7 @@ const WorkHistoryBackContent = () => {
           visibility: currentPage === workExperiences.length - 1 ? "hidden" : "visible",
           color: currentPage === workExperiences.length - 1 ? "text.disabled" : "text.secondary",
         }}
+        item
       >
         <KeyboardArrowRightIcon onClick={handleGoNextPage} />
       </Grid>

@@ -6,7 +6,7 @@ import { styled } from "@mui/material/styles";
 import TerminalIcon from "@mui/icons-material/Terminal";
 import { AppBar, Toolbar, Typography, IconButton, Box } from "@mui/material";
 
-import { TypewriterText } from "../TypewriterText";
+import { TypewriterText } from "./TypewriterText";
 
 const blink = keyframes`
   0% { opacity: 1; }

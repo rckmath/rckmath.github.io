@@ -1,17 +1,19 @@
 import React, { Fragment } from "react";
 
 import { Typography, Box } from "@mui/material";
+
 import CodeIcon from "@mui/icons-material/Code";
+import SchoolIcon from "@mui/icons-material/School";
 import PersonIcon from "@mui/icons-material/Person";
 import ConstructionIcon from "@mui/icons-material/Construction";
 
-import { WorkHistoryBackContent, AboutMeBackContent, MySkillsBackContent } from "./Contents";
+import { WorkHistoryBackContent, AboutMeBackContent, MySkillsBackContent, EducationContent } from "./Contents";
 
 export const Cards = (isMobile) => ({
   "About me": {
     backContent: <AboutMeBackContent />,
     frontContent:
-      "Graduate software engineer, passionate full-stack developer with +4 years of experience and a knack for innovation and discovering new technologies. Eager to specialize in Blockchain, Web3, and smart contracts development over the next three years.",
+      "Passionate full-stack developer with +4 years of experience and a knack for innovation and discovering new technologies. Eager to specialize in Blockchain, Web3, and smart contracts development over the next three years.",
     icon: (
       <Box component="div" color="text.secondary" fontSize={isMobile ? "1.75rem" : "1.5rem"} sx={{ display: "flex" }}>
         <PersonIcon fontSize="inherit" />
@@ -38,18 +40,13 @@ export const Cards = (isMobile) => ({
       </Box>
     ),
   },
-  "Another card": {
-    backContent: (
-      <Fragment>
-        <Typography variant="body2" color="text.secondary" fontSize="inherit">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.
-        </Typography>
-      </Fragment>
-    ),
-    frontContent: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.",
+  Education: {
+    backContent: <EducationContent />,
+    frontContent:
+      "Graduate software engineer, post-graduate specialization in blockchain development. Started developing by an IT Technician course.",
     icon: (
       <Box component="div" color="text.secondary" fontSize={isMobile ? "1.75rem" : "1.5rem"} sx={{ display: "flex" }}>
-        <ConstructionIcon fontSize="inherit" />
+        <SchoolIcon fontSize="inherit" />
       </Box>
     ),
   },
