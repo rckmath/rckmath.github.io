@@ -9,21 +9,21 @@ import GitHubIcon from "@mui/icons-material/GitHub";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 
 const Footer = () => {
-  const isMobile = useMediaQuery({ maxWidth: 767 });
-  const fontSize = isMobile ? "3rem" : "3.25rem";
+  const isMobileOrSmallLaptopScreen = useMediaQuery({ maxWidth: 1366 });
+  const fontSize = isMobileOrSmallLaptopScreen ? "3rem" : "3.25rem";
 
   return (
     <Grid
       container
       component="footer"
-      gap={isMobile ? 4 : 10}
+      gap={isMobileOrSmallLaptopScreen ? 4 : 10}
       sx={{
         marginTop: 5,
         display: "flex",
-        paddingY: "2rem",
+        paddingY: isMobileOrSmallLaptopScreen ? "1rem" : "2rem",
         alignItems: "center",
         justifyContent: "center",
-        bgcolor: isMobile ? "#120e26" : "transparent",
+        bgcolor: isMobileOrSmallLaptopScreen ? "#120e26" : "transparent",
       }}
     >
       <Tooltip title="mailto:ericklopes02@outlook.com" placement="top" arrow>

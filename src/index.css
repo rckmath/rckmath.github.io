@@ -6,8 +6,7 @@
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
 
-  min-height: 100vh;
-  background-size: cover;
+  min-height: 100dvh;
   background: fixed repeating-linear-gradient(to right bottom, #0a192f 0%, #120e26 50%, #2a084590 100%);
 
   font-synthesis: none;
