@@ -6,12 +6,13 @@ import { Grid } from "@mui/material";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import ProfilePictureModal from "../components/ProfilePictureModal";
-
-import { MainCard, CardContent, CardContentTitles } from "../components/MainCard";
+import { MainCard, Cards, CardsTitles } from "../components/MainCard";
 
 const Home = () => {
-  const isMobile = useMediaQuery({ maxWidth: 767 });
   const [expandPicture, setExpandPicture] = useState(false);
+
+  const isMobile = useMediaQuery({ maxWidth: 767 });
+  const isBigScreen = useMediaQuery({ query: "(min-width: 1824px)" });
 
   return (
     <Fragment>
@@ -19,15 +20,25 @@ const Home = () => {
       <Grid
         container
         component="main"
-        gap={isMobile ? 5 : 10}
-        sx={{ alignItems: "center", justifyContent: "center", marginTop: "3vh" }}
+        gap={isMobile ? 4 : 8}
+        sx={{
+          marginTop: "3vh",
+          alignItems: "flex-start",
+          justifyContent: "center",
+          paddingX: isMobile ? 1 : isBigScreen ? 7 : 5,
+          paddingY: isMobile ? 1 : isBigScreen ? 7 : 5,
+        }}
       >
-        {CardContentTitles.map((title, index) => {
+        {CardsTitles.map((title, index) => {
+          const card = Cards(isMobile)[title];
+
           return (
             <MainCard
               key={index}
               title={title}
-              content={CardContent[title].content}
+              headerIcon={card.icon}
+              backContent={card.backContent}
+              frontContent={card.frontContent}
               setExpandPicture={setExpandPicture}
             />
           );

@@ -1,4 +1,4 @@
 import MainCard from "./MainCard";
-import { CardContent, CardContentTitles } from "./CardContent";
+import { Cards, CardsTitles } from "./Cards";
 
-export { MainCard, CardContent, CardContentTitles };
+export { MainCard, Cards, CardsTitles };
