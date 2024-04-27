@@ -23,8 +23,9 @@ const Home = () => {
         gap={isMobile ? 4 : 8}
         sx={{
           marginTop: "3vh",
-          alignItems: "flex-start",
+          alignItems: "center",
           justifyContent: "center",
+          transition: "all 0.5s ease",
           paddingX: isMobile ? 1 : isBigScreen ? 7 : 5,
           paddingY: isMobile ? 1 : isBigScreen ? 7 : 5,
         }}

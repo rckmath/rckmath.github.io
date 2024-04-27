@@ -59,7 +59,7 @@ const MainCard = ({ title, headerIcon, setExpandPicture, backContent = "", front
 
   return (
     <Box component="div" sx={{ perspective: "1000px" }}>
-      <FlippingCard flip={flipped} sx={{ width: isMobile ? 345 : 400, fontSize: isMobile ? "1.1rem" : "1rem" }}>
+      <FlippingCard flip={flipped} sx={{ width: isMobile ? 345 : 430, fontSize: isMobile ? "1.1rem" : "1rem" }}>
         {!flipped && (
           <Fragment>
             <CardHeader
@@ -88,12 +88,12 @@ const MainCard = ({ title, headerIcon, setExpandPicture, backContent = "", front
               }
               subheader={
                 <Typography variant="body2" color="text.secondary" fontSize="0.9rem">
-                  {`${today} at ${time}`}
+                  Published by Erick M. L. Pacheco
                 </Typography>
               }
             />
-            <CardContent sx={{ backfaceVisibility: "hidden" }}>
-              <Typography variant="body2" color="text.secondary" fontSize="inherit">
+            <CardContent>
+              <Typography variant="body2" color="text.secondary" fontSize="inherit" align="justify">
                 {frontContent}
               </Typography>
             </CardContent>
@@ -109,8 +109,11 @@ const MainCard = ({ title, headerIcon, setExpandPicture, backContent = "", front
               <IconButton aria-label="share" size={isMobile ? "large" : "medium"}>
                 <ShareIcon fontSize="inherit" />
               </IconButton>
-              <Typography variant="body2" sx={{ fontSize: "0.75rem", color: "text.secondary", ml: "auto", mr: "1vw" }}>
-                Published by Erick M. L. Pacheco
+              <Typography
+                variant="body2"
+                sx={{ fontSize: "0.75rem", color: "text.secondary", ml: "auto", mr: isMobile ? "2.75vw" : "0.5dvw" }}
+              >
+                {`${today} at ${time}`}
               </Typography>
             </CardActions>
           </Fragment>
@@ -132,13 +135,7 @@ const MainCard = ({ title, headerIcon, setExpandPicture, backContent = "", front
                 </FlipCardButton>
               }
             />
-            <CardContent
-              sx={{
-                backfaceVisibility: "hidden",
-                transformStyle: "preserve-3d",
-                transform: !flipped ? "scaleX(1)" : "scaleX(-1)",
-              }}
-            >
+            <CardContent sx={{ transformStyle: "preserve-3d", transform: !flipped ? "scaleX(1)" : "scaleX(-1)" }}>
               {backContent}
             </CardContent>
           </Fragment>

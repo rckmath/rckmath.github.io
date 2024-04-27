@@ -1,3 +1,3 @@
-import { generateRandomTime } from "./generators";
+import { generateRandomTime, getAge } from "./generators";
 
-export { generateRandomTime };
+export { generateRandomTime, getAge };

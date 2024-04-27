@@ -1,3 +1,6 @@
+const myBirthDate = "2000-03-16";
+const yearInMs = 3.15576e10;
+
 export const generateRandomTime = () => {
   const hrs = Math.round(Math.random() * 24);
   const mins = Math.round(Math.random() * 60);
@@ -14,3 +17,5 @@ export const generateRandomTime = () => {
     ? String(hFormat + hrs + ":" + mFormat + mins + " " + amPm)
     : String(hFormat + (hrs - 12) + ":" + mFormat + mins + " " + amPm);
 };
+
+export const getAge = () => Math.floor((new Date() - new Date(myBirthDate).getTime()) / yearInMs);

@@ -1,4 +1,5 @@
 import React, { useCallback } from "react";
+import { useMediaQuery } from 'react-responsive';
 
 import { styled } from "@mui/material/styles";
 import { Typography, Grid } from "@mui/material";
@@ -17,6 +18,8 @@ const BorderLinearProgress = styled(LinearProgress)(({ theme, progressColor }) =
 }));
 
 const LabeledLinearProgress = ({ value, label, labelPos = "end" }) => {
+  const isMobile = useMediaQuery({ maxWidth: 767 });
+
   const interpolateColor = useCallback((color1, color2, factor = 0.5) => {
     const result = color1
       .slice(1)
@@ -63,23 +66,23 @@ const LabeledLinearProgress = ({ value, label, labelPos = "end" }) => {
         return interpolateColor(lower.color, upper.color, rangePct);
       }
     }
-    return "#008000"; // Should not be reached, unless pct is 100
+    return "#005700"; // Should not be reached, unless pct is 100
   }, []);
 
   return (
     <Grid container sx={{ width: "100%", alignItems: "center" }}>
       {labelPos === "start" && (
-        <Grid xs={3}>
-          <Typography variant="body2" color="text.secondary">
+        <Grid xs={4} md={3}>
+          <Typography variant="body2" color="text.secondary" fontSize="inherit" lineHeight={isMobile ? "1.53rem" : "1.22rem"}>
             {label}
           </Typography>
         </Grid>
       )}
-      <Grid xs={9}>
+      <Grid xs={8} md={9}>
         <BorderLinearProgress variant="determinate" value={value} progressColor={getProgressColor(value)} />
       </Grid>
       {labelPos === "end" && (
-        <Grid sx={4}>
+        <Grid sx={4} md={3}>
           <Typography variant="body2" color="text.secondary">
             {label}
           </Typography>
