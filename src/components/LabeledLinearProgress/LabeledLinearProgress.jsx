@@ -1,21 +1,23 @@
 import React, { useCallback } from "react";
-import { useMediaQuery } from 'react-responsive';
+import { useMediaQuery } from "react-responsive";
 
 import { styled } from "@mui/material/styles";
 import { Typography, Grid } from "@mui/material";
 import LinearProgress, { linearProgressClasses } from "@mui/material/LinearProgress";
 
-const BorderLinearProgress = styled(LinearProgress)(({ theme, progressColor }) => ({
-  height: 10,
-  borderRadius: 5,
-  [`&.${linearProgressClasses.colorPrimary}`]: {
-    backgroundColor: theme.palette.grey[theme.palette.mode === "light" ? 200 : 800],
-  },
-  [`& .${linearProgressClasses.bar}`]: {
+const BorderLinearProgress = styled(LinearProgress, { shouldForwardProp: (prop) => prop !== "progressBarColor" })(
+  ({ theme, progressBarColor }) => ({
+    height: 10,
     borderRadius: 5,
-    backgroundColor: progressColor,
-  },
-}));
+    [`&.${linearProgressClasses.colorPrimary}`]: {
+      backgroundColor: theme.palette.grey[theme.palette.mode === "light" ? 200 : 800],
+    },
+    [`& .${linearProgressClasses.bar}`]: {
+      borderRadius: 5,
+      backgroundColor: progressBarColor,
+    },
+  })
+);
 
 const LabeledLinearProgress = ({ value, label, labelPos = "end" }) => {
   const isMobile = useMediaQuery({ maxWidth: 767 });
@@ -72,17 +74,22 @@ const LabeledLinearProgress = ({ value, label, labelPos = "end" }) => {
   return (
     <Grid container sx={{ width: "100%", alignItems: "center" }}>
       {labelPos === "start" && (
-        <Grid xs={4} md={3}>
-          <Typography variant="body2" color="text.secondary" fontSize="inherit" lineHeight={isMobile ? "1.53rem" : "1.22rem"}>
+        <Grid item xs={4} md={3}>
+          <Typography
+            variant="body2"
+            color="text.secondary"
+            fontSize="inherit"
+            lineHeight={isMobile ? "1.53rem" : "1.22rem"}
+          >
             {label}
           </Typography>
         </Grid>
       )}
-      <Grid xs={8} md={9}>
-        <BorderLinearProgress variant="determinate" value={value} progressColor={getProgressColor(value)} />
+      <Grid item xs={8} md={9}>
+        <BorderLinearProgress variant="determinate" value={value} progressBarColor={getProgressColor(value)} />
       </Grid>
       {labelPos === "end" && (
-        <Grid sx={4} md={3}>
+        <Grid item xs={4} md={3}>
           <Typography variant="body2" color="text.secondary">
             {label}
           </Typography>

@@ -1,3 +1,3 @@
 import LabeledLinearProgress from "./LabeledLinearProgress";
 
-export { LabeledLinearProgress };
+export default LabeledLinearProgress;
