@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 
-import { Typography, Box } from "@mui/material";
+import { Box } from "@mui/material";
 
 import CodeIcon from "@mui/icons-material/Code";
 import SchoolIcon from "@mui/icons-material/School";
@@ -11,6 +11,7 @@ import { WorkHistoryBackContent, AboutMeBackContent, MySkillsBackContent, Educat
 
 export const Cards = (isMobile) => ({
   "About me": {
+    flipEnabled: true,
     backContent: <AboutMeBackContent />,
     frontContent:
       "Passionate full-stack developer with +4 years of experience and a knack for innovation and discovering new technologies. Eager to specialize in Blockchain, Web3, and smart contracts development over the next three years.",
@@ -21,6 +22,7 @@ export const Cards = (isMobile) => ({
     ),
   },
   "My skills": {
+    flipEnabled: true,
     backContent: <MySkillsBackContent />,
     frontContent:
       "Used to work with the best practices of software development and architecture like design patterns, SOLID, TDD/BDD, Git Flow and more. Experienced with JavaScript stacks, C# (.NET Framework, .NET 8, EF Core), AWS tools, Docker and more.",
@@ -31,6 +33,7 @@ export const Cards = (isMobile) => ({
     ),
   },
   "Work history": {
+    flipEnabled: true,
     backContent: <WorkHistoryBackContent />,
     frontContent:
       "Worked in many multi-sized projects; well-versed in developing and integrating RESTful and SOAP APIs, especially using JavaScript and .NET. Experienced with many projects, front-end development and in providing infrastructure (DevOps) support.",
@@ -41,6 +44,7 @@ export const Cards = (isMobile) => ({
     ),
   },
   Education: {
+    flipEnabled: true,
     backContent: <EducationContent />,
     frontContent:
       "Graduate software engineer, post-graduate specialization in blockchain development. Started developing by an IT Technician course.",
@@ -50,36 +54,17 @@ export const Cards = (isMobile) => ({
       </Box>
     ),
   },
-
   "My resume": {
-    backContent: (
-      <Fragment>
-        <Typography variant="body2" color="text.secondary" fontSize="inherit">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.
-        </Typography>
-      </Fragment>
-    ),
+    flipEnabled: false,
+    backContent: <Fragment></Fragment>,
     frontContent: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.",
-    icon: (
-      <Box component="div" color="text.secondary" fontSize={isMobile ? "1.75rem" : "1.5rem"} sx={{ display: "flex" }}>
-        <ConstructionIcon fontSize="inherit" />
-      </Box>
-    ),
+    icon: <Fragment></Fragment>,
   },
   "Next features": {
-    backContent: (
-      <Fragment>
-        <Typography variant="body2" color="text.secondary" fontSize="inherit">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.
-        </Typography>
-      </Fragment>
-    ),
+    flipEnabled: false,
+    backContent: <Fragment></Fragment>,
     frontContent: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.",
-    icon: (
-      <Box component="div" color="text.secondary" fontSize={isMobile ? "1.75rem" : "1.5rem"} sx={{ display: "flex" }}>
-        <ConstructionIcon fontSize="inherit" />
-      </Box>
-    ),
+    icon: <Fragment></Fragment>,
   },
 });
 

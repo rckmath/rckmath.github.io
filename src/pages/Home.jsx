@@ -37,6 +37,7 @@ const Home = () => {
               key={index}
               title={title}
               headerIcon={card.icon}
+              flipEnabled={card.flipEnabled}
               backContent={card.backContent}
               frontContent={card.frontContent}
               setExpandPicture={setExpandPicture}

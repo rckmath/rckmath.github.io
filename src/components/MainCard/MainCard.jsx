@@ -33,7 +33,7 @@ const FlippingCard = styled((props) => {
   }),
 }));
 
-const MainCard = ({ title, headerIcon, setExpandPicture, backContent = "", frontContent = "" }) => {
+const MainCard = ({ title, headerIcon, flipEnabled, setExpandPicture, backContent = "", frontContent = "" }) => {
   const [fav, setFav] = React.useState(false);
   const [time, setTime] = React.useState(false);
   const [flipped, setFlipped] = React.useState(false);
@@ -74,6 +74,7 @@ const MainCard = ({ title, headerIcon, setExpandPicture, backContent = "", front
               action={
                 <FlipCardButton
                   flip={flipped}
+                  disabled={!flipEnabled}
                   onClick={handleFlipCard}
                   size={isMobile ? "large" : "medium"}
                   aria-label={flipped ? "show less" : "show more"}

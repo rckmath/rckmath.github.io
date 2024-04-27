@@ -20,7 +20,7 @@ const AboutMeBackContent = () => {
         <b>A passion:</b> Blockchain
       </Typography>
       <Typography variant="body2" color="text.secondary" fontSize="inherit" lineHeight="1.57rem">
-        <b>Main hobbies:</b> Gaming & watching movies
+        <b>Main hobbies:</b> Gaming and watching movies
       </Typography>
       <Typography variant="body2" color="text.secondary" fontSize="inherit" lineHeight="1.57rem">
         <b>Marital status:</b> Married with a wonderful woman
