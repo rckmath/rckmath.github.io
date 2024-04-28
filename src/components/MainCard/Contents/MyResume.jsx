@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
 import { useMediaQuery } from "react-responsive";
 
-import { Typography, Button } from "@mui/material";
+import { Typography } from "@mui/material";
 import DownloadIcon from "@mui/icons-material/Download";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 
@@ -17,8 +17,8 @@ const MyResumeFrontContent = () => {
       </Typography>
       <ColoredButton
         variant="outlined"
-        startIcon={isMobile ? <VisibilityIcon /> : <DownloadIcon />}
-        backgroundColor="#00000070"
+        startIcon={isMobile ? <DownloadIcon /> : <VisibilityIcon />}
+        backgroundColor="#00000080"
         fullWidth
       >
         {isMobile ? "Download it now" : "View it now"}

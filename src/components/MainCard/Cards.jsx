@@ -5,6 +5,7 @@ import { Box } from "@mui/material";
 import CodeIcon from "@mui/icons-material/Code";
 import SchoolIcon from "@mui/icons-material/School";
 import PersonIcon from "@mui/icons-material/Person";
+import FiberNewIcon from "@mui/icons-material/FiberNew";
 import ConstructionIcon from "@mui/icons-material/Construction";
 
 import {
@@ -17,6 +18,8 @@ import {
   EducationFrontContent,
   WorkHistoryBackContent,
   WorkHistoryFrontContent,
+  NextFeaturesBackContent,
+  NextFeaturesFrontContent,
 } from "./Contents";
 
 export const Cards = (isMobile) => ({
@@ -67,10 +70,14 @@ export const Cards = (isMobile) => ({
     icon: <Fragment></Fragment>,
   },
   "Next features": {
-    flipEnabled: false,
-    backContent: <Fragment></Fragment>,
-    frontContent: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.",
-    icon: <Fragment></Fragment>,
+    flipEnabled: true,
+    backContent: <NextFeaturesBackContent />,
+    frontContent: <NextFeaturesFrontContent />,
+    icon: (
+      <Box component="div" color="text.secondary" fontSize={isMobile ? "1.75rem" : "1.5rem"} sx={{ display: "flex" }}>
+        <FiberNewIcon fontSize="inherit" />
+      </Box>
+    ),
   },
 });
 
