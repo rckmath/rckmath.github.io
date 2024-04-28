@@ -32,7 +32,16 @@ const educationList = [
   },
 ];
 
-const EducationContent = () => {
+const EducationFrontContent = () => {
+  return (
+    <Typography variant="body2" color="text.secondary" fontSize="inherit" align="justify">
+      Graduate software engineer, post-graduate specialization in blockchain development. Started developing by an IT
+      Technician course.
+    </Typography>
+  );
+};
+
+const EducationBackContent = () => {
   const [currentPage, setCurrentPage] = useState(0);
 
   const education = educationList[currentPage];
@@ -98,4 +107,4 @@ const EducationContent = () => {
   );
 };
 
-export { EducationContent };
+export { EducationBackContent, EducationFrontContent };

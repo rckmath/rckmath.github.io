@@ -22,7 +22,10 @@ const Header = () => {
   const isMobile = useMediaQuery({ maxWidth: 767 });
 
   return (
-    <AppBar position="static" sx={{ background: "transparent", boxShadow: "none", paddingTop: "2rem" }}>
+    <AppBar
+      position="static"
+      sx={{ background: "transparent", boxShadow: "none", paddingY: isMobile ? "1dvh" : "1.25dvh" }}
+    >
       <Toolbar sx={{ justifyContent: "center", alignItems: "center" }}>
         <IconButton
           href="/cmd"

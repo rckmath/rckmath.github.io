@@ -29,6 +29,16 @@ const workExperiences = [
   },
 ];
 
+const WorkHistoryFrontContent = () => {
+  return (
+    <Typography variant="body2" color="text.secondary" fontSize="inherit" align="justify">
+      Worked in many multi-sized projects; well-versed in developing and integrating RESTful and SOAP APIs, especially
+      using JavaScript and .NET. Experienced with many projects, front-end development and in providing infrastructure
+      (DevOps) support.
+    </Typography>
+  );
+};
+
 const WorkHistoryBackContent = () => {
   const [currentPage, setCurrentPage] = useState(0);
 
@@ -90,4 +100,4 @@ const WorkHistoryBackContent = () => {
   );
 };
 
-export { WorkHistoryBackContent };
+export { WorkHistoryBackContent, WorkHistoryFrontContent };

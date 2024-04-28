@@ -1,5 +1,16 @@
 import React, { Fragment } from "react";
 import LabeledLinearProgress from "../../LabeledLinearProgress";
+import { Typography } from "@mui/material";
+
+const MySkillsFrontContent = () => {
+  return (
+    <Typography variant="body2" color="text.secondary" fontSize="inherit" align="justify">
+      Used to work with the best practices of software development and architecture like design patterns, SOLID,
+      TDD/BDD, Git Flow and more. Experienced with JavaScript stacks, C# (.NET Framework, .NET 8, EF Core), AWS tools,
+      Docker and more.
+    </Typography>
+  );
+};
 
 const MySkillsBackContent = () => {
   return (
@@ -17,4 +28,4 @@ const MySkillsBackContent = () => {
   );
 };
 
-export { MySkillsBackContent };
+export { MySkillsBackContent, MySkillsFrontContent };

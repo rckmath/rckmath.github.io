@@ -93,11 +93,7 @@ const MainCard = ({ title, headerIcon, flipEnabled, setExpandPicture, backConten
                 </Typography>
               }
             />
-            <CardContent>
-              <Typography variant="body2" color="text.secondary" fontSize="inherit" align="justify">
-                {frontContent}
-              </Typography>
-            </CardContent>
+            <CardContent>{frontContent}</CardContent>
             <CardActions disableSpacing>
               <IconButton
                 onClick={handleSetFav}

@@ -18,11 +18,11 @@ const Footer = () => {
       component="footer"
       gap={isMobileOrSmallLaptopScreen ? 4 : 10}
       sx={{
-        marginTop: 5,
         display: "flex",
-        paddingY: isMobileOrSmallLaptopScreen ? "1rem" : "2rem",
         alignItems: "center",
         justifyContent: "center",
+        marginTop: isMobileOrSmallLaptopScreen ? "2dvh" : "0dvh",
+        paddingY: isMobileOrSmallLaptopScreen ? "1dvh" : "1.25dvh",
         bgcolor: isMobileOrSmallLaptopScreen ? "#120e26" : "transparent",
       }}
     >
