@@ -39,7 +39,7 @@ const DisplayResumeModal = ({ open, setOpen }) => {
           </IconButton>
         </Box>
 
-        <iframe src="./en-us_resume.pdf" style={{ height: "90vh", border: 0 }}></iframe>
+        <iframe src="/en-us_resume.pdf" style={{ height: "90vh", border: 0 }}></iframe>
       </Box>
     </Modal>
   );
@@ -53,7 +53,7 @@ const MyResumeFrontContent = () => {
     e.preventDefault();
 
     if (isMobileOrTablet) {
-      return fetch("./en-us_resume.pdf").then((response) => {
+      return fetch("/en-us_resume.pdf").then((response) => {
         response.blob().then((blob) => {
           const fileURL = window.URL.createObjectURL(blob);
 
