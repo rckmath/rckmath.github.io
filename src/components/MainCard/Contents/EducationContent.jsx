@@ -27,7 +27,7 @@ const educationList = [
     grade: "08/10",
     degree: "Technical",
     finishedOn: "Dec 2017",
-    course: "IT - Development",
+    course: "IT",
     where: "Hortolândia, SP, Brazil",
   },
 ];

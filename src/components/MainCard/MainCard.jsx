@@ -65,7 +65,7 @@ const MainCard = ({ title, headerIcon, flipEnabled, setExpandPicture, backConten
             <CardHeader
               avatar={
                 <Avatar
-                  src="./me.png"
+                  src="/me.png"
                   onClick={handleExpandPicture}
                   aria-label="my profile picture"
                   sx={{ "&:hover": { cursor: "pointer" } }}
