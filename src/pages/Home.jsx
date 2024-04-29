@@ -26,6 +26,7 @@ const Home = () => {
           justifyContent: "center",
           transition: "all 0.5s ease",
           paddingX: isMobile ? 1 : isBigScreen ? 7 : 4,
+          paddingY: isMobile ? 1 : isBigScreen ? 4 : 2,
         }}
       >
         {CardsTitles.map((title, index) => {

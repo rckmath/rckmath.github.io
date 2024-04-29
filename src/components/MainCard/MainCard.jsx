@@ -3,7 +3,7 @@ import { useMediaQuery } from "react-responsive";
 
 import { red } from "@mui/material/colors";
 import { styled } from "@mui/material/styles";
-import { Box, Card, CardHeader, CardContent, CardActions, Avatar, IconButton, Typography } from "@mui/material";
+import { Stack, Box, Card, CardHeader, CardContent, CardActions, Avatar, IconButton, Typography } from "@mui/material";
 
 import FlipIcon from "@mui/icons-material/Flip";
 import ShareIcon from "@mui/icons-material/Share";
@@ -72,15 +72,28 @@ const MainCard = ({ title, headerIcon, flipEnabled, setExpandPicture, backConten
                 />
               }
               action={
-                <FlipCardButton
-                  flip={flipped}
-                  disabled={!flipEnabled}
-                  onClick={handleFlipCard}
-                  size={isMobile ? "large" : "medium"}
-                  aria-label={flipped ? "show less" : "show more"}
-                >
-                  <FlipIcon fontSize="inherit" />
-                </FlipCardButton>
+                <Stack alignItems="space-between">
+                  <FlipCardButton
+                    flip={flipped}
+                    disabled={!flipEnabled}
+                    onClick={handleFlipCard}
+                    size={isMobile ? "large" : "medium"}
+                    aria-label={flipped ? "show less" : "show more"}
+                  >
+                    <FlipIcon fontSize="inherit" />
+                  </FlipCardButton>
+                  {flipEnabled && (
+                    <Typography
+                      variant="caption"
+                      color="text.secondary"
+                      lineHeight="1.43"
+                      fontSize={isMobile ? "0.7rem" : "0.6rem"}
+                      sx={{ top: isMobile ? "-11px" : "-7px", position: "relative", userSelect: "none" }}
+                    >
+                      CLICK ME
+                    </Typography>
+                  )}
+                </Stack>
               }
               title={
                 <Typography variant="subtitle2" color="text.secondary" fontWeight="bold" fontSize="inherit">
@@ -88,9 +101,11 @@ const MainCard = ({ title, headerIcon, flipEnabled, setExpandPicture, backConten
                 </Typography>
               }
               subheader={
-                <Typography variant="body2" color="text.secondary" fontSize="0.9rem">
-                  Published by Erick M. L. Pacheco
-                </Typography>
+                <Stack direction="row" justifyContent="space-between">
+                  <Typography variant="body2" color="text.secondary" fontSize="0.9rem">
+                    Published by Erick M. L. Pacheco
+                  </Typography>
+                </Stack>
               }
             />
             <CardContent>{frontContent}</CardContent>

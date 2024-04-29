@@ -69,7 +69,7 @@ const WorkHistoryBackContent = () => {
         <KeyboardArrowLeftIcon onClick={handleGoBackPage} />
       </Grid>
       <Grid xs={10} item>
-        <Typography variant="caption" color="text.secondary" fontSize="0.8rem" align="justify">
+        <Typography variant="caption" color="text.secondary" align="justify">
           {work.howLong}
         </Typography>
         <Typography variant="body2" color="text.secondary" fontSize="inherit" align="justify" mb={0.5}>

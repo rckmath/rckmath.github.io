@@ -74,7 +74,7 @@ const EducationBackContent = () => {
         <Stack direction="row" justifyContent="space-between" alignItems="center" mb={1.5}>
           <Chip label={education.degree} size="small" variant="outlined" />
 
-          <Typography variant="caption" color="text.secondary" fontSize="0.8rem" align="justify">
+          <Typography variant="caption" color="text.secondary" align="justify">
             Finished on {education.finishedOn}
           </Typography>
         </Stack>

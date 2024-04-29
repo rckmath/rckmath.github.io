@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 
-import { Typography, List, ListItem, ListItemIcon, ListItemText } from "@mui/material";
+import { Box, Typography, List, ListItem, ListItemIcon, ListItemText } from "@mui/material";
 
 import CheckBoxIcon from "@mui/icons-material/CheckBox";
 import CheckBoxOutlineBlankIcon from "@mui/icons-material/CheckBoxOutlineBlank";
@@ -26,9 +26,16 @@ const features = [
 
 const NextFeaturesFrontContent = () => {
   return (
-    <Typography variant="body2" color="text.secondary" fontSize="inherit" align="justify" mb={1.22}>
-      Flip the card to see the next features we will bring here.
-    </Typography>
+    <Fragment>
+      <Typography variant="body2" color="text.secondary" fontSize="inherit" align="justify">
+        You can flip the card to see the next features we will bring here. Stay up to date! :)
+      </Typography>
+      <Box sx={{ width: "100%", textAlign: "right" }}>
+        <Typography variant="caption" color="text.secondary" sx={{ lineHeight: 0 }}>
+          Next feature count: {features.length}
+        </Typography>
+      </Box>
+    </Fragment>
   );
 };
 
