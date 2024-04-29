@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 
-import { Box, Typography, List, ListItem, ListItemIcon, ListItemText } from "@mui/material";
+import { Box, Divider, Typography, List, ListItem, ListItemIcon, ListItemText } from "@mui/material";
 
 import CheckBoxIcon from "@mui/icons-material/CheckBox";
 import CheckBoxOutlineBlankIcon from "@mui/icons-material/CheckBoxOutlineBlank";
@@ -44,10 +44,23 @@ const NextFeaturesBackContent = () => {
     <Fragment>
       <List dense={true} sx={{ padding: 0, marginBlock: 0 }}>
         {features.map((feat, index) => (
-          <ListItem key={index} sx={{ padding: 0, marginBlock: 0 }}>
-            <ListItemIcon>{feat.status}</ListItemIcon>
-            <ListItemText primary={feat.title} secondary={feat.description} sx={{ margin: 0.22 }} />
-          </ListItem>
+          <>
+            <ListItem key={index} sx={{ padding: 0 }} disableGutters>
+              <ListItemIcon>{feat.status}</ListItemIcon>
+              <ListItemText
+                primary={feat.title}
+                sx={{ mb: index === features.length - 1 ? 0 : 0.12 }}
+                secondary={feat.description}
+                primaryTypographyProps={{
+                  fontWeight: "500",
+                  lineHeight: "1rem",
+                  fontSize: "inherit",
+                  color: "text.secondary",
+                }}
+              />
+            </ListItem>
+            {index !== features.length - 1 && <Divider component="li" />}
+          </>
         ))}
       </List>
     </Fragment>
