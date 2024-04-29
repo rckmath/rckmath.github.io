@@ -85,9 +85,10 @@ const MainCard = ({ title, headerIcon, flipEnabled, setExpandPicture, backConten
                   {flipEnabled && (
                     <Typography
                       variant="caption"
-                      color="text.secondary"
                       lineHeight="1.43"
-                      fontSize={isMobile ? "0.7rem" : "0.6rem"}
+                      fontWeight="bold"
+                      color="text.secondary"
+                      fontSize={isMobile ? "0.7rem" : "0.55rem"}
                       sx={{ top: isMobile ? "-11px" : "-7px", position: "relative", userSelect: "none" }}
                     >
                       CLICK ME
