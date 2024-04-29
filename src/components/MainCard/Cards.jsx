@@ -1,21 +1,32 @@
 import React, { Fragment } from "react";
 
-import { Typography, Box } from "@mui/material";
+import { Box } from "@mui/material";
 
 import CodeIcon from "@mui/icons-material/Code";
+import SchoolIcon from "@mui/icons-material/School";
 import PersonIcon from "@mui/icons-material/Person";
+import FiberNewIcon from "@mui/icons-material/FiberNew";
 import ConstructionIcon from "@mui/icons-material/Construction";
+
+import {
+  AboutMeBackContent,
+  AboutMeFrontContent,
+  MySkillsBackContent,
+  MySkillsFrontContent,
+  EducationBackContent,
+  MyResumeFrontContent,
+  EducationFrontContent,
+  WorkHistoryBackContent,
+  WorkHistoryFrontContent,
+  NextFeaturesBackContent,
+  NextFeaturesFrontContent,
+} from "./Contents";
 
 export const Cards = (isMobile) => ({
   "About me": {
-    backContent: (
-      <Fragment>
-        <Typography variant="body2" color="text.secondary" fontSize="inherit">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.
-        </Typography>
-      </Fragment>
-    ),
-    frontContent: "Passionate full-stack developer with a knack for innovation and discovering things.",
+    flipEnabled: true,
+    backContent: <AboutMeBackContent />,
+    frontContent: <AboutMeFrontContent />,
     icon: (
       <Box component="div" color="text.secondary" fontSize={isMobile ? "1.75rem" : "1.5rem"} sx={{ display: "flex" }}>
         <PersonIcon fontSize="inherit" />
@@ -23,14 +34,9 @@ export const Cards = (isMobile) => ({
     ),
   },
   "My skills": {
-    backContent: (
-      <Fragment>
-        <Typography variant="body2" color="text.secondary" fontSize="inherit">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.
-        </Typography>
-      </Fragment>
-    ),
-    frontContent: "Experienced with JavaScript (Node.js, React.Js, React Native), C# .NET, Solidity, C/C++ and more.",
+    flipEnabled: true,
+    backContent: <MySkillsBackContent />,
+    frontContent: <MySkillsFrontContent />,
     icon: (
       <Box component="div" color="text.secondary" fontSize={isMobile ? "1.75rem" : "1.5rem"} sx={{ display: "flex" }}>
         <CodeIcon fontSize="inherit" />
@@ -38,63 +44,38 @@ export const Cards = (isMobile) => ({
     ),
   },
   "Work history": {
-    backContent: (
-      <Fragment>
-        <Typography variant="body2" color="text.secondary" fontSize="inherit">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.
-        </Typography>
-      </Fragment>
-    ),
-    frontContent: "Worked with many multi-sized projects. Did many API integrations work.",
+    flipEnabled: true,
+    backContent: <WorkHistoryBackContent />,
+    frontContent: <WorkHistoryFrontContent />,
     icon: (
       <Box component="div" color="text.secondary" fontSize={isMobile ? "1.75rem" : "1.5rem"} sx={{ display: "flex" }}>
         <ConstructionIcon fontSize="inherit" />
       </Box>
     ),
   },
-  "Another card": {
-    backContent: (
-      <Fragment>
-        <Typography variant="body2" color="text.secondary" fontSize="inherit">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.
-        </Typography>
-      </Fragment>
-    ),
-    frontContent: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.",
+  Education: {
+    flipEnabled: true,
+    backContent: <EducationBackContent />,
+    frontContent: <EducationFrontContent />,
     icon: (
       <Box component="div" color="text.secondary" fontSize={isMobile ? "1.75rem" : "1.5rem"} sx={{ display: "flex" }}>
-        <ConstructionIcon fontSize="inherit" />
+        <SchoolIcon fontSize="inherit" />
       </Box>
     ),
   },
-
   "My resume": {
-    backContent: (
-      <Fragment>
-        <Typography variant="body2" color="text.secondary" fontSize="inherit">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.
-        </Typography>
-      </Fragment>
-    ),
-    frontContent: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.",
-    icon: (
-      <Box component="div" color="text.secondary" fontSize={isMobile ? "1.75rem" : "1.5rem"} sx={{ display: "flex" }}>
-        <ConstructionIcon fontSize="inherit" />
-      </Box>
-    ),
+    flipEnabled: false,
+    backContent: <Fragment></Fragment>,
+    frontContent: <MyResumeFrontContent />,
+    icon: <Fragment></Fragment>,
   },
   "Next features": {
-    backContent: (
-      <Fragment>
-        <Typography variant="body2" color="text.secondary" fontSize="inherit">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.
-        </Typography>
-      </Fragment>
-    ),
-    frontContent: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.",
+    flipEnabled: true,
+    backContent: <NextFeaturesBackContent />,
+    frontContent: <NextFeaturesFrontContent />,
     icon: (
       <Box component="div" color="text.secondary" fontSize={isMobile ? "1.75rem" : "1.5rem"} sx={{ display: "flex" }}>
-        <ConstructionIcon fontSize="inherit" />
+        <FiberNewIcon fontSize="inherit" />
       </Box>
     ),
   },

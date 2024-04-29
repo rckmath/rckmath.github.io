@@ -3,7 +3,7 @@ import { useMediaQuery } from "react-responsive";
 
 import { red } from "@mui/material/colors";
 import { styled } from "@mui/material/styles";
-import { Box, Card, CardHeader, CardContent, CardActions, Avatar, IconButton, Typography } from "@mui/material";
+import { Stack, Box, Card, CardHeader, CardContent, CardActions, Avatar, IconButton, Typography } from "@mui/material";
 
 import FlipIcon from "@mui/icons-material/Flip";
 import ShareIcon from "@mui/icons-material/Share";
@@ -33,7 +33,7 @@ const FlippingCard = styled((props) => {
   }),
 }));
 
-const MainCard = ({ title, headerIcon, setExpandPicture, backContent = "", frontContent = "" }) => {
+const MainCard = ({ title, headerIcon, flipEnabled, setExpandPicture, backContent = "", frontContent = "" }) => {
   const [fav, setFav] = React.useState(false);
   const [time, setTime] = React.useState(false);
   const [flipped, setFlipped] = React.useState(false);
@@ -59,7 +59,7 @@ const MainCard = ({ title, headerIcon, setExpandPicture, backContent = "", front
 
   return (
     <Box component="div" sx={{ perspective: "1000px" }}>
-      <FlippingCard flip={flipped} sx={{ width: isMobile ? 345 : 400, fontSize: isMobile ? "1.1rem" : "1rem" }}>
+      <FlippingCard flip={flipped} sx={{ width: isMobile ? 345 : 420, fontSize: isMobile ? "1.1rem" : "1rem" }}>
         {!flipped && (
           <Fragment>
             <CardHeader
@@ -72,14 +72,29 @@ const MainCard = ({ title, headerIcon, setExpandPicture, backContent = "", front
                 />
               }
               action={
-                <FlipCardButton
-                  flip={flipped}
-                  onClick={handleFlipCard}
-                  size={isMobile ? "large" : "medium"}
-                  aria-label={flipped ? "show less" : "show more"}
-                >
-                  <FlipIcon fontSize="inherit" />
-                </FlipCardButton>
+                <Stack alignItems="space-between">
+                  <FlipCardButton
+                    flip={flipped}
+                    disabled={!flipEnabled}
+                    onClick={handleFlipCard}
+                    size={isMobile ? "large" : "medium"}
+                    aria-label={flipped ? "show less" : "show more"}
+                  >
+                    <FlipIcon fontSize="inherit" />
+                  </FlipCardButton>
+                  {flipEnabled && (
+                    <Typography
+                      variant="caption"
+                      lineHeight="1.43"
+                      fontWeight="bold"
+                      color="text.secondary"
+                      fontSize={isMobile ? "0.7rem" : "0.55rem"}
+                      sx={{ top: isMobile ? "-11px" : "-7px", position: "relative", userSelect: "none" }}
+                    >
+                      CLICK ME
+                    </Typography>
+                  )}
+                </Stack>
               }
               title={
                 <Typography variant="subtitle2" color="text.secondary" fontWeight="bold" fontSize="inherit">
@@ -87,16 +102,14 @@ const MainCard = ({ title, headerIcon, setExpandPicture, backContent = "", front
                 </Typography>
               }
               subheader={
-                <Typography variant="body2" color="text.secondary" fontSize="0.9rem">
-                  {`${today} at ${time}`}
-                </Typography>
+                <Stack direction="row" justifyContent="space-between">
+                  <Typography variant="body2" color="text.secondary" fontSize="0.9rem">
+                    Published by Erick M. L. Pacheco
+                  </Typography>
+                </Stack>
               }
             />
-            <CardContent sx={{ backfaceVisibility: "hidden" }}>
-              <Typography variant="body2" color="text.secondary" fontSize="inherit">
-                {frontContent}
-              </Typography>
-            </CardContent>
+            <CardContent>{frontContent}</CardContent>
             <CardActions disableSpacing>
               <IconButton
                 onClick={handleSetFav}
@@ -109,8 +122,11 @@ const MainCard = ({ title, headerIcon, setExpandPicture, backContent = "", front
               <IconButton aria-label="share" size={isMobile ? "large" : "medium"}>
                 <ShareIcon fontSize="inherit" />
               </IconButton>
-              <Typography variant="body2" sx={{ fontSize: "0.75rem", color: "text.secondary", ml: "auto", mr: "1vw" }}>
-                Published by Erick M. L. Pacheco
+              <Typography
+                variant="body2"
+                sx={{ fontSize: "0.75rem", color: "text.secondary", ml: "auto", mr: isMobile ? "2.75vw" : "0.5dvw" }}
+              >
+                {`${today} at ${time}`}
               </Typography>
             </CardActions>
           </Fragment>
@@ -132,13 +148,7 @@ const MainCard = ({ title, headerIcon, setExpandPicture, backContent = "", front
                 </FlipCardButton>
               }
             />
-            <CardContent
-              sx={{
-                backfaceVisibility: "hidden",
-                transformStyle: "preserve-3d",
-                transform: !flipped ? "scaleX(1)" : "scaleX(-1)",
-              }}
-            >
+            <CardContent sx={{ transformStyle: "preserve-3d", transform: !flipped ? "scaleX(1)" : "scaleX(-1)" }}>
               {backContent}
             </CardContent>
           </Fragment>

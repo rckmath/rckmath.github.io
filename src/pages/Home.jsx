@@ -22,11 +22,11 @@ const Home = () => {
         component="main"
         gap={isMobile ? 4 : 8}
         sx={{
-          marginTop: "3vh",
-          alignItems: "flex-start",
+          alignItems: "center",
           justifyContent: "center",
-          paddingX: isMobile ? 1 : isBigScreen ? 7 : 5,
-          paddingY: isMobile ? 1 : isBigScreen ? 7 : 5,
+          transition: "all 0.5s ease",
+          paddingX: isMobile ? 1 : isBigScreen ? 7 : 4,
+          paddingY: isMobile ? 1 : isBigScreen ? 4 : 2,
         }}
       >
         {CardsTitles.map((title, index) => {
@@ -37,6 +37,7 @@ const Home = () => {
               key={index}
               title={title}
               headerIcon={card.icon}
+              flipEnabled={card.flipEnabled}
               backContent={card.backContent}
               frontContent={card.frontContent}
               setExpandPicture={setExpandPicture}
