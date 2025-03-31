@@ -7,7 +7,7 @@ import { getAge } from "../../../utils";
 const AboutMeFrontContent = () => {
   return (
     <Typography variant="body2" color="text.secondary" fontSize="inherit" align="justify">
-      Passionate full-stack developer with +4 years of experience and a knack for innovation and discovering new
+      Passionate full-stack developer with +5 years of experience and a knack for innovation and discovering new
       technologies. Eager to specialize in Blockchain, Web3, and smart contracts development over the next three years.
     </Typography>
   );

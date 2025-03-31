@@ -24,11 +24,19 @@ const MyResumeFrontContent = () => {
         You can request my résumé below:
       </Typography>
       <ColoredButton
-        variant="outlined"
+        variant="contained"
         onClick={handleResumeAction}
-        backgroundColor="#00000080"
+        backgroundColor="#3b82f6"
         endIcon={<SendIcon />}
         fullWidth
+        sx={{
+          py: 1,
+          fontWeight: 500,
+          letterSpacing: '0.01em',
+          '&:hover': {
+            backgroundColor: '#2563eb',
+          }
+        }}
       >
         Request it now
       </ColoredButton>
