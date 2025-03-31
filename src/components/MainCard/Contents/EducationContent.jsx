@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import { Typography, Grid, Chip, Stack } from "@mui/material";
+import { Typography, Grid, Chip, Stack, Box } from "@mui/material";
 
 import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
@@ -56,53 +56,55 @@ const EducationBackContent = () => {
   };
 
   return (
-    <Grid sx={{ width: "100%", alignItems: "center" }} container>
-      <Grid
-        xs={1}
-        sx={{
-          textAlign: "left",
-          cursor: currentPage === 0 ? "normal" : "pointer",
-          visibility: currentPage === 0 ? "hidden" : "visible",
-          color: currentPage === 0 ? "text.disabled" : "text.secondary",
-        }}
-        item
-      >
-        <KeyboardArrowLeftIcon onClick={handleGoBackPage} />
-      </Grid>
-      <Grid xs={10} item>
-        <Stack direction="row" justifyContent="space-between" alignItems="center" mb={1.5}>
-          <Chip label={education.degree} size="small" variant="outlined" />
+    <Box sx={{ width: "100%" }}>
+      <Grid container sx={{ width: "100%", alignItems: "center" }}>
+        <Grid
+          xs={1}
+          sx={{
+            textAlign: "left",
+            cursor: currentPage === 0 ? "normal" : "pointer",
+            visibility: currentPage === 0 ? "hidden" : "visible",
+            color: currentPage === 0 ? "text.disabled" : "text.secondary",
+          }}
+          item
+        >
+          <KeyboardArrowLeftIcon onClick={handleGoBackPage} />
+        </Grid>
+        <Grid xs={10} item>
+          <Stack direction="row" justifyContent="space-between" alignItems="center" mb={1.5}>
+            <Chip label={education.degree} size="small" variant="outlined" />
 
-          <Typography variant="caption" color="text.secondary" align="justify">
-            Finished on {education.finishedOn}
+            <Typography variant="caption" color="text.secondary" align="justify">
+              Finished on {education.finishedOn}
+            </Typography>
+          </Stack>
+
+          <Typography variant="body2" color="text.secondary" fontSize="inherit" align="justify" mb={0.5}>
+            <b>{education.course}</b> at {education.at}
           </Typography>
-        </Stack>
 
-        <Typography variant="body2" color="text.secondary" fontSize="inherit" align="justify" mb={0.5}>
-          <b>{education.course}</b> at {education.at}
-        </Typography>
+          <Typography variant="body2" color="text.secondary" fontSize="0.8rem" align="justify">
+            {education.where}
+          </Typography>
 
-        <Typography variant="body2" color="text.secondary" fontSize="0.8rem" align="justify">
-          {education.where}
-        </Typography>
-
-        <Typography variant="body2" color="text.secondary" fontSize="0.8rem" align="justify">
-          Grade: {education.grade}
-        </Typography>
+          <Typography variant="body2" color="text.secondary" fontSize="0.8rem" align="justify">
+            Grade: {education.grade}
+          </Typography>
+        </Grid>
+        <Grid
+          item
+          xs={1}
+          sx={{
+            textAlign: "right",
+            cursor: currentPage === educationList.length - 1 ? "normal" : "pointer",
+            visibility: currentPage === educationList.length - 1 ? "hidden" : "visible",
+            color: currentPage === educationList.length - 1 ? "text.disabled" : "text.secondary",
+          }}
+        >
+          <KeyboardArrowRightIcon onClick={handleGoNextPage} />
+        </Grid>
       </Grid>
-      <Grid
-        item
-        xs={1}
-        sx={{
-          textAlign: "right",
-          cursor: currentPage === educationList.length - 1 ? "normal" : "pointer",
-          visibility: currentPage === educationList.length - 1 ? "hidden" : "visible",
-          color: currentPage === educationList.length - 1 ? "text.disabled" : "text.secondary",
-        }}
-      >
-        <KeyboardArrowRightIcon onClick={handleGoNextPage} />
-      </Grid>
-    </Grid>
+    </Box>
   );
 };
 
