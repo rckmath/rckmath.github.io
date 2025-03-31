@@ -33,5 +33,6 @@
     "gh-pages": "^6.1.1",
     "vite": "^5.2.10",
     "vite-plugin-svgr": "^4.2.0"
-  }
+  },
+  "packageManager": "yarn@4.8.1"
 }
