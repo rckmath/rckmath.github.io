@@ -8,17 +8,17 @@ import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 const workExperiences = [
   {
     at: "Softwrench",
-    role: "Full-stack Engineer",
+    role: "Senior Software Engineer",
     howLong: "Sep 2021 - Present",
     stack: ["C# .NET", "AngularJS", "React Native", "AWS"],
-    briefDescription: "Architecture and development of APIs, front-end development (mobile & web) and many more.",
+    briefDescription: "Architecture and development of APIs, front-end development (mobile & web), team leading and many more.",
   },
   {
     at: "ETEC de Hortolândia",
     role: "IT Teacher",
-    howLong: "Aug 2023 - Present",
-    stack: ["Shell script", "Linux", "MS Office", "Virtualization"],
-    briefDescription: "Teaching subjects like MS Office, Linux, cloud computing & bash; network computer and more.",
+    howLong: "Aug 2023 - Aug 2025",
+    stack: ["Shell script", "Linux", "MS Office", "React Native"],
+    briefDescription: "Teaching subjects like React Native, MS Office, Linux, cloud computing & bash; network computer and more.",
   },
   {
     at: "MB Labs",
