@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import { Typography, Grid, Stack, Chip } from "@mui/material";
+import { Typography, Grid, Stack, Chip, Box } from "@mui/material";
 
 import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
@@ -55,48 +55,50 @@ const WorkHistoryBackContent = () => {
   };
 
   return (
-    <Grid container sx={{ width: "100%", alignItems: "center" }}>
-      <Grid
-        xs={1}
-        sx={{
-          textAlign: "left",
-          cursor: currentPage === 0 ? "normal" : "pointer",
-          visibility: currentPage === 0 ? "hidden" : "visible",
-          color: currentPage === 0 ? "text.disabled" : "text.secondary",
-        }}
-        item
-      >
-        <KeyboardArrowLeftIcon onClick={handleGoBackPage} />
+    <Box sx={{ width: "100%" }}>
+      <Grid container sx={{ width: "100%", alignItems: "center" }}>
+        <Grid
+          xs={1}
+          sx={{
+            textAlign: "left",
+            cursor: currentPage === 0 ? "normal" : "pointer",
+            visibility: currentPage === 0 ? "hidden" : "visible",
+            color: currentPage === 0 ? "text.disabled" : "text.secondary",
+          }}
+          item
+        >
+          <KeyboardArrowLeftIcon onClick={handleGoBackPage} />
+        </Grid>
+        <Grid xs={10} item>
+          <Typography variant="caption" color="text.secondary" align="justify">
+            {work.howLong}
+          </Typography>
+          <Typography variant="body2" color="text.secondary" fontSize="inherit" align="justify" mb={0.5}>
+            <b>{work.role}</b> at {work.at}
+          </Typography>
+          <Stack direction="row" alignItems="center" spacing={0.5} mb={4}>
+            {work.stack.map((technology, key) => {
+              return <Chip key={key} label={technology} size="small" variant="outlined" />;
+            })}
+          </Stack>
+          <Typography variant="body2" color="text.secondary" fontSize="inherit" align="justify">
+            {work.briefDescription}
+          </Typography>
+        </Grid>
+        <Grid
+          xs={1}
+          sx={{
+            textAlign: "right",
+            cursor: currentPage === workExperiences.length - 1 ? "normal" : "pointer",
+            visibility: currentPage === workExperiences.length - 1 ? "hidden" : "visible",
+            color: currentPage === workExperiences.length - 1 ? "text.disabled" : "text.secondary",
+          }}
+          item
+        >
+          <KeyboardArrowRightIcon onClick={handleGoNextPage} />
+        </Grid>
       </Grid>
-      <Grid xs={10} item>
-        <Typography variant="caption" color="text.secondary" align="justify">
-          {work.howLong}
-        </Typography>
-        <Typography variant="body2" color="text.secondary" fontSize="inherit" align="justify" mb={0.5}>
-          <b>{work.role}</b> at {work.at}
-        </Typography>
-        <Stack direction="row" alignItems="center" spacing={0.5} mb={4}>
-          {work.stack.map((technology, key) => {
-            return <Chip key={key} label={technology} size="small" variant="outlined" />;
-          })}
-        </Stack>
-        <Typography variant="body2" color="text.secondary" fontSize="inherit" align="justify">
-          {work.briefDescription}
-        </Typography>
-      </Grid>
-      <Grid
-        xs={1}
-        sx={{
-          textAlign: "right",
-          cursor: currentPage === workExperiences.length - 1 ? "normal" : "pointer",
-          visibility: currentPage === workExperiences.length - 1 ? "hidden" : "visible",
-          color: currentPage === workExperiences.length - 1 ? "text.disabled" : "text.secondary",
-        }}
-        item
-      >
-        <KeyboardArrowRightIcon onClick={handleGoNextPage} />
-      </Grid>
-    </Grid>
+    </Box>
   );
 };
 

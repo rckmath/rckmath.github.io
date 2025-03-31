@@ -66,19 +66,23 @@ const MainCard = ({ title, headerIcon, flipEnabled, setExpandPicture, backConten
   }, []);
 
   return (
-    <Box component="div">
+    <Box component="div" sx={{ height: "100%", width: "100%" }}>
       <FlippingCard
         flip={flipped}
         sx={{
-          width: isMobile ? 345 : 420,
+          width: "100%",
+          height: "100%",
           fontSize: isMobile ? "1.1rem" : "1rem",
           borderRadius: 2,
           overflow: "hidden",
+          display: "flex",
+          flexDirection: "column",
         }}
       >
         {!flipped && (
           <Fragment>
             <CardHeader
+              sx={{ flexShrink: 0 }}
               avatar={
                 <StyledAvatar
                   src="/me.png"
@@ -86,8 +90,8 @@ const MainCard = ({ title, headerIcon, flipEnabled, setExpandPicture, backConten
                   aria-label="my profile picture"
                   sx={{
                     cursor: "pointer",
-                    width: isMobile ? 56 : 48,
-                    height: isMobile ? 56 : 48,
+                    width: { xs: 56, md: 48 },
+                    height: { xs: 56, md: 48 },
                   }}
                 />
               }
@@ -145,41 +149,7 @@ const MainCard = ({ title, headerIcon, flipEnabled, setExpandPicture, backConten
                 </Stack>
               }
             />
-            <CardContent sx={{ py: 3 }}>{frontContent}</CardContent>
-            <CardActions
-              disableSpacing
-              sx={{
-                px: 2,
-                pb: 2,
-                borderTop: (theme) => `1px solid ${alpha(theme.palette.divider, 0.1)}`,
-              }}
-            >
-              <IconButton
-                onClick={handleSetFav}
-                aria-label="add to favorites"
-                size={isMobile ? "large" : "medium"}
-                sx={{
-                  color: fav ? red[700] : "text.secondary",
-                }}
-              >
-                <FavoriteIcon fontSize="inherit" />
-              </IconButton>
-              <IconButton aria-label="share" size={isMobile ? "large" : "medium"}>
-                <ShareIcon fontSize="inherit" />
-              </IconButton>
-              <Typography
-                variant="body2"
-                sx={{
-                  fontSize: "0.75rem",
-                  color: "text.secondary",
-                  ml: "auto",
-                  mr: isMobile ? "2.75vw" : "0.5dvw",
-                  opacity: 0.7,
-                }}
-              >
-                {`${today} at ${time}`}
-              </Typography>
-            </CardActions>
+            <CardContent sx={{ py: 3, flexGrow: 1, width: "100%" }}>{frontContent}</CardContent>
           </Fragment>
         )}
 
@@ -188,6 +158,7 @@ const MainCard = ({ title, headerIcon, flipEnabled, setExpandPicture, backConten
             <CardHeader
               sx={{
                 transform: "scaleX(-1)",
+                flexShrink: 0,
               }}
               avatar={headerIcon}
               action={
@@ -204,6 +175,8 @@ const MainCard = ({ title, headerIcon, flipEnabled, setExpandPicture, backConten
             <CardContent
               sx={{
                 transform: "scaleX(-1)",
+                flexGrow: 1,
+                width: "100%",
               }}
             >
               {backContent}

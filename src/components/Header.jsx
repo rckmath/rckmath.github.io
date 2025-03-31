@@ -46,10 +46,10 @@ const Header = () => {
   return (
     <StyledAppBar
       position="sticky"
+      variant="dense"
       sx={{
         boxShadow: "none",
         py: { xs: 1, sm: 1.5 },
-        mb: { xs: 2, sm: 3 },
       }}
     >
       <Container maxWidth="xl" sx={{ px: { xs: 2, sm: 3 } }}>
