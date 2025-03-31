@@ -11,7 +11,7 @@ const workExperiences = [
     role: "Senior Software Engineer",
     howLong: "Sep 2021 - Present",
     stack: ["C# .NET", "AngularJS", "React Native", "AWS"],
-    briefDescription: "Architecture and development of APIs, front-end development (mobile & web), team leading and many more.",
+    briefDescription: "Software architecture, API and front-end (mobile & web) development, team leading and many more.",
   },
   {
     at: "ETEC de Hortolândia",
