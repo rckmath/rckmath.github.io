@@ -3,7 +3,6 @@ import React, { Fragment } from "react";
 import { Box, Divider, Typography, List, ListItem, ListItemIcon, ListItemText } from "@mui/material";
 
 import CheckBoxIcon from "@mui/icons-material/CheckBox";
-import CheckBoxOutlineBlankIcon from "@mui/icons-material/CheckBoxOutlineBlank";
 import IndeterminateCheckBoxIcon from "@mui/icons-material/IndeterminateCheckBox";
 
 const features = [
@@ -13,15 +12,21 @@ const features = [
     description: "Add a hidden terminal to the portfolio.",
   },
   {
+    status: <CheckBoxIcon />,
+    title: "Cleaner and responsive UI",
+    description: "Implement a cleaner and responsive UI design.",
+  },
+  {
+    status: <CheckBoxIcon />,
+    title: "Dark and light mode",
+    description: "Add support for dark and light mode.",
+  },
+  {
     status: <IndeterminateCheckBoxIcon />,
     title: "Language toggling",
     description: "pt-BR and en-US language toggling.",
   },
-  {
-    status: <CheckBoxOutlineBlankIcon />,
-    title: "Dark and light mode",
-    description: "Add support for dark and light mode.",
-  },
+
 ];
 
 const NextFeaturesFrontContent = () => {
@@ -53,7 +58,7 @@ const NextFeaturesBackContent = () => {
                 secondary={feat.description}
                 primaryTypographyProps={{
                   fontWeight: "500",
-                  lineHeight: "1rem",
+                  lineHeight: "0.85rem",
                   fontSize: "inherit",
                   color: "text.secondary",
                 }}

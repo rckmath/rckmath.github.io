@@ -35,8 +35,7 @@ const educationList = [
 const EducationFrontContent = () => {
   return (
     <Typography variant="body2" color="text.secondary" fontSize="inherit" align="justify">
-      Graduate software engineer, post-graduate specialization in blockchain development. Started developing by an IT
-      Technician course.
+      Graduate software engineer, post-graduate specialization in blockchain development. Started developing by an IT Technician course.
     </Typography>
   );
 };

@@ -1,7 +1,7 @@
 import React, { useState, Fragment } from "react";
 import { useMediaQuery } from "react-responsive";
 
-import { Grid } from "@mui/material";
+import { Grid, Container, Box } from "@mui/material";
 
 import Header from "../components/Header";
 import Footer from "../components/Footer";
@@ -16,36 +16,73 @@ const Home = () => {
 
   return (
     <Fragment>
-      <Header />
-      <Grid
-        container
-        component="main"
-        gap={isMobile ? 4 : 8}
-        sx={{
-          alignItems: "center",
-          justifyContent: "center",
-          transition: "all 0.5s ease",
-          paddingX: isMobile ? 1 : isBigScreen ? 7 : 4,
-          paddingY: isMobile ? 1 : isBigScreen ? 4 : 2,
-        }}
-      >
-        {CardsTitles.map((title, index) => {
-          const card = Cards(isMobile)[title];
+      <Container maxWidth={false} sx={{ py: { xs: 4, md: 6, lg: 8 } }}>
+        <Grid
+          container
+          component="main"
+          spacing={{ xs: 4, md: 6, lg: 8 }}
+          sx={{
+            alignItems: "stretch",
+            justifyContent: "center",
+            transition: "all 0.5s ease",
+            px: { xs: 2, sm: 3, md: 4 },
+          }}
+        >
+          {CardsTitles.map((title, index) => {
+            const card = Cards(isMobile)[title];
 
-          return (
-            <MainCard
-              key={index}
-              title={title}
-              headerIcon={card.icon}
-              flipEnabled={card.flipEnabled}
-              backContent={card.backContent}
-              frontContent={card.frontContent}
-              setExpandPicture={setExpandPicture}
-            />
-          );
-        })}
-      </Grid>
-      <Footer />
+            return (
+              <Grid 
+                item 
+                xs={12} 
+                sm={6} 
+                lg={4} 
+                key={index}
+                sx={{
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignItems: 'stretch',
+                }}
+              >
+                <Box
+                  sx={{
+                    height: '100%',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    justifyContent: 'stretch',
+                    alignItems: 'stretch',
+                    width: '100%',
+                    maxWidth: isMobile ? '345px' : '420px',
+                  }}
+                >
+                  <Box
+                    sx={{
+                      flex: 1,
+                      display: 'flex',
+                      flexDirection: 'column',
+                      height: '100%',
+                      '& > *': {
+                        height: '100%',
+                        display: 'flex',
+                        flexDirection: 'column',
+                      }
+                    }}
+                  >
+                    <MainCard
+                      title={title}
+                      headerIcon={card.icon}
+                      flipEnabled={card.flipEnabled}
+                      backContent={card.backContent}
+                      frontContent={card.frontContent}
+                      setExpandPicture={setExpandPicture}
+                    />
+                  </Box>
+                </Box>
+              </Grid>
+            );
+          })}
+        </Grid>
+      </Container>
       <ProfilePictureModal open={expandPicture} setOpen={setExpandPicture} />
     </Fragment>
   );
