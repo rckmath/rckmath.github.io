@@ -16,7 +16,6 @@ const Home = () => {
 
   return (
     <Fragment>
-      <Header />
       <Container maxWidth={false} sx={{ py: { xs: 4, md: 6, lg: 8 } }}>
         <Grid
           container
@@ -84,7 +83,6 @@ const Home = () => {
           })}
         </Grid>
       </Container>
-      <Footer />
       <ProfilePictureModal open={expandPicture} setOpen={setExpandPicture} />
     </Fragment>
   );
