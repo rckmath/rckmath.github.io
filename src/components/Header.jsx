@@ -10,6 +10,7 @@ import { AppBar, Toolbar, Typography, IconButton, Box, Container, alpha } from "
 
 import { TypewriterText } from "./TypewriterText";
 import { useTheme } from "../context/ThemeContext";
+import LanguageToggle from "./LanguageToggle";
 
 const blink = keyframes`
   0% { opacity: 1; }
@@ -44,30 +45,25 @@ const Header = () => {
   const { isDarkMode, toggleTheme } = useTheme();
 
   return (
-    <StyledAppBar
-      position="sticky"
-      variant="dense"
-      sx={{
-        boxShadow: "none",
-        py: { xs: 1, sm: 1.5 },
-      }}
-    >
-      <Container maxWidth="xl" sx={{ px: { xs: 2, sm: 3 } }}>
+    <StyledAppBar position="sticky" variant="dense" sx={{ boxShadow: "none" }}>
+      <Container maxWidth="xl" sx={{ px: { xs: 1, sm: 3 } }}>
         <Toolbar
+          disableGutters
           sx={{
             justifyContent: "space-between",
             alignItems: "center",
-            minHeight: { xs: "64px", sm: "72px" },
+            minHeight: { xs: "48px", sm: "72px" },
             px: 0,
             position: "relative",
           }}
         >
           <Box
             sx={{
+              flex: 1,
+              ml: isMobile ? 6 : 12,
               display: "flex",
               alignItems: "center",
-              gap: { xs: 2, sm: 3 },
-              flex: 1,
+              gap: { xs: 1 },
               justifyContent: "center",
               position: "relative",
             }}
@@ -84,7 +80,7 @@ const Header = () => {
                 },
               }}
             >
-              <StyledTerminalIcon sx={{ fontSize: isMobile ? "3rem" : "4rem" }} />
+              <StyledTerminalIcon sx={{ fontSize: isMobile ? "3rem" : "3.75rem" }} />
             </IconButton>
             <Box
               sx={{
@@ -100,7 +96,7 @@ const Header = () => {
                 sx={{
                   display: "flex",
                   alignItems: "center",
-                  gap: 1,
+                  gap: 0.5,
                   mb: 0,
                 }}
               >
@@ -144,25 +140,27 @@ const Header = () => {
               </Typography>
             </Box>
           </Box>
-          <IconButton
-            onClick={toggleTheme}
-            size="large"
-            color="inherit"
-            aria-label="theme-toggle"
-            sx={{
-              position: "absolute",
-              right: 0,
-              "&:hover": {
-                backgroundColor: alpha("#fff", 0.1),
-              },
-            }}
-          >
-            {isDarkMode ? (
-              <LightModeIcon sx={{ fontSize: isMobile ? "2rem" : "2.25rem" }} />
-            ) : (
-              <DarkModeIcon sx={{ fontSize: isMobile ? "2rem" : "2.25rem" }} />
-            )}
-          </IconButton>
+          <Box sx={{ display: "flex", alignItems: "center" }}>
+            <LanguageToggle />
+            <IconButton
+              onClick={toggleTheme}
+              size={isMobile ? "small" : "medium"}
+              color="inherit"
+              aria-label="theme-toggle"
+              sx={{
+                ml: 0.5,
+                "&:hover": {
+                  backgroundColor: alpha("#fff", 0.1),
+                },
+              }}
+            >
+              {isDarkMode ? (
+                <LightModeIcon sx={{ fontSize: isMobile ? "1.9rem" : "2.15rem" }} />
+              ) : (
+                <DarkModeIcon sx={{ fontSize: isMobile ? "1.9rem" : "2.15rem" }} />
+              )}
+            </IconButton>
+          </Box>
         </Toolbar>
       </Container>
     </StyledAppBar>

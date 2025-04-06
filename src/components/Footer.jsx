@@ -32,7 +32,7 @@ const Footer = () => {
         bottom: 0,
         left: 0,
         right: 0,
-        py: { xs: 2, sm: 3 },
+        py: { xs: 1 },
         px: { xs: 2, sm: 3 },
         background: (theme) =>
           alpha(theme.palette.background.paper, 0.8),

@@ -2,14 +2,11 @@ import React from "react";
 import { Box, Container, Grid, Typography } from "@mui/material";
 import { useMediaQuery } from "react-responsive";
 import { alpha } from "@mui/material/styles";
-import { useTheme } from "../context/ThemeContext";
 import { MainCard } from "../components/MainCard";
-import { Cards } from "../components/MainCard";
+import { Cards, CardsTitles } from "../components/MainCard/Cards";
 import AboutMeContent from "../components/AboutMeContent/AboutMeContent";
 
 const Home = () => {
-  const isLargeScreen = useMediaQuery({ minWidth: 1200 });
-  const { isDarkMode } = useTheme();
   const isMobile = useMediaQuery({ maxWidth: 767 });
 
   return (
@@ -79,7 +76,7 @@ const Home = () => {
           </Container>
           <Container maxWidth="xl" sx={{ pt: 2 }}>
             <Grid container spacing={4} alignItems="stretch">
-              {Object.entries(Cards(isMobile)).map(([title, card], index) => (
+              {CardsTitles(isMobile).map((title) => (
                 <Grid item xs={12} md={6} key={title}>
                   <Box
                     sx={{
@@ -91,10 +88,10 @@ const Home = () => {
                   >
                     <MainCard
                       title={title}
-                      headerIcon={card.icon}
-                      flipEnabled={card.flipEnabled}
-                      backContent={card.backContent}
-                      frontContent={card.frontContent}
+                      headerIcon={Cards(isMobile)[title].icon}
+                      flipEnabled={Cards(isMobile)[title].flipEnabled}
+                      backContent={Cards(isMobile)[title].backContent}
+                      frontContent={Cards(isMobile)[title].frontContent}
                     />
                   </Box>
                 </Grid>
@@ -102,70 +99,6 @@ const Home = () => {
             </Grid>
           </Container>
         </Box>
-      </Box>
-
-      <Box
-        component="section"
-        id="future"
-        sx={{
-          minHeight: "100vh",
-          display: "flex",
-          alignItems: "center",
-          py: { xs: 8, md: 12 },
-          position: "relative",
-          background: (theme) =>
-            `linear-gradient(135deg, ${alpha(theme.palette.background.paper, 0.95)} 0%, ${alpha(theme.palette.background.default, 0.95)} 100%)`,
-          scrollMarginTop: "80px",
-        }}
-      >
-        <Container maxWidth="xl">
-          <Grid container spacing={6} alignItems="center">
-            <Grid item xs={12}>
-              <Box
-                sx={{
-                  p: 4,
-                  borderRadius: 4,
-                  background: (theme) => alpha(theme.palette.background.paper, 0.5),
-                  backdropFilter: "blur(10px)",
-                }}
-              >
-                <Typography variant="h4" sx={{ mb: 4, fontWeight: 600 }}>
-                  Coming Soon
-                </Typography>
-                <Box sx={{ display: "flex", flexDirection: "column", gap: 3 }}>
-                  {["Direct contact form", "Interactive project showcase"].map((feature, index) => (
-                    <Box
-                      key={index}
-                      sx={{
-                        display: "flex",
-                        alignItems: "center",
-                        gap: 2,
-                        p: 2,
-                        borderRadius: 2,
-                        background: (theme) => alpha(theme.palette.background.paper, 0.3),
-                        transition: "all 0.3s ease-in-out",
-                        "&:hover": {
-                          transform: "translateX(10px)",
-                          background: (theme) => alpha(theme.palette.background.paper, 0.5),
-                        },
-                      }}
-                    >
-                      <Box
-                        sx={{
-                          width: 8,
-                          height: 8,
-                          borderRadius: "50%",
-                          background: (theme) => `linear-gradient(45deg, ${theme.palette.primary.main} 30%, ${theme.palette.secondary.main} 90%)`,
-                        }}
-                      />
-                      <Typography variant="h6">{feature}</Typography>
-                    </Box>
-                  ))}
-                </Box>
-              </Box>
-            </Grid>
-          </Grid>
-        </Container>
       </Box>
     </Box>
   );
