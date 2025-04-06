@@ -1,47 +1,48 @@
 import React, { useState } from "react";
-
 import { Typography, Grid, Chip, Stack, Box } from "@mui/material";
-
 import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
-
-const educationList = [
-  {
-    at: "UniFECAF",
-    grade: "10/10",
-    finishedOn: "Dec 2023",
-    degree: "Postgraduate",
-    course: "Blockchain Development",
-    where: "Taboão da Serra, SP, Brazil",
-  },
-  {
-    at: "PUC Campinas",
-    grade: "10/10",
-    degree: "Bachelor",
-    finishedOn: "Dec 2022",
-    course: "Software Engineering",
-    where: "Campinas, SP, Brazil",
-  },
-  {
-    at: "ETEC de Hortolândia",
-    grade: "08/10",
-    degree: "Technical",
-    finishedOn: "Dec 2017",
-    course: "IT",
-    where: "Hortolândia, SP, Brazil",
-  },
-];
+import useTranslation from "../../../hooks/useTranslation";
 
 const EducationFrontContent = () => {
+  const { t } = useTranslation();
   return (
     <Typography variant="body2" color="text.secondary" fontSize="inherit" align="justify">
-      Graduate software engineer, post-graduate specialization in blockchain development. Started developing by an IT Technician course.
+      {t('educationDescription')}
     </Typography>
   );
 };
 
 const EducationBackContent = () => {
+  const { t } = useTranslation();
   const [currentPage, setCurrentPage] = useState(0);
+
+  const educationList = [
+    {
+      at: "UniFECAF",
+      grade: t('unifecaf.grade'),
+      finishedOn: t('unifecaf.period'),
+      degree: t('unifecaf.degree'),
+      course: t('unifecaf.course'),
+      where: t('unifecaf.location'),
+    },
+    {
+      at: "PUC Campinas",
+      grade: t('puc.grade'),
+      degree: t('puc.degree'),
+      finishedOn: t('puc.period'),
+      course: t('puc.course'),
+      where: t('puc.location'),
+    },
+    {
+      at: "ETEC de Hortolândia",
+      grade: t('etecEducation.grade'),
+      degree: t('etecEducation.degree'),
+      finishedOn: t('etecEducation.period'),
+      course: t('etecEducation.course'),
+      where: t('etecEducation.location'),
+    },
+  ];
 
   const education = educationList[currentPage];
 
@@ -75,12 +76,12 @@ const EducationBackContent = () => {
             <Chip label={education.degree} size="small" variant="outlined" />
 
             <Typography variant="caption" color="text.secondary" align="justify">
-              Finished on {education.finishedOn}
+              {t('finishedOn')} {education.finishedOn}
             </Typography>
           </Stack>
 
           <Typography variant="body2" color="text.secondary" fontSize="inherit" align="justify" mb={0.5}>
-            <b>{education.course}</b> at {education.at}
+            <b>{education.course}</b> {t('at')} {education.at}
           </Typography>
 
           <Typography variant="body2" color="text.secondary" fontSize="0.8rem" align="justify">
@@ -88,7 +89,7 @@ const EducationBackContent = () => {
           </Typography>
 
           <Typography variant="body2" color="text.secondary" fontSize="0.8rem" align="justify">
-            Grade: {education.grade}
+            {t('grade')}: {education.grade}
           </Typography>
         </Grid>
         <Grid

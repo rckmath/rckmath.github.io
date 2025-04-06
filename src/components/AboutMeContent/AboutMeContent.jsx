@@ -2,8 +2,11 @@ import React from "react";
 import { Box, Typography, Button } from "@mui/material";
 import { alpha } from "@mui/material/styles";
 import EmailIcon from "@mui/icons-material/Email";
+import useTranslation from "../../hooks/useTranslation";
 
 const AboutMeContent = () => {
+  const { t } = useTranslation();
+
   return (
     <Box
       sx={{
@@ -25,7 +28,7 @@ const AboutMeContent = () => {
           WebkitTextFillColor: "transparent",
         }}
       >
-        About Me
+        {t("aboutTitle")}
       </Typography>
 
       <Typography
@@ -35,28 +38,26 @@ const AboutMeContent = () => {
           lineHeight: 1.6,
         }}
       >
-        Hi! I'm Erick, a passionate software engineer with a strong foundation in API and web development and a keen interest in creating innovative
-        solutions.
+        {t("aboutContent")}
       </Typography>
 
       <Typography
         variant="body1"
         sx={{
           opacity: 0.7,
-          lineHeight: 1.8,
-          fontSize: "1.1rem",
+          lineHeight: 1.5,
+          fontSize: "1rem",
         }}
       >
-        I'm specialized in building modern applications using React, Node.js, .NET and other cutting-edge technologies. My approach combines
-        clean code and design patterns practices with a focus on user experience and product scalability.
+        {t("aboutDescription")}
       </Typography>
 
       <Box
         sx={{
           display: "flex",
           flexWrap: "wrap",
-          gap: 2,
-          mt: 2,
+          gap: 1,
+          my: 1,
         }}
       >
         {["React/React Native", "Node.js", "TypeScript", "C#", "Python", "SQL", "Git", "Docker", "AWS", "Solidity", "C/C++"].map((skill, index) => (
@@ -114,7 +115,7 @@ const AboutMeContent = () => {
             },
           }}
         >
-          Contact Me
+          {t("contactMe").toUpperCase()}
         </Button>
       </Box>
     </Box>
