@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import { ThemeContextProvider } from "./context/ThemeContext";
+import { LanguageProvider } from "./context/LanguageContext";
 import { getTheme } from "./theme";
 import { useTheme } from "./context/ThemeContext";
 
@@ -36,7 +37,9 @@ const AppContent = () => {
 const App = () => {
   return (
     <ThemeContextProvider>
-      <AppContent />
+      <LanguageProvider>
+        <AppContent />
+      </LanguageProvider>
     </ThemeContextProvider>
   );
 };

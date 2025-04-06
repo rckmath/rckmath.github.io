@@ -1,46 +1,45 @@
 import React, { useState } from "react";
-
 import { Typography, Grid, Stack, Chip, Box } from "@mui/material";
-
 import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
-
-const workExperiences = [
-  {
-    at: "Softwrench",
-    role: "Senior Software Engineer",
-    howLong: "Sep 2021 - Present",
-    stack: ["C# .NET", "AngularJS", "React Native", "AWS"],
-    briefDescription: "Software architecture, API and front-end (mobile & web) development, team leading and many more.",
-  },
-  {
-    at: "ETEC de Hortolândia",
-    role: "IT Teacher",
-    howLong: "Aug 2023 - Aug 2025",
-    stack: ["Shell script", "Linux", "MS Office", "React Native"],
-    briefDescription: "Teaching subjects like React Native, MS Office, Linux, cloud computing & bash; network computer and more.",
-  },
-  {
-    at: "MB Labs",
-    role: "Back-end Developer",
-    howLong: "Aug 2020 - Aug 2021",
-    stack: ["Node.js", "TypeScript", "AWS", "Nginx"],
-    briefDescription: "Was a 'go-to person' developer there, I contributed to over than 7 projects in many ways.",
-  },
-];
+import useTranslation from "../../../hooks/useTranslation";
 
 const WorkHistoryFrontContent = () => {
+  const { t } = useTranslation();
   return (
     <Typography variant="body2" color="text.secondary" fontSize="inherit" align="justify">
-      Worked in many multi-sized projects; well-versed in developing and integrating RESTful and SOAP APIs, especially
-      using JavaScript and .NET. Experienced with many projects, front-end development and in providing infrastructure
-      (DevOps) support.
+      {t('workHistoryDescription')}
     </Typography>
   );
 };
 
 const WorkHistoryBackContent = () => {
+  const { t } = useTranslation();
   const [currentPage, setCurrentPage] = useState(0);
+
+  const workExperiences = [
+    {
+      at: "Softwrench",
+      role: t('softwrench.role'),
+      howLong: t('softwrench.period'),
+      stack: t('softwrench.stack'),
+      briefDescription: t('softwrench.description'),
+    },
+    {
+      at: "ETEC de Hortolândia",
+      role: t('etec.role'),
+      howLong: t('etec.period'),
+      stack: t('etec.stack'),
+      briefDescription: t('etec.description'),
+    },
+    {
+      at: "MB Labs",
+      role: t('mblabs.role'),
+      howLong: t('mblabs.period'),
+      stack: t('mblabs.stack'),
+      briefDescription: t('mblabs.description'),
+    },
+  ];
 
   const work = workExperiences[currentPage];
 
@@ -74,7 +73,7 @@ const WorkHistoryBackContent = () => {
             {work.howLong}
           </Typography>
           <Typography variant="body2" color="text.secondary" fontSize="inherit" align="justify" mb={0.5}>
-            <b>{work.role}</b> at {work.at}
+            <b>{work.role}</b> {t('at')} {work.at}
           </Typography>
           <Stack direction="row" alignItems="center" spacing={0.5} mb={4}>
             {work.stack.map((technology, key) => {

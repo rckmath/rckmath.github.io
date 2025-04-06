@@ -1,15 +1,12 @@
-import React, { useEffect, Fragment } from "react";
+import React, { Fragment } from "react";
 import { useMediaQuery } from "react-responsive";
 
-import { red } from "@mui/material/colors";
 import { styled } from "@mui/material/styles";
-import { Stack, Box, Card, CardHeader, CardContent, CardActions, Avatar, IconButton, Typography, alpha } from "@mui/material";
+import { Stack, Box, Card, CardHeader, CardContent, IconButton, Typography, alpha } from "@mui/material";
 
 import FlipIcon from "@mui/icons-material/Flip";
-import ShareIcon from "@mui/icons-material/Share";
-import FavoriteIcon from "@mui/icons-material/Favorite";
 
-import { generateRandomTime } from "../../utils";
+import useTranslation from "../../hooks/useTranslation";
 
 const FlipCardButton = styled((props) => {
   const { flip, ...other } = props;
@@ -35,35 +32,15 @@ const FlippingCard = styled((props) => {
   border: `1px solid ${alpha(theme.palette.divider, 0.1)}`,
 }));
 
-const StyledAvatar = styled(Avatar)(({ theme }) => ({
-  transition: theme.transitions.create(["transform"], {
-    duration: theme.transitions.duration.shortest,
-  }),
-}));
-
-const MainCard = ({ title, headerIcon, flipEnabled, setExpandPicture, backContent = "", frontContent = "" }) => {
-  const [fav, setFav] = React.useState(false);
-  const [time, setTime] = React.useState(false);
+const MainCard = ({ title, headerIcon, flipEnabled, backContent = "", frontContent = "" }) => {
   const [flipped, setFlipped] = React.useState(false);
+  const { t } = useTranslation();
 
-  const today = new Date().toLocaleDateString();
   const isMobile = useMediaQuery({ maxWidth: 767 });
-
-  const handleSetFav = () => {
-    setFav(!fav);
-  };
 
   const handleFlipCard = () => {
     setFlipped(!flipped);
   };
-
-  const handleExpandPicture = () => {
-    setExpandPicture(true);
-  };
-
-  useEffect(() => {
-    setTime(generateRandomTime());
-  }, []);
 
   return (
     <Box component="div" sx={{ height: "100%", width: "100%" }}>
@@ -83,18 +60,6 @@ const MainCard = ({ title, headerIcon, flipEnabled, setExpandPicture, backConten
           <Fragment>
             <CardHeader
               sx={{ flexShrink: 0 }}
-              avatar={
-                <StyledAvatar
-                  src="/me.png"
-                  onClick={handleExpandPicture}
-                  aria-label="my profile picture"
-                  sx={{
-                    cursor: "pointer",
-                    width: { xs: 56, md: 48 },
-                    height: { xs: 56, md: 48 },
-                  }}
-                />
-              }
               action={
                 <Stack alignItems="space-between">
                   <FlipCardButton
@@ -121,7 +86,7 @@ const MainCard = ({ title, headerIcon, flipEnabled, setExpandPicture, backConten
                         letterSpacing: "0.5px",
                       }}
                     >
-                      CLICK ME
+                      {t("clickMe")}
                     </Typography>
                   )}
                 </Stack>
@@ -131,22 +96,14 @@ const MainCard = ({ title, headerIcon, flipEnabled, setExpandPicture, backConten
                   variant="subtitle2"
                   color="text.secondary"
                   fontWeight="bold"
-                  fontSize="inherit"
                   sx={{
                     letterSpacing: "0.5px",
                     textTransform: "uppercase",
-                    fontSize: "0.9rem",
+                    fontSize: "1.2rem",
                   }}
                 >
                   {title}
                 </Typography>
-              }
-              subheader={
-                <Stack direction="row" justifyContent="space-between">
-                  <Typography variant="body2" color="text.secondary" fontSize="0.9rem" sx={{ opacity: 0.7 }}>
-                    Published by Erick M. L. Pacheco
-                  </Typography>
-                </Stack>
               }
             />
             <CardContent sx={{ py: 3, flexGrow: 1, width: "100%" }}>{frontContent}</CardContent>
