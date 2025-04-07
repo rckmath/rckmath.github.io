@@ -74,7 +74,7 @@ const Home = () => {
               </Grid>
             </Grid>
           </Container>
-          <Container maxWidth="xl" sx={{ pt: 2 }}>
+          <Container maxWidth="xl" sx={{ pt: 2, pb: { xs: 8, sm: 10 } }}>
             <Grid container spacing={4} alignItems="stretch">
               {CardsTitles(isMobile).map((title) => (
                 <Grid item xs={12} md={6} key={title}>
