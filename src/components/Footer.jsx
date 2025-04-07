@@ -35,11 +35,12 @@ const Footer = () => {
         py: { xs: 1 },
         px: { xs: 2, sm: 3 },
         background: (theme) =>
-          alpha(theme.palette.background.paper, 0.8),
+          alpha(theme.palette.background.paper, 0.95),
         backdropFilter: "blur(10px)",
         borderTop: (theme) =>
           `1px solid ${alpha(theme.palette.divider, 0.1)}`,
         zIndex: 1000,
+        boxShadow: (theme) => `0 4px 12px ${alpha(theme.palette.common.black, 0.1)}`,
       }}
     >
       <Container maxWidth="xl" sx={{ px: { xs: 2, sm: 3 } }}>
