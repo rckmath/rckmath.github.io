@@ -1,4 +1,3 @@
-import React from "react";
 import { Box } from "@mui/material";
 import SchoolIcon from "@mui/icons-material/School";
 import ConstructionIcon from "@mui/icons-material/Construction";
@@ -32,7 +31,7 @@ export const Cards = (isMobile) => {
   };
 };
 
-export const CardsTitles = (isMobile) => {
+export const CardsTitles = () => {
   const { t } = useTranslation();
   return [t('workHistory'), t('education')];
 };

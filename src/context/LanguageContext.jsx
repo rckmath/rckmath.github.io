@@ -3,16 +3,16 @@ import en from '../translations/en';
 import pt from '../translations/pt';
 
 const LanguageContext = createContext();
+const translations = { en, pt };
 
 export const LanguageProvider = ({ children }) => {
   const [language, setLanguage] = useState('en');
-  const translations = { en, pt };
 
   const t = useCallback(
     (key) => {
       const keys = key.split('.');
       let value = translations[language];
-      
+
       for (const k of keys) {
         if (value && typeof value === 'object') {
           value = value[k];
@@ -20,7 +20,7 @@ export const LanguageProvider = ({ children }) => {
           return key;
         }
       }
-      
+
       return value || key;
     },
     [language]

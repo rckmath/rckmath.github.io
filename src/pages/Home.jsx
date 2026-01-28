@@ -1,5 +1,4 @@
-import React from "react";
-import { Box, Container, Grid, Typography } from "@mui/material";
+import { Box, Container, Grid } from "@mui/material";
 import { useMediaQuery } from "react-responsive";
 import { alpha } from "@mui/material/styles";
 import { MainCard } from "../components/MainCard";
@@ -40,7 +39,7 @@ const Home = () => {
             }}
           >
             <Grid container spacing={4} alignItems="center">
-              <Grid item xs={12} md={6}>
+              <Grid size={{ xs: 12, md: 6 }}>
                 <Box
                   sx={{
                     position: "relative",
@@ -69,15 +68,15 @@ const Home = () => {
                   />
                 </Box>
               </Grid>
-              <Grid item xs={12} md={6}>
+              <Grid size={{ xs: 12, md: 6 }}>
                 <AboutMeContent />
               </Grid>
             </Grid>
           </Container>
           <Container maxWidth="xl" sx={{ pt: 2, pb: { xs: 8, sm: 10 } }}>
             <Grid container spacing={4} alignItems="stretch">
-              {CardsTitles(isMobile).map((title) => (
-                <Grid item xs={12} md={6} key={title}>
+              {CardsTitles().map((title) => (
+                <Grid size={{ xs: 12, md: 6 }} key={title}>
                   <Box
                     sx={{
                       height: "100%",

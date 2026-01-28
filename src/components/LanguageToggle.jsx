@@ -1,13 +1,27 @@
-import React from "react";
+import { useState } from "react";
 import { Button, ButtonGroup, Menu, MenuItem, IconButton, Box } from "@mui/material";
 import { useLanguage } from "../context/LanguageContext";
 import LanguageIcon from "@mui/icons-material/Language";
 import { useMediaQuery } from "react-responsive";
 
+const FlagIcon = ({ src, alt }) => (
+  <Box
+    component="img"
+    src={src}
+    alt={alt}
+    sx={{
+      width: 24,
+      height: 18,
+      objectFit: "cover",
+      borderRadius: "2px",
+    }}
+  />
+);
+
 const LanguageToggle = () => {
   const { language, toggleLanguage, t } = useLanguage();
   const isMobile = useMediaQuery({ maxWidth: 767 });
-  const [anchorEl, setAnchorEl] = React.useState(null);
+  const [anchorEl, setAnchorEl] = useState(null);
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -21,20 +35,6 @@ const LanguageToggle = () => {
     toggleLanguage();
     handleClose();
   };
-
-  const FlagIcon = ({ src, alt }) => (
-    <Box
-      component="img"
-      src={src}
-      alt={alt}
-      sx={{
-        width: 24,
-        height: 18,
-        objectFit: "cover",
-        borderRadius: "2px",
-      }}
-    />
-  );
 
   if (isMobile) {
     return (

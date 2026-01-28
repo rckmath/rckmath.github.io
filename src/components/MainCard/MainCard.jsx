@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import { Fragment, useState } from "react";
 import { useMediaQuery } from "react-responsive";
 
 import { styled } from "@mui/material/styles";
@@ -8,9 +8,8 @@ import FlipIcon from "@mui/icons-material/Flip";
 
 import useTranslation from "../../hooks/useTranslation";
 
-const FlipCardButton = styled((props) => {
-  const { flip, ...other } = props;
-  return <IconButton {...other} />;
+const FlipCardButton = styled(IconButton, {
+  shouldForwardProp: (prop) => prop !== "flip",
 })(({ theme, flip }) => ({
   transform: !flip ? "scaleX(1)" : "scaleX(-1)",
   marginLeft: "auto",
@@ -19,9 +18,8 @@ const FlipCardButton = styled((props) => {
   }),
 }));
 
-const FlippingCard = styled((props) => {
-  const { flip, ...other } = props;
-  return <Card {...other} />;
+const FlippingCard = styled(Card, {
+  shouldForwardProp: (prop) => prop !== "flip",
 })(({ theme, flip }) => ({
   transform: !flip ? "scaleX(1)" : "scaleX(-1)",
   transition: theme.transitions.create(["transform"], {
@@ -33,7 +31,7 @@ const FlippingCard = styled((props) => {
 }));
 
 const MainCard = ({ title, headerIcon, flipEnabled, backContent = "", frontContent = "" }) => {
-  const [flipped, setFlipped] = React.useState(false);
+  const [flipped, setFlipped] = useState(false);
   const { t } = useTranslation();
 
   const isMobile = useMediaQuery({ maxWidth: 767 });
