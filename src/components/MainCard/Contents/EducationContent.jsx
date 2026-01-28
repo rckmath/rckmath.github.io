@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Typography, Grid, Chip, Stack, Box } from "@mui/material";
 import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
@@ -60,18 +60,17 @@ const EducationBackContent = () => {
     <Box sx={{ width: "100%" }}>
       <Grid container sx={{ width: "100%", alignItems: "center" }}>
         <Grid
-          xs={1}
+          size={1}
           sx={{
             textAlign: "left",
             cursor: currentPage === 0 ? "normal" : "pointer",
             visibility: currentPage === 0 ? "hidden" : "visible",
             color: currentPage === 0 ? "text.disabled" : "text.secondary",
           }}
-          item
         >
           <KeyboardArrowLeftIcon onClick={handleGoBackPage} />
         </Grid>
-        <Grid xs={10} item>
+        <Grid size={10}>
           <Stack direction="row" justifyContent="space-between" alignItems="center" mb={1.5}>
             <Chip label={education.degree} size="small" variant="outlined" />
 
@@ -93,8 +92,7 @@ const EducationBackContent = () => {
           </Typography>
         </Grid>
         <Grid
-          item
-          xs={1}
+          size={1}
           sx={{
             textAlign: "right",
             cursor: currentPage === educationList.length - 1 ? "normal" : "pointer",

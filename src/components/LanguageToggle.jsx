@@ -1,13 +1,27 @@
-import React from "react";
+import { useState } from "react";
 import { Button, ButtonGroup, Menu, MenuItem, IconButton, Box } from "@mui/material";
 import { useLanguage } from "../context/LanguageContext";
 import LanguageIcon from "@mui/icons-material/Language";
 import { useMediaQuery } from "react-responsive";
 
+const FlagIcon = ({ src, alt }) => (
+  <Box
+    component="img"
+    src={src}
+    alt={alt}
+    sx={{
+      width: 24,
+      height: 18,
+      objectFit: "cover",
+      borderRadius: "2px",
+    }}
+  />
+);
+
 const LanguageToggle = () => {
   const { language, toggleLanguage, t } = useLanguage();
   const isMobile = useMediaQuery({ maxWidth: 767 });
-  const [anchorEl, setAnchorEl] = React.useState(null);
+  const [anchorEl, setAnchorEl] = useState(null);
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -22,24 +36,15 @@ const LanguageToggle = () => {
     handleClose();
   };
 
-  const FlagIcon = ({ src, alt }) => (
-    <Box
-      component="img"
-      src={src}
-      alt={alt}
-      sx={{
-        width: 24,
-        height: 18,
-        objectFit: "cover",
-        borderRadius: "2px",
-      }}
-    />
-  );
-
   if (isMobile) {
     return (
       <>
-        <IconButton onClick={handleClick} color="inherit" aria-label="language-toggle" size="small">
+        <IconButton
+          onClick={handleClick}
+          aria-label="language-toggle"
+          size="small"
+          sx={{ color: (theme) => theme.palette.text.primary }}
+        >
           <LanguageIcon sx={{ fontSize: "1.9rem" }} />
         </IconButton>
         <Menu
@@ -74,10 +79,40 @@ const LanguageToggle = () => {
 
   return (
     <ButtonGroup variant="contained" size="small">
-      <Button onClick={toggleLanguage} color={language === "en" ? "primary" : "inherit"} startIcon={<FlagIcon src="/usa.svg" alt="USA Flag" />}>
+      <Button
+        onClick={toggleLanguage}
+        color={language === "en" ? "primary" : "inherit"}
+        startIcon={<FlagIcon src="/usa.svg" alt="USA Flag" />}
+        sx={{
+          ...(language !== "en" && {
+            backgroundColor: (theme) =>
+              theme.palette.mode === "dark" ? "rgba(255,255,255,0.08)" : "rgba(0,0,0,0.08)",
+            color: (theme) => theme.palette.text.primary,
+            "&:hover": {
+              backgroundColor: (theme) =>
+                theme.palette.mode === "dark" ? "rgba(255,255,255,0.15)" : "rgba(0,0,0,0.15)",
+            },
+          }),
+        }}
+      >
         {t("english")}
       </Button>
-      <Button onClick={toggleLanguage} color={language === "pt" ? "primary" : "inherit"} startIcon={<FlagIcon src="/br.svg" alt="Brazil Flag" />}>
+      <Button
+        onClick={toggleLanguage}
+        color={language === "pt" ? "primary" : "inherit"}
+        startIcon={<FlagIcon src="/br.svg" alt="Brazil Flag" />}
+        sx={{
+          ...(language !== "pt" && {
+            backgroundColor: (theme) =>
+              theme.palette.mode === "dark" ? "rgba(255,255,255,0.08)" : "rgba(0,0,0,0.08)",
+            color: (theme) => theme.palette.text.primary,
+            "&:hover": {
+              backgroundColor: (theme) =>
+                theme.palette.mode === "dark" ? "rgba(255,255,255,0.15)" : "rgba(0,0,0,0.15)",
+            },
+          }),
+        }}
+      >
         {t("portuguese")}
       </Button>
     </ButtonGroup>

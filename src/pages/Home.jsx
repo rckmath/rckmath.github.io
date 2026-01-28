@@ -1,10 +1,12 @@
-import React from "react";
-import { Box, Container, Grid, Typography } from "@mui/material";
+import { Box, Container, Grid } from "@mui/material";
 import { useMediaQuery } from "react-responsive";
 import { alpha } from "@mui/material/styles";
 import { MainCard } from "../components/MainCard";
 import { Cards, CardsTitles } from "../components/MainCard/Cards";
 import AboutMeContent from "../components/AboutMeContent/AboutMeContent";
+import ProjectsSection from "../components/ProjectsSection";
+import ScrollIndicator from "../components/ScrollIndicator";
+import SectionDivider from "../components/SectionDivider";
 
 const Home = () => {
   const isMobile = useMediaQuery({ maxWidth: 767 });
@@ -15,22 +17,25 @@ const Home = () => {
         minHeight: "100vh",
         display: "flex",
         flexDirection: "column",
-        background: (theme) =>
-          `linear-gradient(135deg, ${alpha(theme.palette.background.default, 0.95)} 0%, ${alpha(theme.palette.background.paper, 0.95)} 100%)`,
       }}
     >
+      {/* Main About Section */}
       <Box
         component="section"
         id="about"
         sx={{
           minHeight: "100vh",
           display: "flex",
-          alignItems: "center",
+          flexDirection: "column",
           position: "relative",
           overflow: "hidden",
+          background: (theme) =>
+            theme.palette.mode === "dark"
+              ? `linear-gradient(135deg, ${theme.palette.background.default} 0%, ${alpha(theme.palette.background.paper, 0.98)} 50%, ${theme.palette.background.default} 100%)`
+              : `linear-gradient(135deg, ${theme.palette.background.default} 0%, ${theme.palette.background.paper} 50%, ${alpha(theme.palette.primary.main, 0.03)} 100%)`,
         }}
       >
-        <Box sx={{ flex: 1, minHeight: "100vh" }}>
+        <Box sx={{ flex: 1 }}>
           <Container
             maxWidth="xl"
             sx={{
@@ -40,18 +45,21 @@ const Home = () => {
             }}
           >
             <Grid container spacing={4} alignItems="center">
-              <Grid item xs={12} md={6}>
+              <Grid size={{ xs: 12, md: 6 }}>
                 <Box
                   sx={{
                     position: "relative",
                     "&::before": {
                       content: '""',
                       position: "absolute",
-                      top: -20,
-                      left: -20,
-                      right: -20,
-                      bottom: -20,
-                      background: (theme) => `radial-gradient(circle, ${alpha(theme.palette.primary.main, 0.1)} 0%, transparent 70%)`,
+                      top: -30,
+                      left: -30,
+                      right: -30,
+                      bottom: -30,
+                      background: (theme) =>
+                        theme.palette.mode === "dark"
+                          ? `radial-gradient(circle, ${alpha(theme.palette.primary.main, 0.15)} 0%, ${alpha(theme.palette.secondary.main, 0.05)} 50%, transparent 70%)`
+                          : `radial-gradient(circle, ${alpha(theme.palette.primary.main, 0.08)} 0%, ${alpha(theme.palette.secondary.main, 0.03)} 50%, transparent 70%)`,
                       zIndex: -1,
                       borderRadius: "50%",
                     },
@@ -69,15 +77,15 @@ const Home = () => {
                   />
                 </Box>
               </Grid>
-              <Grid item xs={12} md={6}>
+              <Grid size={{ xs: 12, md: 6 }}>
                 <AboutMeContent />
               </Grid>
             </Grid>
           </Container>
-          <Container maxWidth="xl" sx={{ pt: 2, pb: { xs: 8, sm: 10 } }}>
+          <Container maxWidth="xl" sx={{ pt: 2, pb: { xs: 2} }}>
             <Grid container spacing={4} alignItems="stretch">
-              {CardsTitles(isMobile).map((title) => (
-                <Grid item xs={12} md={6} key={title}>
+              {CardsTitles().map((title) => (
+                <Grid size={{ xs: 12, md: 6 }} key={title}>
                   <Box
                     sx={{
                       height: "100%",
@@ -98,7 +106,43 @@ const Home = () => {
               ))}
             </Grid>
           </Container>
+
+          {/* Scroll Indicator */}
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              pb: { xs: 4, sm: 6 },
+            }}
+          >
+            <ScrollIndicator targetId="projects" />
+          </Box>
         </Box>
+      </Box>
+
+      {/* Divider */}
+      <Box
+        sx={{
+          background: (theme) =>
+            theme.palette.mode === "dark"
+              ? theme.palette.background.default
+              : theme.palette.background.paper,
+        }}
+      >
+        <SectionDivider />
+      </Box>
+
+      {/* Projects Section */}
+      <Box
+        sx={{
+          background: (theme) =>
+            theme.palette.mode === "dark"
+              ? `linear-gradient(180deg, ${theme.palette.background.default} 0%, ${alpha(theme.palette.background.paper, 0.5)} 50%, ${theme.palette.background.default} 100%)`
+              : `linear-gradient(180deg, ${theme.palette.background.paper} 0%, ${alpha(theme.palette.primary.main, 0.02)} 50%, ${theme.palette.background.default} 100%)`,
+          pb: { xs: 10, sm: 14 },
+        }}
+      >
+        <ProjectsSection />
       </Box>
     </Box>
   );

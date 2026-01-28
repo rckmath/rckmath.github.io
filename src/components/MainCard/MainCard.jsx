@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import { Fragment, useState } from "react";
 import { useMediaQuery } from "react-responsive";
 
 import { styled } from "@mui/material/styles";
@@ -8,9 +8,8 @@ import FlipIcon from "@mui/icons-material/Flip";
 
 import useTranslation from "../../hooks/useTranslation";
 
-const FlipCardButton = styled((props) => {
-  const { flip, ...other } = props;
-  return <IconButton {...other} />;
+const FlipCardButton = styled(IconButton, {
+  shouldForwardProp: (prop) => prop !== "flip",
 })(({ theme, flip }) => ({
   transform: !flip ? "scaleX(1)" : "scaleX(-1)",
   marginLeft: "auto",
@@ -19,21 +18,33 @@ const FlipCardButton = styled((props) => {
   }),
 }));
 
-const FlippingCard = styled((props) => {
-  const { flip, ...other } = props;
-  return <Card {...other} />;
+const FlippingCard = styled(Card, {
+  shouldForwardProp: (prop) => prop !== "flip",
 })(({ theme, flip }) => ({
   transform: !flip ? "scaleX(1)" : "scaleX(-1)",
-  transition: theme.transitions.create(["transform"], {
+  transition: theme.transitions.create(["transform", "box-shadow"], {
     duration: theme.transitions.duration.shortest,
   }),
-  background: alpha(theme.palette.background.paper, 0.8),
-  backdropFilter: "blur(10px)",
-  border: `1px solid ${alpha(theme.palette.divider, 0.1)}`,
+  background:
+    theme.palette.mode === "dark"
+      ? alpha(theme.palette.background.paper, 0.85)
+      : alpha(theme.palette.background.paper, 0.9),
+  backdropFilter: "blur(12px)",
+  border: `1px solid ${theme.palette.custom?.cardBorder || alpha(theme.palette.primary.main, 0.15)}`,
+  boxShadow:
+    theme.palette.mode === "dark"
+      ? `0 4px 24px rgba(0, 0, 0, 0.3), inset 0 1px 0 ${alpha(theme.palette.primary.main, 0.1)}`
+      : `0 4px 20px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.8)`,
+  "&:hover": {
+    boxShadow:
+      theme.palette.mode === "dark"
+        ? `0 8px 32px rgba(16, 185, 129, 0.2), 0 4px 16px rgba(0, 0, 0, 0.4)`
+        : `0 8px 28px rgba(5, 150, 105, 0.12), 0 4px 12px rgba(0, 0, 0, 0.06)`,
+  },
 }));
 
 const MainCard = ({ title, headerIcon, flipEnabled, backContent = "", frontContent = "" }) => {
-  const [flipped, setFlipped] = React.useState(false);
+  const [flipped, setFlipped] = useState(false);
   const { t } = useTranslation();
 
   const isMobile = useMediaQuery({ maxWidth: 767 });

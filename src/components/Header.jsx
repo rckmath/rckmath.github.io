@@ -1,4 +1,3 @@
-import React from "react";
 import { useMediaQuery } from "react-responsive";
 
 import { keyframes } from "@mui/material";
@@ -33,9 +32,10 @@ const StyledAppBar = styled(AppBar)(({ theme }) => ({
 }));
 
 const StyledTerminalIcon = styled(TerminalIcon)(({ theme }) => ({
-  transition: "all 0.3s ease-in-out",
+  transition: "color 0.3s ease-in-out",
+  color: theme.palette.text.primary,
   "&:hover": {
-    transform: "scale(1.1)",
+    cursor: "pointer",
     color: theme.palette.primary.main,
   },
 }));
@@ -50,37 +50,40 @@ const Header = () => {
         <Toolbar
           disableGutters
           sx={{
-            justifyContent: "space-between",
+            justifyContent: "flex-end",
             alignItems: "center",
             minHeight: { xs: "48px", sm: "72px" },
             px: 0,
             position: "relative",
           }}
         >
+          {/* Center content - absolutely positioned for true centering */}
           <Box
             sx={{
-              flex: 1,
-              ml: isMobile ? 6 : 12,
+              position: "absolute",
+              left: "50%",
+              top: "50%",
+              transform: "translate(-50%, -50%)",
               display: "flex",
               alignItems: "center",
               gap: { xs: 1 },
-              justifyContent: "center",
-              position: "relative",
             }}
           >
             <IconButton
               href="/cmd"
               edge="start"
               size="large"
-              color="inherit"
               aria-label="terminal-icon"
               sx={{
                 "&:hover": {
-                  backgroundColor: alpha("#fff", 0.1),
+                  transform: "none",
+                  cursor: "pointer",
+                  backgroundColor: (theme) =>
+                    theme.palette.mode === "dark" ? alpha("#fff", 0.1) : alpha("#000", 0.1),
                 },
               }}
             >
-              <StyledTerminalIcon sx={{ fontSize: isMobile ? "3rem" : "3.75rem" }} />
+              <StyledTerminalIcon sx={{ fontSize: isMobile ? "2.25rem" : "3.25rem" }} />
             </IconButton>
             <Box
               sx={{
@@ -90,6 +93,7 @@ const Header = () => {
                 textAlign: "center",
                 lineHeight: 1,
                 mt: 0,
+                whiteSpace: "nowrap",
               }}
             >
               <Box
@@ -102,23 +106,26 @@ const Header = () => {
               >
                 <TypewriterText
                   text="Hi, my name is Erick."
-                  fontSize={isMobile ? "1.25rem" : "1.5rem"}
+                  fontSize={isMobile ? "1rem" : "1.5rem"}
                   variant="h4"
                   sx={{
                     fontWeight: 600,
                     letterSpacing: "-0.02em",
-                    background: "linear-gradient(45deg, #fff 30%, #e0e0e0 90%)",
+                    background: (theme) =>
+                      theme.palette.mode === "dark"
+                        ? "linear-gradient(45deg, #E8F5E9 30%, #A5C4AC 90%)"
+                        : "linear-gradient(45deg, #1A2E1F 30%, #4A6B52 90%)",
                     WebkitBackgroundClip: "text",
                     WebkitTextFillColor: "transparent",
                   }}
                 />
                 <BlinkingTypography
                   variant="h4"
-                  color="inherit"
                   sx={{
                     opacity: 0.7,
                     fontWeight: 300,
-                    fontSize: isMobile ? "1.25rem" : "1.5rem",
+                    fontSize: isMobile ? "1rem" : "1.5rem",
+                    color: (theme) => theme.palette.text.primary,
                   }}
                 >
                   |
@@ -126,31 +133,33 @@ const Header = () => {
               </Box>
               <Typography
                 variant="h5"
-                color="inherit"
                 sx={{
                   lineHeight: 1,
                   opacity: 0.8,
                   fontWeight: 400,
                   letterSpacing: "-0.01em",
-                  fontSize: isMobile ? "1rem" : "1.1rem",
+                  fontSize: isMobile ? "0.8rem" : "1.1rem",
                   mt: 0,
+                  color: (theme) => theme.palette.text.primary,
                 }}
               >
                 Nice to meet you.
               </Typography>
             </Box>
           </Box>
-          <Box sx={{ display: "flex", alignItems: "center" }}>
+          {/* Right side controls */}
+          <Box sx={{ display: "flex", alignItems: "center", zIndex: 1 }}>
             <LanguageToggle />
             <IconButton
               onClick={toggleTheme}
               size={isMobile ? "small" : "medium"}
-              color="inherit"
               aria-label="theme-toggle"
               sx={{
-                ml: 0.5,
+                ml: 1.5,
+                color: (theme) => theme.palette.text.primary,
                 "&:hover": {
-                  backgroundColor: alpha("#fff", 0.1),
+                  backgroundColor: (theme) =>
+                    theme.palette.mode === "dark" ? alpha("#fff", 0.1) : alpha("#000", 0.1),
                 },
               }}
             >

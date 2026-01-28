@@ -1,4 +1,3 @@
-import React from "react";
 import { useMediaQuery } from "react-responsive";
 import styled from "@emotion/styled";
 import { alpha } from "@mui/material/styles";
@@ -87,21 +86,21 @@ const Footer = () => {
             </StyledIconButton>
           </Tooltip>
 
-          <Tooltip title="https://steamcommunity.com/id/rckmath" placement="top" arrow>
+          <Tooltip title="https://steamcommunity.com/id/BossBR" placement="top" arrow>
             <StyledIconButton
               size="large"
               color="inherit"
               aria-label="Steam"
-              onClick={() => window.open("https://steamcommunity.com/id/rckmath", "_blank")}
+              onClick={() => window.open("https://steamcommunity.com/id/BossBR", "_blank")}
             >
-              <img 
-                src={SteamIcon} 
-                alt="Steam" 
-                style={{ 
+              <img
+                src={SteamIcon}
+                alt="Steam"
+                style={{
                   width: fontSize,
                   height: fontSize,
                   filter: isDarkMode ? 'brightness(0) invert(1)' : 'brightness(0) invert(0)'
-                }} 
+                }}
               />
             </StyledIconButton>
           </Tooltip>
