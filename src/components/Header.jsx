@@ -33,6 +33,7 @@ const StyledAppBar = styled(AppBar)(({ theme }) => ({
 
 const StyledTerminalIcon = styled(TerminalIcon)(({ theme }) => ({
   transition: "all 0.3s ease-in-out",
+  color: theme.palette.text.primary,
   "&:hover": {
     transform: "scale(1.1)",
     color: theme.palette.primary.main,
@@ -71,11 +72,11 @@ const Header = () => {
               href="/cmd"
               edge="start"
               size="large"
-              color="inherit"
               aria-label="terminal-icon"
               sx={{
                 "&:hover": {
-                  backgroundColor: alpha("#fff", 0.1),
+                  backgroundColor: (theme) =>
+                    theme.palette.mode === "dark" ? alpha("#fff", 0.1) : alpha("#000", 0.1),
                 },
               }}
             >
@@ -147,12 +148,13 @@ const Header = () => {
             <IconButton
               onClick={toggleTheme}
               size={isMobile ? "small" : "medium"}
-              color="inherit"
               aria-label="theme-toggle"
               sx={{
                 ml: 0.5,
+                color: (theme) => theme.palette.text.primary,
                 "&:hover": {
-                  backgroundColor: alpha("#fff", 0.1),
+                  backgroundColor: (theme) =>
+                    theme.palette.mode === "dark" ? alpha("#fff", 0.1) : alpha("#000", 0.1),
                 },
               }}
             >
