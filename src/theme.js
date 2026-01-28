@@ -114,6 +114,7 @@ export const getTheme = (mode) => {
       MuiIconButton: {
         styleOverrides: {
           root: {
+            cursor: 'pointer',
             transition: 'all 0.2s ease-in-out',
             '&:hover': {
               transform: 'scale(1.1)',

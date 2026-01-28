@@ -5,6 +5,17 @@ const en = {
   projects: 'Projects',
   contact: 'Contact',
   contactMe: 'Contact Me',
+  myProjects: 'My Projects',
+  projectsSubtitle: 'A selection of personal and professional projects I\'ve worked on.',
+  viewProjects: 'View Projects',
+
+  // Project names
+  immaDeploy: {
+    name: "Imma Deploy",
+  },
+  ironRifas: {
+    name: "Iron Rifas",
+  },
   
   // Home page
   welcome: 'Welcome to my website',
