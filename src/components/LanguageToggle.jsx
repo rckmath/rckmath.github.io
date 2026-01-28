@@ -39,7 +39,12 @@ const LanguageToggle = () => {
   if (isMobile) {
     return (
       <>
-        <IconButton onClick={handleClick} color="inherit" aria-label="language-toggle" size="small">
+        <IconButton
+          onClick={handleClick}
+          aria-label="language-toggle"
+          size="small"
+          sx={{ color: (theme) => theme.palette.text.primary }}
+        >
           <LanguageIcon sx={{ fontSize: "1.9rem" }} />
         </IconButton>
         <Menu
