@@ -5,6 +5,17 @@ const pt = {
   projects: 'Projetos',
   contact: 'Contato',
   contactMe: 'Entre em contato! ;)',
+  myProjects: 'Meus Projetos',
+  projectsSubtitle: 'Uma seleção de projetos pessoais e profissionais que desenvolvi.',
+  viewProjects: 'Ver Projetos',
+
+  // Project names
+  immaDeploy: {
+    name: "Imma Deploy",
+  },
+  ironRifas: {
+    name: "Iron Rifas",
+  },
   
   // Home page
   welcome: 'Bem-vindo ao meu site',
