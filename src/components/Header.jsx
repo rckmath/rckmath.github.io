@@ -33,6 +33,7 @@ const StyledAppBar = styled(AppBar)(({ theme }) => ({
 
 const StyledTerminalIcon = styled(TerminalIcon)(({ theme }) => ({
   transition: "all 0.3s ease-in-out",
+  color: theme.palette.text.primary,
   "&:hover": {
     transform: "scale(1.1)",
     color: theme.palette.primary.main,
@@ -71,11 +72,11 @@ const Header = () => {
               href="/cmd"
               edge="start"
               size="large"
-              color="inherit"
               aria-label="terminal-icon"
               sx={{
                 "&:hover": {
-                  backgroundColor: alpha("#fff", 0.1),
+                  backgroundColor: (theme) =>
+                    theme.palette.mode === "dark" ? alpha("#fff", 0.1) : alpha("#000", 0.1),
                 },
               }}
             >
@@ -106,18 +107,21 @@ const Header = () => {
                   sx={{
                     fontWeight: 600,
                     letterSpacing: "-0.02em",
-                    background: "linear-gradient(45deg, #fff 30%, #e0e0e0 90%)",
+                    background: (theme) =>
+                      theme.palette.mode === "dark"
+                        ? "linear-gradient(45deg, #E8F5E9 30%, #A5C4AC 90%)"
+                        : "linear-gradient(45deg, #1A2E1F 30%, #4A6B52 90%)",
                     WebkitBackgroundClip: "text",
                     WebkitTextFillColor: "transparent",
                   }}
                 />
                 <BlinkingTypography
                   variant="h4"
-                  color="inherit"
                   sx={{
                     opacity: 0.7,
                     fontWeight: 300,
                     fontSize: isMobile ? "1.25rem" : "1.5rem",
+                    color: (theme) => theme.palette.text.primary,
                   }}
                 >
                   |
@@ -125,7 +129,6 @@ const Header = () => {
               </Box>
               <Typography
                 variant="h5"
-                color="inherit"
                 sx={{
                   lineHeight: 1,
                   opacity: 0.8,
@@ -133,6 +136,7 @@ const Header = () => {
                   letterSpacing: "-0.01em",
                   fontSize: isMobile ? "1rem" : "1.1rem",
                   mt: 0,
+                  color: (theme) => theme.palette.text.primary,
                 }}
               >
                 Nice to meet you.
@@ -144,12 +148,13 @@ const Header = () => {
             <IconButton
               onClick={toggleTheme}
               size={isMobile ? "small" : "medium"}
-              color="inherit"
               aria-label="theme-toggle"
               sx={{
                 ml: 0.5,
+                color: (theme) => theme.palette.text.primary,
                 "&:hover": {
-                  backgroundColor: alpha("#fff", 0.1),
+                  backgroundColor: (theme) =>
+                    theme.palette.mode === "dark" ? alpha("#fff", 0.1) : alpha("#000", 0.1),
                 },
               }}
             >

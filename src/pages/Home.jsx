@@ -15,7 +15,9 @@ const Home = () => {
         display: "flex",
         flexDirection: "column",
         background: (theme) =>
-          `linear-gradient(135deg, ${alpha(theme.palette.background.default, 0.95)} 0%, ${alpha(theme.palette.background.paper, 0.95)} 100%)`,
+          theme.palette.mode === "dark"
+            ? `linear-gradient(135deg, ${theme.palette.background.default} 0%, ${alpha(theme.palette.background.paper, 0.98)} 50%, ${theme.palette.background.default} 100%)`
+            : `linear-gradient(135deg, ${theme.palette.background.default} 0%, ${theme.palette.background.paper} 50%, ${alpha(theme.palette.primary.main, 0.03)} 100%)`,
       }}
     >
       <Box
@@ -46,11 +48,14 @@ const Home = () => {
                     "&::before": {
                       content: '""',
                       position: "absolute",
-                      top: -20,
-                      left: -20,
-                      right: -20,
-                      bottom: -20,
-                      background: (theme) => `radial-gradient(circle, ${alpha(theme.palette.primary.main, 0.1)} 0%, transparent 70%)`,
+                      top: -30,
+                      left: -30,
+                      right: -30,
+                      bottom: -30,
+                      background: (theme) =>
+                        theme.palette.mode === "dark"
+                          ? `radial-gradient(circle, ${alpha(theme.palette.primary.main, 0.15)} 0%, ${alpha(theme.palette.secondary.main, 0.05)} 50%, transparent 70%)`
+                          : `radial-gradient(circle, ${alpha(theme.palette.primary.main, 0.08)} 0%, ${alpha(theme.palette.secondary.main, 0.03)} 50%, transparent 70%)`,
                       zIndex: -1,
                       borderRadius: "50%",
                     },

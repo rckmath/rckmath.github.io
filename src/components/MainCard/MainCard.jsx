@@ -22,12 +22,25 @@ const FlippingCard = styled(Card, {
   shouldForwardProp: (prop) => prop !== "flip",
 })(({ theme, flip }) => ({
   transform: !flip ? "scaleX(1)" : "scaleX(-1)",
-  transition: theme.transitions.create(["transform"], {
+  transition: theme.transitions.create(["transform", "box-shadow"], {
     duration: theme.transitions.duration.shortest,
   }),
-  background: alpha(theme.palette.background.paper, 0.8),
-  backdropFilter: "blur(10px)",
-  border: `1px solid ${alpha(theme.palette.divider, 0.1)}`,
+  background:
+    theme.palette.mode === "dark"
+      ? alpha(theme.palette.background.paper, 0.85)
+      : alpha(theme.palette.background.paper, 0.9),
+  backdropFilter: "blur(12px)",
+  border: `1px solid ${theme.palette.custom?.cardBorder || alpha(theme.palette.primary.main, 0.15)}`,
+  boxShadow:
+    theme.palette.mode === "dark"
+      ? `0 4px 24px rgba(0, 0, 0, 0.3), inset 0 1px 0 ${alpha(theme.palette.primary.main, 0.1)}`
+      : `0 4px 20px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.8)`,
+  "&:hover": {
+    boxShadow:
+      theme.palette.mode === "dark"
+        ? `0 8px 32px rgba(16, 185, 129, 0.2), 0 4px 16px rgba(0, 0, 0, 0.4)`
+        : `0 8px 28px rgba(5, 150, 105, 0.12), 0 4px 12px rgba(0, 0, 0, 0.06)`,
+  },
 }));
 
 const MainCard = ({ title, headerIcon, flipEnabled, backContent = "", frontContent = "" }) => {

@@ -22,7 +22,8 @@ const AboutMeContent = () => {
         variant="h2"
         sx={{
           fontWeight: 700,
-          background: (theme) => `linear-gradient(45deg, ${theme.palette.primary.main} 30%, ${theme.palette.secondary.main} 90%)`,
+          background: (theme) =>
+            `linear-gradient(135deg, ${theme.palette.primary.main} 0%, ${theme.palette.primary.light} 50%, ${theme.palette.secondary.main} 100%)`,
           WebkitBackgroundClip: "text",
           WebkitTextFillColor: "transparent",
         }}
@@ -103,14 +104,27 @@ const AboutMeContent = () => {
             borderRadius: 2,
             textTransform: "none",
             fontSize: "1.1rem",
-            background: (theme) => `linear-gradient(135deg, ${theme.palette.primary.main} 0%, ${theme.palette.primary.dark} 100%)`,
-            color: "white",
-            boxShadow: (theme) => `0 4px 12px ${alpha(theme.palette.primary.main, 0.3)}`,
+            background: (theme) =>
+              theme.palette.mode === "dark"
+                ? `linear-gradient(135deg, ${theme.palette.primary.main} 0%, ${theme.palette.primary.dark} 100%)`
+                : `linear-gradient(135deg, ${theme.palette.primary.dark} 0%, ${theme.palette.primary.main} 100%)`,
+            color: (theme) => (theme.palette.mode === "dark" ? "#0A0F0D" : "#FFFFFF"),
+            fontWeight: 600,
+            boxShadow: (theme) =>
+              theme.palette.mode === "dark"
+                ? `0 4px 20px ${alpha(theme.palette.primary.main, 0.35)}`
+                : `0 4px 16px ${alpha(theme.palette.primary.dark, 0.25)}`,
             transition: "all 0.3s ease-in-out",
             "&:hover": {
-              background: (theme) => `linear-gradient(135deg, ${theme.palette.primary.dark} 0%, ${theme.palette.primary.main} 100%)`,
-              boxShadow: (theme) => `0 6px 16px ${alpha(theme.palette.primary.main, 0.4)}`,
-              transform: "translateY(-1px)",
+              background: (theme) =>
+                theme.palette.mode === "dark"
+                  ? `linear-gradient(135deg, ${theme.palette.primary.light} 0%, ${theme.palette.primary.main} 100%)`
+                  : `linear-gradient(135deg, ${theme.palette.primary.main} 0%, ${theme.palette.primary.dark} 100%)`,
+              boxShadow: (theme) =>
+                theme.palette.mode === "dark"
+                  ? `0 6px 24px ${alpha(theme.palette.primary.main, 0.45)}`
+                  : `0 6px 20px ${alpha(theme.palette.primary.dark, 0.35)}`,
+              transform: "translateY(-2px)",
             },
           }}
         >
