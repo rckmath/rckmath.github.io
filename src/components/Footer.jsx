@@ -1,4 +1,3 @@
-import React from "react";
 import { useMediaQuery } from "react-responsive";
 import styled from "@emotion/styled";
 import { alpha } from "@mui/material/styles";

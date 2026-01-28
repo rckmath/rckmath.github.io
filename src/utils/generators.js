@@ -11,7 +11,7 @@ export const generateRandomTime = () => {
 
   return amPm === "AM" && !is12
     ? String(hFormat + hrs + ":" + mFormat + mins + " " + amPm)
-    : "AM" && is12
+    : amPm === "AM" && is12
     ? String(12 + ":" + mFormat + mins + " " + amPm)
     : is12
     ? String(hFormat + hrs + ":" + mFormat + mins + " " + amPm)
