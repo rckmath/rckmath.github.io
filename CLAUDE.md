@@ -4,13 +4,13 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-Personal portfolio website built as a React 19 SPA with Vite, Material-UI v7, and multi-language support (EN/PT).
+"Commandfolio" — a terminal-flavored personal portfolio built as a React 19 SPA with Vite, Material-UI v7, and multi-language support (EN/PT). It has two modes rendered from a single page: a GUI portfolio and a fully interactive fake terminal, switched in-app (no routing library).
 
 ## Commands
 
 ```bash
 yarn dev        # Start development server
-yarn build      # Production build
+yarn build      # Production build (also copies dist/index.html → dist/404.html for GH Pages SPA fallback)
 yarn lint       # ESLint with 0 warnings tolerance
 yarn preview    # Preview production build locally
 yarn deploy     # Build and deploy to GitHub Pages
@@ -18,73 +18,57 @@ yarn deploy     # Build and deploy to GitHub Pages
 
 ## Architecture
 
+### Mode switching (no router)
+`src/pages/Portfolio.jsx` owns the `mode` state (`"gui"` | `"term"`) and performs a fade transition (opacity/scale, 240 ms) when switching. **Keep the two modes in separate files** — `Home.jsx` (GUI) and `Terminal.jsx` (terminal) — Portfolio only orchestrates.
+
+- GUI → terminal: `>_` button in `Header.jsx` (`onOpenTerminal` prop)
+- Terminal → GUI: `exit`/`gui`/`q` commands or the "← gui mode" button (`onExit` prop)
+- Backward compat: loading `/cmd` (old external terminal repo path) boots directly into terminal mode and rewrites the URL to `/` via `history.replaceState`. The `404.html` build fallback makes this work on GitHub Pages.
+
 ### State Management
 Two React Context providers wrap the app in `App.jsx`:
-- **ThemeContextProvider** (`src/context/ThemeContext.jsx`): Light/dark mode with localStorage persistence
-- **LanguageProvider** (`src/context/LanguageContext.jsx`): EN/PT language state with `t()` translation function
+- **ThemeContextProvider** (`src/context/ThemeContext.jsx`): light/dark mode, localStorage persistence
+- **LanguageProvider** (`src/context/LanguageContext.jsx`): EN/PT with `t()` dot-notation lookup, localStorage persistence; `t()` can return strings, arrays, or objects (used for structured content like experience entries)
 
-Access via hooks: `useTheme()` and `useTranslation()`.
+Access via hooks: `useTheme()` and `useLanguage()` (or `useTranslation()` from `src/hooks/useTranslation.js`).
 
-### Component Structure
-```
-src/components/
-├── AboutMeContent/       # Bio, skills tags, contact button
-├── Header.jsx            # Sticky header with TypewriterText
-├── Footer.jsx            # Fixed footer with social links
-├── LanguageToggle.jsx    # EN/PT toggle buttons
-├── MainCard/             # Flippable cards (Work History, Education)
-│   ├── Cards.jsx         # Card configuration
-│   └── Contents/         # WorkHistoryContent, EducationContent
-├── ProjectsSection/      # Icon-only project showcase with tooltips
-├── ScrollIndicator/      # Animated scroll-to button with bounce effect
-├── SectionDivider/       # Visual divider with decorative dots
-└── TypewriterText/       # Animated typing effect
-```
+### Shared data
+`src/data/portfolio.js` — projects, social links, email. Used by GUI (Home/Footer) and Terminal so they never drift.
 
-### Pages
-- `src/pages/Home.jsx`: Main landing page with sections (About, Cards, Projects)
+### Terminal (`src/pages/Terminal.jsx`)
+- Boot session (banner + pre-run commands) renders as JSX and re-translates live on language change; executed command history is stored as strings and intentionally keeps the language it was printed in
+- Commands are dispatched in `runCmd`; outputs come from `term.cmd.*` translation keys with `{placeholder}` interpolation via `fill()`
+- `lang en|pt` switches the app language; confirmation prints in the target language
+- Games/effects (snake, matrix, CRT) use refs + window listeners; all timers/listeners are cleaned up on unmount
+- Focus calls use `{ preventScroll: true }` so entering the mode doesn't jump to the bottom
 
-### Translations
-All UI text lives in `src/translations/{en,pt}.js`. Use dot notation for nested keys: `t('softwrench.role')`.
+## Design System (Commandfolio)
 
-### Assets
-- Static images: `public/` (profile, icons, flags)
-- Project images: `public/projects/` (imma-deploy.png, iron-rifas.png)
+### Tokens (`src/theme.js`)
+CSS variables injected on each page root:
+- GUI: `--bg`, `--ink`, `--dim`, `--faint`, `--line`, `--accent` (`#5DDEA6` dark / `#1F7A52` light), `--accent-brd`
+- Terminal (always dark, bg `#060908`): `--tacc` (mutable via `color` command), `--tink`, `--tdim`, `--tfaint`, `--tglow` (CRT)
 
-## Design System
+### Typography
+- Sans: Space Grotesk (`fonts.sans`) — headings/body
+- Mono: JetBrains Mono (`fonts.mono`) — labels, terminal, metadata
+- Loaded via `@fontsource` imports in `main.jsx`
 
-### Color Palette (`src/theme.js`)
-- **Primary**: Emerald green (`#10B981` dark / `#059669` light)
-- **Secondary**: Cyan (`#06B6D4` dark / `#0891B2` light)
-- **Background**: Dark green-tinted (`#0A0F0D`) / Light mint-white (`#F8FAF9`)
+### Patterns
+- MUI `Box`/`Typography` with `sx`, referencing the CSS variables (`color: "var(--dim)"`)
+- Section headers: `~/label` + hairline + right-aligned hint
+- Keyframes `blink` and `crtflicker` live in `src/index.css`
 
-### Styling Patterns
-- MUI's `styled()` API and `sx` prop for component styles
-- Emotion for styled components
-- Glassmorphic aesthetic: `backdropFilter: "blur(10px)"`, `alpha()` for transparency
-- Gradient text: `WebkitBackgroundClip: "text"` + `WebkitTextFillColor: "transparent"`
-- Hover effects: `translateY()`, `scale()`, box-shadow glow
-- Transitions: `0.3s ease-in-out` or `cubic-bezier(0.4, 0, 0.2, 1)`
-- Responsive breakpoint: `maxWidth: 767px` via `useMediaQuery` from react-responsive
+## Translations
 
-### Animation Patterns
-- CSS keyframes via `@mui/material/styles` keyframes
-- Bounce animation for scroll indicators
-- Pulse animation for attention-grabbing elements
+All UI text lives in `src/translations/{en,pt}.js` with mirrored key structure (`hero`, `now`, `experience`, `projects`, `awards`, `education`, `footer`, `term.*`). Any new user-facing string must be added to **both** files. Terminal command outputs are under `term.cmd.*`.
 
 ## Adding New Projects
 
 1. Add project image to `public/projects/`
-2. Update `src/components/ProjectsSection/ProjectsSection.jsx`:
-   ```jsx
-   const projects = [
-     { id: "project-id", image: "/projects/image.png", url: "https://...", nameKey: "projectKey.name" },
-   ];
-   ```
-3. Add translation keys in `src/translations/{en,pt}.js`:
-   ```js
-   projectKey: { name: "Project Name" },
-   ```
+2. Add the entry to `src/data/portfolio.js` (`id`, `name`, `image`, `url`, `descKey`)
+3. Add the one-liner description key in both `src/translations/{en,pt}.js` under `projects`
+4. Mention it in the terminal `projects` command output (`term.cmd.projects` in both files)
 
 ## Git Workflow
 
