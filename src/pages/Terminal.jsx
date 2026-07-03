@@ -7,11 +7,14 @@ import en from "../translations/en";
 import pt from "../translations/pt";
 
 const CMDS = [
-  "about", "ai", "awards", "career", "cat", "cd", "clear", "coffee", "color", "contact",
-  "cowsay", "crt", "date", "echo", "edu", "exit", "fortune", "git", "hack", "help",
-  "history", "lang", "ls", "matrix", "neofetch", "open", "ping", "projects", "pwd",
-  "resume", "snake", "sudo", "uptime", "ver", "vim", "weather", "whoami",
+  "about", "ai", "awards", "career", "cat", "cd", "claude", "clear", "coffee", "color",
+  "contact", "cowsay", "crt", "date", "echo", "edu", "exit", "fortune", "git", "hack",
+  "help", "history", "lang", "ls", "matrix", "neofetch", "open", "ping", "projects",
+  "pwd", "resume", "snake", "sudo", "uptime", "ver", "vim", "weather", "whoami",
 ];
+
+const CLAUDE_COLOR = "#D97757";
+const CLAUDE_SPINNER = ["·", "✢", "✳", "✻", "✽", "✻", "✳", "✢"];
 
 const ACCENTS = { green: "#5DDEA6", amber: "#FFB000", cyan: "#4AD8DE", white: "#E8EDE9" };
 
@@ -52,6 +55,58 @@ const Output = ({ children, sx }) => (
   </Box>
 );
 
+const ClaudePromptEcho = ({ cmd }) => (
+  <Box sx={{ color: "var(--tdim)" }}>
+    <Box component="span" sx={{ color: CLAUDE_COLOR }}>
+      &gt;
+    </Box>{" "}
+    <Box component="span" sx={{ color: "var(--tink)" }}>
+      {cmd}
+    </Box>
+  </Box>
+);
+
+const ClaudeWelcome = ({ t }) => (
+  <Box sx={{ m: "10px 0 4px" }}>
+    <Box
+      sx={{
+        display: "inline-block",
+        border: `1px solid ${CLAUDE_COLOR}`,
+        borderRadius: "8px",
+        p: "12px 18px",
+        fontSize: 13,
+        lineHeight: 1.9,
+      }}
+    >
+      <Box sx={{ color: CLAUDE_COLOR, fontWeight: 700 }}>{t("term.claude.welcomeTitle")}</Box>
+      <Box sx={{ color: "var(--tdim)", whiteSpace: "pre-wrap" }}>{t("term.claude.welcomeLines")}</Box>
+    </Box>
+    <Box sx={{ mt: 1, color: "var(--tfaint)", fontSize: 11.5 }}>{t("term.claude.hint")}</Box>
+  </Box>
+);
+
+const ClaudeThinking = ({ verbs, interrupt }) => {
+  const [tick, setTick] = useState(0);
+
+  useEffect(() => {
+    const spinTimer = setInterval(() => setTick((prev) => prev + 1), 250);
+    return () => clearInterval(spinTimer);
+  }, []);
+
+  const frame = CLAUDE_SPINNER[tick % CLAUDE_SPINNER.length];
+  const verb = verbs[Math.floor(tick / 8) % verbs.length];
+  const secs = Math.max(1, Math.round(tick * 0.25));
+
+  return (
+    <Box sx={{ color: CLAUDE_COLOR, fontSize: 13, mb: 1.5 }}>
+      {frame} {verb}…{" "}
+      <Box component="span" sx={{ color: "var(--tfaint)" }}>
+        ({secs}s · {interrupt})
+      </Box>
+    </Box>
+  );
+};
+
 const BootSession = ({ t }) => (
   <Box>
     <Box sx={{ color: "var(--tacc)", fontSize: { xs: 10, sm: 12 }, lineHeight: 1.3, mb: 1.75 }}>
@@ -82,16 +137,22 @@ const BootSession = ({ t }) => (
     >
       <Box
         sx={{
-          p: "6px 10px",
+          width: 0,
+          minWidth: "100%",
+          boxSizing: "border-box",
+          p: "6px 8px",
           bgcolor: "#0C110E",
-          fontSize: 10.5,
+          fontSize: 10,
           color: "var(--tfaint)",
           borderBottom: "1px solid rgba(232,237,233,.08)",
+          whiteSpace: "nowrap",
+          overflow: "hidden",
+          textOverflow: "ellipsis",
         }}
       >
         {t("term.photoCaption")}
       </Box>
-      <Box component="img" src="/rckmath.png" alt="Erick" sx={{ width: 132, height: 132, objectFit: "cover", display: "block" }} />
+      <Box component="img" src="/rckmath.png" alt="Erick" sx={{ width: 148, height: 148, objectFit: "cover", display: "block" }} />
     </Box>
 
     <PromptEcho cmd="cat career.log" />
@@ -188,20 +249,23 @@ const Terminal = ({ onExit }) => {
   const [matrixOn, setMatrixOn] = useState(false);
   const [snakeOn, setSnakeOn] = useState(false);
   const [snakeFrame, setSnakeFrame] = useState("");
+  const [claudeMode, setClaudeMode] = useState(false);
+  const [claudeBusy, setClaudeBusy] = useState(false);
+  const claudeTimerRef = useRef(null);
 
   const inputRef = useRef(null);
-  const cmdStack = useRef([]);
-  const histIdx = useRef(null);
-  const typeTimer = useRef(null);
+  const cmdStackRef = useRef([]);
+  const histIdxRef = useRef(null);
+  const typeTimerRef = useRef(null);
 
-  const sn = useRef(null);
-  const snTimer = useRef(null);
-  const snakeKeyHandler = useRef(null);
+  const snakeRef = useRef(null);
+  const snakeTimerRef = useRef(null);
+  const snakeKeyRef = useRef(null);
 
-  const mCanvas = useRef(null);
-  const mTimer = useRef(null);
-  const mDrops = useRef([]);
-  const matrixKeyHandler = useRef(null);
+  const matrixCanvasRef = useRef(null);
+  const matrixTimerRef = useRef(null);
+  const matrixDropsRef = useRef([]);
+  const matrixKeyRef = useRef(null);
 
   // Live refs so window listeners and intervals never read stale state
   const tRef = useRef(t);
@@ -220,11 +284,12 @@ const Terminal = ({ onExit }) => {
     inputRef.current?.focus({ preventScroll: true });
     return () => {
       document.body.style.background = prevBackground;
-      clearInterval(snTimer.current);
-      clearInterval(mTimer.current);
-      clearTimeout(typeTimer.current);
-      if (snakeKeyHandler.current) window.removeEventListener("keydown", snakeKeyHandler.current);
-      if (matrixKeyHandler.current) window.removeEventListener("keydown", matrixKeyHandler.current);
+      clearInterval(snakeTimerRef.current);
+      clearInterval(matrixTimerRef.current);
+      clearTimeout(typeTimerRef.current);
+      clearTimeout(claudeTimerRef.current);
+      if (snakeKeyRef.current) window.removeEventListener("keydown", snakeKeyRef.current);
+      if (matrixKeyRef.current) window.removeEventListener("keydown", matrixKeyRef.current);
     };
   }, []);
 
@@ -233,12 +298,15 @@ const Terminal = ({ onExit }) => {
     window.scrollTo(0, document.body.scrollHeight);
   }, [history, snakeFrame]);
 
+  const entryIdRef = useRef(0);
+  const makeEntry = (c, o, node = null) => ({ id: (entryIdRef.current += 1), c, o: o || "", node });
+
   const print = (c, o, node = null) => {
-    setHistory((h) => [...h, { c, o: o || "", node }]);
+    setHistory((h) => [...h, makeEntry(c, o, node)]);
   };
 
   const typeOut = (cmd, lines, delay = 380) => {
-    setHistory((h) => [...h, { c: cmd, o: "", node: null }]);
+    setHistory((h) => [...h, makeEntry(cmd, "")]);
     let i = 0;
     const step = () => {
       if (i >= lines.length) return;
@@ -251,64 +319,64 @@ const Terminal = ({ onExit }) => {
         copy[copy.length - 1] = last;
         return copy;
       });
-      typeTimer.current = setTimeout(step, delay);
+      typeTimerRef.current = setTimeout(step, delay);
     };
     step();
   };
 
   // ---------- matrix ----------
   const stopMatrix = () => {
-    clearInterval(mTimer.current);
-    if (matrixKeyHandler.current) {
-      window.removeEventListener("keydown", matrixKeyHandler.current);
-      matrixKeyHandler.current = null;
+    clearInterval(matrixTimerRef.current);
+    if (matrixKeyRef.current) {
+      window.removeEventListener("keydown", matrixKeyRef.current);
+      matrixKeyRef.current = null;
     }
     setMatrixOn(false);
     setTimeout(() => inputRef.current?.focus(), 0);
   };
 
   const startMatrix = () => {
-    matrixKeyHandler.current = () => stopMatrix();
-    window.addEventListener("keydown", matrixKeyHandler.current);
+    matrixKeyRef.current = () => stopMatrix();
+    window.addEventListener("keydown", matrixKeyRef.current);
     inputRef.current?.blur();
     setMatrixOn(true);
   };
 
   const initMatrixCanvas = (el) => {
     if (!el) {
-      mCanvas.current = null;
-      clearInterval(mTimer.current);
+      matrixCanvasRef.current = null;
+      clearInterval(matrixTimerRef.current);
       return;
     }
-    mCanvas.current = el;
+    matrixCanvasRef.current = el;
     el.width = window.innerWidth;
     el.height = window.innerHeight;
     const ctx = el.getContext("2d");
     ctx.fillStyle = "#060908";
     ctx.fillRect(0, 0, el.width, el.height);
     const cols = Math.floor(el.width / 14);
-    mDrops.current = new Array(cols).fill(1).map(() => Math.floor(Math.random() * 40));
-    clearInterval(mTimer.current);
-    mTimer.current = setInterval(() => {
-      const canvas = mCanvas.current;
+    matrixDropsRef.current = new Array(cols).fill(1).map(() => Math.floor(Math.random() * 40));
+    clearInterval(matrixTimerRef.current);
+    matrixTimerRef.current = setInterval(() => {
+      const canvas = matrixCanvasRef.current;
       if (!canvas) return;
       const x = canvas.getContext("2d");
       x.fillStyle = "rgba(6,9,8,0.08)";
       x.fillRect(0, 0, canvas.width, canvas.height);
       x.fillStyle = termAccRef.current;
       x.font = '13px "JetBrains Mono", monospace';
-      for (let i = 0; i < mDrops.current.length; i += 1) {
+      for (let i = 0; i < matrixDropsRef.current.length; i += 1) {
         const ch = MATRIX_CHARS[Math.floor(Math.random() * MATRIX_CHARS.length)];
-        x.fillText(ch, i * 14, mDrops.current[i] * 16);
-        if (mDrops.current[i] * 16 > canvas.height && Math.random() > 0.975) mDrops.current[i] = 0;
-        mDrops.current[i] += 1;
+        x.fillText(ch, i * 14, matrixDropsRef.current[i] * 16);
+        if (matrixDropsRef.current[i] * 16 > canvas.height && Math.random() > 0.975) matrixDropsRef.current[i] = 0;
+        matrixDropsRef.current[i] += 1;
       }
     }, 50);
   };
 
   // ---------- snake ----------
   const drawSnake = () => {
-    const s = sn.current;
+    const s = snakeRef.current;
     const grid = [];
     for (let y = 0; y < SH; y += 1) grid.push(new Array(SW).fill(" "));
     grid[s.f[1]][s.f[0]] = "◆";
@@ -322,22 +390,22 @@ const Terminal = ({ onExit }) => {
   };
 
   const endSnake = () => {
-    clearInterval(snTimer.current);
-    if (snakeKeyHandler.current) {
-      window.removeEventListener("keydown", snakeKeyHandler.current);
-      snakeKeyHandler.current = null;
+    clearInterval(snakeTimerRef.current);
+    if (snakeKeyRef.current) {
+      window.removeEventListener("keydown", snakeKeyRef.current);
+      snakeKeyRef.current = null;
     }
-    const score = sn.current ? sn.current.score : 0;
+    const score = snakeRef.current ? snakeRef.current.score : 0;
     const translate = tRef.current;
     const snacks = translate(score === 1 ? "term.cmd.snakeSnack" : "term.cmd.snakeSnacks");
     setSnakeOn(false);
     setSnakeFrame("");
-    setHistory((h) => [...h, { c: "snake", o: fill(translate("term.cmd.snakeOver"), { score, snacks }), node: null }]);
+    setHistory((h) => [...h, makeEntry("snake", fill(translate("term.cmd.snakeOver"), { score, snacks }))]);
     setTimeout(() => inputRef.current?.focus(), 0);
   };
 
   const tickSnake = () => {
-    const s = sn.current;
+    const s = snakeRef.current;
     s.d = s.nd;
     const head = [s.b[0][0] + s.d[0], s.b[0][1] + s.d[1]];
     if (
@@ -366,8 +434,8 @@ const Terminal = ({ onExit }) => {
 
   const startSnake = () => {
     if (busyRef.current) return;
-    sn.current = { b: [[6, 6], [5, 6], [4, 6]], d: [1, 0], nd: [1, 0], f: [16, 6], score: 0 };
-    snakeKeyHandler.current = (e) => {
+    snakeRef.current = { b: [[6, 6], [5, 6], [4, 6]], d: [1, 0], nd: [1, 0], f: [16, 6], score: 0 };
+    snakeKeyRef.current = (e) => {
       const moves = {
         ArrowUp: [0, -1], w: [0, -1],
         ArrowDown: [0, 1], s: [0, 1],
@@ -377,15 +445,15 @@ const Terminal = ({ onExit }) => {
       if (moves[e.key]) {
         e.preventDefault();
         const nd = moves[e.key];
-        const cd = sn.current.d;
-        if (nd[0] !== -cd[0] || nd[1] !== -cd[1]) sn.current.nd = nd;
+        const cd = snakeRef.current.d;
+        if (nd[0] !== -cd[0] || nd[1] !== -cd[1]) snakeRef.current.nd = nd;
       }
       if (e.key === "q" || e.key === "Escape") endSnake();
     };
-    window.addEventListener("keydown", snakeKeyHandler.current);
+    window.addEventListener("keydown", snakeKeyRef.current);
     inputRef.current?.blur();
-    clearInterval(snTimer.current);
-    snTimer.current = setInterval(tickSnake, 140);
+    clearInterval(snakeTimerRef.current);
+    snakeTimerRef.current = setInterval(tickSnake, 140);
     setSnakeOn(true);
     setSnakeFrame(drawSnake());
   };
@@ -425,8 +493,8 @@ const Terminal = ({ onExit }) => {
   const runCmd = (raw) => {
     const cmd = raw.trim();
     if (!cmd) return;
-    cmdStack.current.push(cmd);
-    histIdx.current = null;
+    cmdStackRef.current.push(cmd);
+    histIdxRef.current = null;
     const parts = cmd.split(/\s+/);
     const n = parts[0].toLowerCase();
     const arg = parts.slice(1).join(" ");
@@ -438,6 +506,11 @@ const Terminal = ({ onExit }) => {
     }
     if (n === "exit" || n === "gui" || n === "q") {
       onExit();
+      return;
+    }
+    if (n === "claude") {
+      print(cmd, "", <ClaudeWelcome t={t} />);
+      setClaudeMode(true);
       return;
     }
     if (n === "neofetch") {
@@ -583,7 +656,7 @@ const Terminal = ({ onExit }) => {
         break;
       }
       case "history":
-        o = cmdStack.current.map((c, i) => `  ${String(i + 1).padStart(3)}  ${c}`).join("\n");
+        o = cmdStackRef.current.map((c, i) => `  ${String(i + 1).padStart(3)}  ${c}`).join("\n");
         break;
       case "sudo":
         o = t("term.cmd.sudo");
@@ -609,9 +682,81 @@ const Terminal = ({ onExit }) => {
     print(cmd, o);
   };
 
+  // ---------- claude simulation ----------
+  const claudeAnswerFor = (lower) => {
+    const tt = tRef.current;
+    if (/hire|job|contrat|vaga|recrut/.test(lower)) return tt("term.claude.hire");
+    if (/bug/.test(lower)) return tt("term.claude.bug");
+    if (/\bai\b|\bia\b|llm|agent/.test(lower)) return tt("term.claude.ai");
+    const pool = tt("term.claude.fallback");
+    return pool[Math.floor(Math.random() * pool.length)];
+  };
+
+  const setLastEntryOutput = (out) => {
+    setHistory((h) => {
+      const copy = [...h];
+      copy[copy.length - 1] = { ...copy[copy.length - 1], o: out };
+      return copy;
+    });
+  };
+
+  const claudeRun = (raw) => {
+    const q = raw.trim();
+    if (!q) return;
+    const lower = q.toLowerCase();
+    const tt = tRef.current;
+
+    let instant = null;
+    let exits = false;
+    if (lower === "/exit" || lower === "exit" || lower === "quit") {
+      instant = tt("term.claude.exit");
+      exits = true;
+    } else if (lower === "/help" || lower === "help") {
+      instant = tt("term.claude.help");
+    } else if (lower === "/status") {
+      instant = tt("term.claude.status");
+    } else if (lower === "/cost") {
+      instant = tt("term.claude.cost");
+    }
+
+    if (instant !== null) {
+      setHistory((h) => [...h, { ...makeEntry(q, instant), claude: true }]);
+      if (exits) setClaudeMode(false);
+      return;
+    }
+
+    setHistory((h) => [...h, { ...makeEntry(q, ""), claude: true }]);
+    setClaudeBusy(true);
+    claudeTimerRef.current = setTimeout(() => {
+      setClaudeBusy(false);
+      setLastEntryOutput(claudeAnswerFor(lower));
+    }, 1400 + Math.random() * 1200);
+  };
+
+  const interruptClaude = () => {
+    clearTimeout(claudeTimerRef.current);
+    setClaudeBusy(false);
+    setLastEntryOutput(tRef.current("term.claude.interrupted"));
+  };
+
   const onTermKey = (e) => {
     if (busyRef.current) {
       e.preventDefault();
+      return;
+    }
+    if (claudeMode) {
+      if (claudeBusy) {
+        if (e.key === "Escape") interruptClaude();
+        if (e.key === "Enter" || e.key === "Tab") e.preventDefault();
+        return;
+      }
+      if (e.key === "Enter") {
+        const value = e.target.value;
+        e.target.value = "";
+        claudeRun(value);
+        return;
+      }
+      if (e.key === "Tab") e.preventDefault();
       return;
     }
     if (e.key === "Enter") {
@@ -627,18 +772,18 @@ const Terminal = ({ onExit }) => {
       else if (matches.length > 1) print(value, matches.join("   "));
     } else if (e.key === "ArrowUp") {
       e.preventDefault();
-      if (!cmdStack.current.length) return;
-      histIdx.current = histIdx.current === null ? cmdStack.current.length - 1 : Math.max(0, histIdx.current - 1);
-      e.target.value = cmdStack.current[histIdx.current];
+      if (!cmdStackRef.current.length) return;
+      histIdxRef.current = histIdxRef.current === null ? cmdStackRef.current.length - 1 : Math.max(0, histIdxRef.current - 1);
+      e.target.value = cmdStackRef.current[histIdxRef.current];
     } else if (e.key === "ArrowDown") {
       e.preventDefault();
-      if (histIdx.current === null) return;
-      histIdx.current += 1;
-      if (histIdx.current >= cmdStack.current.length) {
-        histIdx.current = null;
+      if (histIdxRef.current === null) return;
+      histIdxRef.current += 1;
+      if (histIdxRef.current >= cmdStackRef.current.length) {
+        histIdxRef.current = null;
         e.target.value = "";
       } else {
-        e.target.value = cmdStack.current[histIdx.current];
+        e.target.value = cmdStackRef.current[histIdxRef.current];
       }
     }
   };
@@ -754,9 +899,9 @@ const Terminal = ({ onExit }) => {
         <Box sx={{ p: { xs: "24px 16px 60px", sm: "34px 40px 60px" }, fontSize: 13.5, lineHeight: 1.75, textShadow: "var(--tglow)" }}>
           {!cleared && <BootSession t={t} />}
 
-          {history.map((entry, index) => (
-            <Box key={index} sx={{ mb: 1.75 }}>
-              <PromptEcho cmd={entry.c} />
+          {history.map((entry) => (
+            <Box key={entry.id} sx={{ mb: 1.75 }}>
+              {entry.claude ? <ClaudePromptEcho cmd={entry.c} /> : <PromptEcho cmd={entry.c} />}
               {entry.o !== "" && <Output>{entry.o}</Output>}
               {entry.node && <Box>{entry.node}</Box>}
             </Box>
@@ -768,9 +913,25 @@ const Terminal = ({ onExit }) => {
             </Box>
           )}
 
-          <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
-            <Box component="span" sx={{ color: "var(--tacc)", whiteSpace: "nowrap" }}>
-              rckmath@portfolio:~$
+          {claudeBusy && <ClaudeThinking verbs={t("term.claude.verbs")} interrupt={t("term.claude.interrupt")} />}
+
+          <Box
+            sx={
+              claudeMode
+                ? {
+                    display: "flex",
+                    alignItems: "center",
+                    gap: 1,
+                    border: "1px solid rgba(217,119,87,.45)",
+                    borderRadius: "8px",
+                    p: "8px 12px",
+                    mt: 1,
+                  }
+                : { display: "flex", alignItems: "center", gap: 1 }
+            }
+          >
+            <Box component="span" sx={{ color: claudeMode ? CLAUDE_COLOR : "var(--tacc)", whiteSpace: "nowrap" }}>
+              {claudeMode ? ">" : "rckmath@portfolio:~$"}
             </Box>
             <Box
               component="input"
@@ -787,12 +948,14 @@ const Terminal = ({ onExit }) => {
                 color: "var(--tink)",
                 fontFamily: fonts.mono,
                 fontSize: 13.5,
-                caretColor: "var(--tacc)",
+                caretColor: claudeMode ? CLAUDE_COLOR : "var(--tacc)",
                 p: 0,
               }}
             />
           </Box>
-          <Box sx={{ mt: 2, color: "#3a423c", fontSize: 11.5 }}>{t("term.hint")}</Box>
+          <Box sx={{ mt: 2, color: "#3a423c", fontSize: 11.5 }}>
+            {claudeMode ? t("term.claude.hint") : t("term.hint")}
+          </Box>
         </Box>
       </Box>
     </Box>

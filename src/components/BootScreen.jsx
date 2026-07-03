@@ -34,23 +34,19 @@ const BootScreen = ({ onDone }) => {
   }, [onDone]);
 
   useEffect(() => {
-    const timers = lines.map((_, i) =>
-      setTimeout(() => setVisible(i + 1), LINE_DELAYS[i] ?? 300 + i * 420)
-    );
-    timers.push(setTimeout(() => onDoneRef.current(), TOTAL_MS));
-
     const start = performance.now();
-    const barTimer = setInterval(() => {
-      const pct = Math.min(100, Math.round(((performance.now() - start) / (TOTAL_MS - 500)) * 100));
-      setProgress(pct);
-      if (pct >= 100) clearInterval(barTimer);
+    const tick = setInterval(() => {
+      const elapsed = performance.now() - start;
+      setVisible(lines.filter((_, i) => elapsed >= (LINE_DELAYS[i] ?? 300 + i * 420)).length);
+      setProgress(Math.min(100, Math.round((elapsed / (TOTAL_MS - 500)) * 100)));
     }, 80);
+    const doneTimer = setTimeout(() => onDoneRef.current(), TOTAL_MS);
 
     const prevBackground = document.body.style.background;
     document.body.style.background = "#060908";
     return () => {
-      timers.forEach(clearTimeout);
-      clearInterval(barTimer);
+      clearInterval(tick);
+      clearTimeout(doneTimer);
       document.body.style.background = prevBackground;
     };
   }, [lines]);
