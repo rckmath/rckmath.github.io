@@ -341,6 +341,33 @@ const EducationSection = ({ t }) => (
   </Box>
 );
 
+const BootCta = ({ t, onOpenTerminal }) => (
+  <Box sx={{ px: { xs: 2.5, sm: 6 }, pb: 8, textAlign: "center", ...mono(13), color: "var(--faint)" }}>
+    {t("bootCta.tease")}{" "}
+    <Box
+      component="button"
+      type="button"
+      onClick={onOpenTerminal}
+      sx={{
+        fontFamily: fonts.mono,
+        fontSize: 13,
+        fontWeight: 500,
+        color: "var(--accent)",
+        bgcolor: "transparent",
+        border: "none",
+        borderBottom: "1px solid var(--accent-brd)",
+        p: 0,
+        ml: 0.5,
+        cursor: "pointer",
+        transition: "border-color 0.2s",
+        "&:hover": { borderBottomColor: "var(--accent)" },
+      }}
+    >
+      {t("bootCta.button")}
+    </Box>
+  </Box>
+);
+
 const Home = ({ onOpenTerminal }) => {
   const { isDarkMode } = useTheme();
   const { t } = useTranslation();
@@ -365,6 +392,7 @@ const Home = ({ onOpenTerminal }) => {
         <ProjectsSection t={t} />
         <AwardsSection t={t} />
         <EducationSection t={t} />
+        <BootCta t={t} onOpenTerminal={onOpenTerminal} />
         <Footer />
       </Box>
     </Box>

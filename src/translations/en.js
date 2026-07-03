@@ -92,6 +92,11 @@ const en = {
     hello: "$ say hello",
   },
 
+  bootCta: {
+    tease: "// still here? I think you're missing the cool part…",
+    button: "$ boot rckmathOS",
+  },
+
   term: {
     guiMode: "← gui mode",
     windowTitle: "rckmath@portfolio: ~",
@@ -145,11 +150,34 @@ const en = {
         note: "# algorithms & C",
       },
     ],
-    hint: "try: help · neofetch · snake · matrix · git log · fortune · color amber · crt",
+    hint: "try: help · neofetch · claude · snake · matrix · git log · fortune · color amber · crt",
     matrixWake: "press any key or click to wake up",
 
+    claude: {
+      welcomeTitle: "✻ Welcome to Claude Code!",
+      welcomeLines: "/help for help, /status for your current setup\n\ncwd: /home/rckmath/portfolio",
+      hint: "you're chatting with a very convincing simulation — ask anything about erick · /status · /cost · /exit",
+      verbs: ["Thinking", "Pondering", "Brewing", "Vibing", "Herding tokens"],
+      interrupt: "esc to interrupt",
+      interrupted: "⎿ interrupted. rude, but fair.",
+      help: "/status   your current setup\n/cost     what this session costs\n/exit     back to the shell\n\nor just ask me anything about erick — I read his whole repo.",
+      status: "⏺ model: claude-fable-5 (simulated, extra flattering)\n⏺ cwd: /home/rckmath/portfolio\n⏺ context: 3% used · vibes: immaculate\n⏺ account: rckmath (Max plan of friendship)",
+      cost: "total cost: $0.00 — this simulation runs on pure vibes and localStorage.",
+      exit: "session ended. the real me lives at claude.ai/code — tell them rckmath sent you.",
+      hire: "⏺ Read(resume.pdf)\n  ⎿ strong hire signal detected\n\nI reviewed everything: 6+ years shipping, leads 6+ devs, cut deploys from 1h to 5min and bugs from 50% to 30%. my recommendation? hire him before another agent does.",
+      bug: "⏺ Grep(\"bug\", src/)\n  ⎿ 0 matches\n\nno bugs found in this portfolio. in production, however… ask him about the 50% → 30% story.",
+      ai: "⏺ Read(~/now)\n  ⎿ 1 section\n\nerick is leading AI-first products — agentic workflows and LLM tools on solid APIs. as an AI, I can confirm: he treats us very well.",
+      fallback: [
+        "⏺ Read(career.log)\n  ⎿ 6 entries · all green flags\n\ngood question. short answer: erick can probably build it. long answer: he'll also write the docs.",
+        "⏺ Bash(git log --oneline)\n  ⎿ 400+ merged PRs\n\nwhatever you're asking, the git history says yes.",
+        "I ran the numbers three times. conclusion: this portfolio is 100% terminal-certified, and so am I.",
+        "interesting. have you tried asking erick directly? `./contact --all` has the links — I'm just the demo.",
+        "as a large language model simulated inside a portfolio, I can confirm: best working conditions I've ever had.",
+      ],
+    },
+
     cmd: {
-      help: "portfolio\n  about · career · git log · ai · projects · awards · edu · contact · resume\nterminal\n  neofetch · history · echo · date · uptime · ver · open <url> · lang <en|pt> · color <green|amber|cyan|white> · crt · clear · exit\nfun\n  snake · matrix · cowsay <msg> · fortune · hack <host> · ping <host> · weather · coffee\n\n(a few classics are unlisted. trust your instincts.)",
+      help: "portfolio\n  about · career · git log · ai · projects · awards · edu · contact · resume\nterminal\n  neofetch · history · echo · date · uptime · ver · open <url> · lang <en|pt> · color <green|amber|cyan|white> · crt · clear · exit\nfun\n  claude · snake · matrix · cowsay <msg> · fortune · hack <host> · ping <host> · weather · coffee\n\n(a few classics are unlisted. trust your instincts.)",
       about:
         "Erick Pacheco — technical lead & full-stack engineer.\n6+ years shipping APIs, web & mobile. Leading a remote team at Softwrench (US)\nand idealizing AI-first products.",
       career:

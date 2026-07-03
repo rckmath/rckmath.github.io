@@ -93,6 +93,11 @@ const pt = {
     hello: "$ diga olá",
   },
 
+  bootCta: {
+    tease: "// ainda por aqui? acho que você está perdendo a parte legal…",
+    button: "$ boot rckmathOS",
+  },
+
   term: {
     guiMode: "← modo gui",
     windowTitle: "rckmath@portfolio: ~",
@@ -146,11 +151,34 @@ const pt = {
         note: "# algoritmos & C",
       },
     ],
-    hint: "experimente: help · neofetch · snake · matrix · git log · fortune · color amber · crt",
+    hint: "experimente: help · neofetch · claude · snake · matrix · git log · fortune · color amber · crt",
     matrixWake: "pressione qualquer tecla ou clique para acordar",
 
+    claude: {
+      welcomeTitle: "✻ Bem-vindo ao Claude Code!",
+      welcomeLines: "/help para ajuda, /status para o seu setup\n\ncwd: /home/rckmath/portfolio",
+      hint: "você está falando com uma simulação bem convincente — pergunte algo sobre o erick · /status · /cost · /exit",
+      verbs: ["Pensando", "Ponderando", "Passando um café", "Vibrando", "Pastoreando tokens"],
+      interrupt: "esc para interromper",
+      interrupted: "⎿ interrompido. grosseiro, mas justo.",
+      help: "/status   seu setup atual\n/cost     quanto custa esta sessão\n/exit     voltar para o shell\n\nou pergunte qualquer coisa sobre o erick — li o repositório inteiro.",
+      status: "⏺ modelo: claude-fable-5 (simulado, extra bajulador)\n⏺ cwd: /home/rckmath/portfolio\n⏺ contexto: 3% usado · vibes: imaculadas\n⏺ conta: rckmath (plano Max da amizade)",
+      cost: "custo total: US$ 0,00 — esta simulação roda em pura vibe e localStorage.",
+      exit: "sessão encerrada. o verdadeiro eu mora em claude.ai/code — diga que o rckmath indicou.",
+      hire: "⏺ Read(resume.pdf)\n  ⎿ forte sinal de contratação detectado\n\nrevisei tudo: 6+ anos entregando, lidera 6+ devs, deploys de 1h para 5min e bugs de 50% para 30%. minha recomendação? contrate antes que outro agente o faça.",
+      bug: "⏺ Grep(\"bug\", src/)\n  ⎿ 0 ocorrências\n\nnenhum bug encontrado neste portfólio. em produção, porém… pergunte a ele sobre a história dos 50% → 30%.",
+      ai: "⏺ Read(~/now)\n  ⎿ 1 seção\n\nerick está liderando produtos AI-first — workflows agênticos e ferramentas LLM sobre APIs sólidas. como IA, confirmo: ele nos trata muito bem.",
+      fallback: [
+        "⏺ Read(career.log)\n  ⎿ 6 registros · só green flags\n\nboa pergunta. resposta curta: o erick provavelmente consegue construir isso. resposta longa: ele também vai escrever a documentação.",
+        "⏺ Bash(git log --oneline)\n  ⎿ 400+ PRs mesclados\n\nseja lá o que você está perguntando, o histórico do git diz que sim.",
+        "rodei os números três vezes. conclusão: este portfólio é 100% certificado em terminal, e eu também.",
+        "interessante. já tentou perguntar direto ao erick? `./contact --all` tem os links — eu sou só a demo.",
+        "como um grande modelo de linguagem simulado dentro de um portfólio, confirmo: melhores condições de trabalho que já tive.",
+      ],
+    },
+
     cmd: {
-      help: "portfólio\n  about · career · git log · ai · projects · awards · edu · contact · resume\nterminal\n  neofetch · history · echo · date · uptime · ver · open <url> · lang <en|pt> · color <green|amber|cyan|white> · crt · clear · exit\ndiversão\n  snake · matrix · cowsay <msg> · fortune · hack <host> · ping <host> · weather · coffee\n\n(alguns clássicos não estão listados. confie nos seus instintos.)",
+      help: "portfólio\n  about · career · git log · ai · projects · awards · edu · contact · resume\nterminal\n  neofetch · history · echo · date · uptime · ver · open <url> · lang <en|pt> · color <green|amber|cyan|white> · crt · clear · exit\ndiversão\n  claude · snake · matrix · cowsay <msg> · fortune · hack <host> · ping <host> · weather · coffee\n\n(alguns clássicos não estão listados. confie nos seus instintos.)",
       about:
         "Erick Pacheco — technical lead & engenheiro full-stack.\n6+ anos entregando APIs, web & mobile. Liderando um time remoto na Softwrench (EUA)\ne idealizando produtos AI-first.",
       career:
