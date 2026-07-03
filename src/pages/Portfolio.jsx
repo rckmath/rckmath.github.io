@@ -20,15 +20,15 @@ const Portfolio = () => {
   const [mode, setMode] = useState(initialMode);
   const [booting, setBooting] = useState(false);
   const [fading, setFading] = useState(false);
-  const timer = useRef(null);
+  const timerRef = useRef(null);
 
-  useEffect(() => () => clearTimeout(timer.current), []);
+  useEffect(() => () => clearTimeout(timerRef.current), []);
 
   // GUI → terminal: quick fade out, then the boot sequence plays before the terminal appears
   const openTerminal = () => {
     if (mode === "term" || booting || fading) return;
     setFading(true);
-    timer.current = setTimeout(() => {
+    timerRef.current = setTimeout(() => {
       setBooting(true);
       window.scrollTo(0, 0);
       requestAnimationFrame(() => setFading(false));
@@ -45,7 +45,7 @@ const Portfolio = () => {
   const exitTerminal = () => {
     if (mode === "gui" || booting || fading) return;
     setFading(true);
-    timer.current = setTimeout(() => {
+    timerRef.current = setTimeout(() => {
       setMode("gui");
       window.scrollTo(0, 0);
       requestAnimationFrame(() => setFading(false));
