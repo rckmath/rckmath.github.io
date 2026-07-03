@@ -4,25 +4,26 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-"Commandfolio" — a terminal-flavored personal portfolio built as a React 19 SPA with Vite, Material-UI v7, and multi-language support (EN/PT). It has two modes rendered from a single page: a GUI portfolio and a fully interactive fake terminal, switched in-app (no routing library).
+"Commandfolio" — a terminal-flavored personal portfolio built as a React 19 SPA with Vite 8 (Rolldown), Material-UI v9, and multi-language support (EN/PT). It has two modes rendered from a single page: a GUI portfolio and a fully interactive fake terminal, switched in-app (no routing library).
 
 ## Commands
 
 ```bash
 yarn dev        # Start development server
 yarn build      # Production build (also copies dist/index.html → dist/404.html for GH Pages SPA fallback)
-yarn lint       # ESLint with 0 warnings tolerance
+yarn lint       # ESLint 10 (flat config: @eslint/js + @eslint-react + react-hooks + react-refresh), 0 warnings tolerance
 yarn preview    # Preview production build locally
-yarn deploy     # Build and deploy to GitHub Pages
 ```
+
+Deployment is automatic: pushes to `master` run `.github/workflows/deploy.yml` (lint → build → `actions/upload-pages-artifact` → `actions/deploy-pages`). There is no manual deploy script; Pages is configured with `build_type: workflow`.
 
 ## Architecture
 
 ### Mode switching (no router)
-`src/pages/Portfolio.jsx` owns the `mode` state (`"gui"` | `"term"`) and performs a fade transition (opacity/scale, 240 ms) when switching. **Keep the two modes in separate files** — `Home.jsx` (GUI) and `Terminal.jsx` (terminal) — Portfolio only orchestrates.
+`src/pages/Portfolio.jsx` owns the `mode` state (`"gui"` | `"term"`). **Keep the two modes in separate files** — `Home.jsx` (GUI) and `Terminal.jsx` (terminal) — Portfolio only orchestrates.
 
-- GUI → terminal: `>_` button in `Header.jsx` (`onOpenTerminal` prop)
-- Terminal → GUI: `exit`/`gui`/`q` commands or the "← gui mode" button (`onExit` prop)
+- GUI → terminal: `>_` button in `Header.jsx` or the inline "$ boot rckmathOS" CTA at the bottom of Home (`onOpenTerminal` prop) → quick fade, then `components/BootScreen.jsx` plays a ~4s BIOS-style boot animation (click to skip) before the terminal mounts
+- Terminal → GUI: `exit`/`gui`/`q` commands or the "← gui mode" button (`onExit` prop) → quick fade only
 - Backward compat: loading `/cmd` (old external terminal repo path) boots directly into terminal mode and rewrites the URL to `/` via `history.replaceState`. The `404.html` build fallback makes this work on GitHub Pages.
 
 ### State Management
@@ -41,6 +42,8 @@ Access via hooks: `useTheme()` and `useLanguage()` (or `useTranslation()` from `
 - `lang en|pt` switches the app language; confirmation prints in the target language
 - Games/effects (snake, matrix, CRT) use refs + window listeners; all timers/listeners are cleaned up on unmount
 - Focus calls use `{ preventScroll: true }` so entering the mode doesn't jump to the bottom
+- History entries carry stable ids (`entryIdRef`) — never key by array index
+- `claude` command enters a chat sub-mode simulating the Claude Code TUI: orange `>` prompt in a bordered input, thinking spinner (Esc interrupts), keyword-matched mock answers (`hire`/`bug`/`ai` + fallback pool) and `/help` `/status` `/cost` `/exit` — strings under `term.claude.*`
 
 ## Design System (Commandfolio)
 
@@ -72,4 +75,4 @@ All UI text lives in `src/translations/{en,pt}.js` with mirrored key structure (
 
 ## Git Workflow
 
-Feature branches → `develop` → `master` (via PRs). Deployment targets `master`.
+Feature branches → `develop` → `master` (via PRs). Merging to `master` auto-deploys to GitHub Pages via the deploy workflow.
