@@ -2,8 +2,9 @@ import { useEffect, useRef, useState } from "react";
 import { Box } from "@mui/material";
 import Home from "./Home";
 import Terminal from "./Terminal";
+import BootScreen from "../components/BootScreen";
 
-const TRANSITION_MS = 240;
+const FADE_MS = 240;
 
 // Old bookmarks may still point at /cmd (previously a separate repo):
 // boot straight into terminal mode and clean the URL.
@@ -17,34 +18,54 @@ const initialMode = () => {
 
 const Portfolio = () => {
   const [mode, setMode] = useState(initialMode);
+  const [booting, setBooting] = useState(false);
   const [fading, setFading] = useState(false);
   const timer = useRef(null);
 
   useEffect(() => () => clearTimeout(timer.current), []);
 
-  const switchMode = (next) => {
-    if (next === mode || fading) return;
+  // GUI → terminal: quick fade out, then the boot sequence plays before the terminal appears
+  const openTerminal = () => {
+    if (mode === "term" || booting || fading) return;
     setFading(true);
     timer.current = setTimeout(() => {
-      setMode(next);
+      setBooting(true);
       window.scrollTo(0, 0);
       requestAnimationFrame(() => setFading(false));
-    }, TRANSITION_MS);
+    }, FADE_MS);
   };
+
+  const finishBoot = () => {
+    setMode("term");
+    setBooting(false);
+    window.scrollTo(0, 0);
+  };
+
+  // Terminal → GUI: instant power-off feel, just a quick fade
+  const exitTerminal = () => {
+    if (mode === "gui" || booting || fading) return;
+    setFading(true);
+    timer.current = setTimeout(() => {
+      setMode("gui");
+      window.scrollTo(0, 0);
+      requestAnimationFrame(() => setFading(false));
+    }, FADE_MS);
+  };
+
+  let content;
+  if (booting) content = <BootScreen onDone={finishBoot} />;
+  else if (mode === "gui") content = <Home onOpenTerminal={openTerminal} />;
+  else content = <Terminal onExit={exitTerminal} />;
 
   return (
     <Box
       sx={{
         opacity: fading ? 0 : 1,
         transform: fading ? "scale(0.99)" : "none",
-        transition: `opacity ${TRANSITION_MS}ms ease, transform ${TRANSITION_MS}ms ease`,
+        transition: `opacity ${FADE_MS}ms ease, transform ${FADE_MS}ms ease`,
       }}
     >
-      {mode === "gui" ? (
-        <Home onOpenTerminal={() => switchMode("term")} />
-      ) : (
-        <Terminal onExit={() => switchMode("gui")} />
-      )}
+      {content}
     </Box>
   );
 };

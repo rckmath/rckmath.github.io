@@ -25,19 +25,13 @@ const en = {
         meta: "remote · scottsdale, AZ",
         subtitle: "full-stack engineer → senior → tech lead",
         description:
-          "O&M platform for solar & renewables. Architecture, C#/.NET APIs, AngularJS & React Native front ends, 400+ merged PRs, integrations with IBM Maximo, Dynamics and Kronos.",
+          "Leading 6+ engineers on an O&M platform for solar & renewables and driving the company's shift to AI-native: 40% faster task delivery, deploys cut from 1h to 5min after a full CI/CD redesign, bug rate down from 50% to 30% and a 200% growth in the client portfolio — while architecting the product's next generation.",
       },
       {
         period: "2023 — 2025",
         role: "IT Teacher",
         company: "@ ETEC Hortolândia",
-        description: "Lectured networks, shell script and React Native; advised final course projects.",
-      },
-      {
-        period: "2021 — 2023",
-        role: "Full-stack Developer",
-        company: "@ AMLabs",
-        description: "Micro-market & payment systems — React Native, AngularJS, .NET APIs.",
+        description: "Lectured networks, shell script, React Native and more; advised final course projects.",
       },
       {
         period: "2020 — 2021",
@@ -74,8 +68,8 @@ const en = {
 
   education: {
     entries: [
-      { title: "BE, Software Engineering", inst: "— PUC-Campinas", period: "2018–2022" },
       { title: "Postgrad, Blockchain Development", inst: "— UniFECAF", period: "2023 · grade 10/10" },
+      { title: "BE, Software Engineering", inst: "— PUC-Campinas", period: "2018–2022 · grade 10/10" },
       { title: "IT Technician", inst: "— ETEC", period: "2016–2017" },
     ],
   },
@@ -87,6 +81,16 @@ const en = {
   term: {
     guiMode: "← gui mode",
     windowTitle: "rckmath@portfolio: ~",
+    boot: [
+      "erickOS BIOS v6.1 — initializing…",
+      "memory check ............... 42 of 16 browser tabs OK",
+      "cpu: 1× brain @ 3.2 GHz .... caffeine boost engaged",
+      "loading kernel full-stack v6.0 .............. [ok]",
+      "mounting /home/erick/portfolio .............. [ok]",
+      "starting services: api · web · mobile · ai .. [ok]",
+      "phosphor calibration ........................ [ok]",
+      "launching commandfolio v2.1…",
+    ],
     intro:
       "Commandfolio v2.1 — this prompt is live. Tab completes, ↑ recalls, `help` reveals.\nLast login: from São Paulo, Brazil",
     whoami:
@@ -95,10 +99,9 @@ const en = {
       "> current focus: leading & idealizing AI-first products\n> agentic workflows & LLM-powered tools on solid APIs\n> first shipped: speaker platform — 2nd place, superviz hackathon 2.0",
     photoCaption: "erick.png — 600×600",
     careerRows: [
-      { year: "[2025→]", role: "technical lead", company: "@ softwrench", note: "# remote·US — solar O&M platform, leads the eng team", current: true },
+      { year: "[2025→]", role: "technical lead", company: "@ softwrench", note: "# remote·US — leads 6+ devs on a solar O&M platform", current: true },
       { year: "[2021→]", role: "full-stack → senior", company: "@ softwrench", note: "# C#/.NET · angular · react native · 400+ PRs" },
-      { year: "[2023 ]", role: "IT teacher", company: "@ etec hortolândia", note: "# networks · shell · react native · 2 yrs" },
-      { year: "[2021 ]", role: "full-stack dev", company: "@ amlabs", note: "# micro-markets & payments" },
+      { year: "[2023 ]", role: "IT teacher", company: "@ etec hortolândia", note: "# networks · shell · react native & more · 2 yrs" },
       { year: "[2020 ]", role: "back-end dev", company: "@ mb labs", note: "# node·ts·aws — intern → junior in 6 months" },
       { year: "[2019 ]", role: "teaching assistant", company: "@ puc-campinas", note: "# algorithms & C" },
     ],
@@ -110,8 +113,8 @@ const en = {
       about:
         "Erick Pacheco — technical lead & full-stack engineer.\n6+ years shipping APIs, web & mobile. Leading a remote team at Softwrench (US)\nand idealizing AI-first products.",
       career:
-        "[2025→] technical lead       @ softwrench        remote·US\n[2021→] full-stack → senior  @ softwrench        C#/.NET · angular · react native\n[2023 ] IT teacher           @ etec hortolândia  networks · shell · react native\n[2021 ] full-stack dev       @ amlabs            micro-markets & payments\n[2020 ] back-end dev         @ mb labs           node · ts · aws\n[2019 ] teaching assistant   @ puc-campinas      algorithms & C",
-      git: "* f4a9e2c (HEAD -> career) promote: senior → technical lead @ softwrench\n* 8d3c7b1 promote: full-stack → senior engineer\n* 2e9f6a4 feat: teach IT @ etec (2-year side quest)\n* c7b2d90 feat: join softwrench as full-stack engineer\n* 5a1e8f3 feat: full-stack dev @ amlabs\n* 91d4c6e promote: intern → junior back-end @ mb labs (6 months)\n* 03b7a2f feat: first internship @ mb labs\n* 0000001 initial commit — hello.c @ etec, 2016",
+        "[2025→] technical lead       @ softwrench        leads 6+ devs · deploys 1h→5min · bugs 50%→30%\n[2021→] full-stack → senior  @ softwrench        C#/.NET · angular · react native\n[2023 ] IT teacher           @ etec hortolândia  networks · shell · react native & more\n[2020 ] back-end dev         @ mb labs           node · ts · aws\n[2019 ] teaching assistant   @ puc-campinas      algorithms & C",
+      git: "* f4a9e2c (HEAD -> career) promote: senior → technical lead @ softwrench\n* 8d3c7b1 promote: full-stack → senior engineer\n* 2e9f6a4 feat: teach IT @ etec (2-year side quest)\n* c7b2d90 feat: join softwrench as full-stack engineer\n* 91d4c6e promote: intern → junior back-end @ mb labs (6 months)\n* 03b7a2f feat: first internship @ mb labs\n* 0000001 initial commit — hello.c @ etec, 2016",
       ai: "> current focus: leading & idealizing AI-first products\n> agentic workflows & LLM-powered tools on solid APIs\n> first shipped: speaker platform — 2nd place, superviz hackathon 2.0",
       projects:
         "imma-deploy/  should you deploy today? a menu bar app with the answer\niron-rifas/   raffle management platform — gerenciador.ironrifas.com",
@@ -126,7 +129,7 @@ const en = {
       catUsage: "usage: cat <file> — try `ls -la` first",
       awards:
         "★ 2nd place — SuperViz Hackathon 2.0 (2024) · solo-built AI speaker platform · US$1,000\n★ Best Term Paper Awards — PUC-Campinas (2022) · geolocation price-indexing app",
-      edu: "BE software engineering — PUC-Campinas (2018–2022)\npostgrad blockchain dev — UniFECAF (2023, 10/10)\nIT technician — ETEC (2016–2017)",
+      edu: "postgrad blockchain dev — UniFECAF (2023, 10/10)\nBE software engineering — PUC-Campinas (2018–2022, 10/10)\nIT technician — ETEC (2016–2017)",
       contact:
         "mail      ericklopes02@outlook.com\ngithub    github.com/rckmath\nlinkedin  linkedin.com/in/rckmath\nsteam     steamcommunity.com/id/BossBR",
       resume: "fetching resume.pdf… the latest version lives on linkedin.com/in/rckmath",

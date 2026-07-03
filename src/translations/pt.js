@@ -25,19 +25,13 @@ const pt = {
         meta: "remoto · scottsdale, AZ",
         subtitle: "engenheiro full-stack → sênior → tech lead",
         description:
-          "Plataforma de O&M para energia solar & renováveis. Arquitetura, APIs C#/.NET, front-ends AngularJS & React Native, 400+ PRs mesclados, integrações com IBM Maximo, Dynamics e Kronos.",
+          "Liderando 6+ devs em uma plataforma de O&M para energia solar & renováveis e conduzindo a transformação da empresa em AI-native: entregas 40% mais rápidas, deploys de 1h para 5min após redesenhar todo o CI/CD, taxa de bugs de 50% para 30% e crescimento de 200% na carteira de clientes — enquanto arquiteto a nova geração do produto.",
       },
       {
         period: "2023 — 2025",
         role: "Professor de TI",
         company: "@ ETEC Hortolândia",
-        description: "Lecionei redes, shell script e React Native; orientei trabalhos de conclusão de curso.",
-      },
-      {
-        period: "2021 — 2023",
-        role: "Desenvolvedor Full-stack",
-        company: "@ AMLabs",
-        description: "Sistemas de micro-markets & pagamentos — React Native, AngularJS, APIs .NET.",
+        description: "Lecionei redes, shell script, React Native e outras disciplinas; orientei trabalhos de conclusão de curso.",
       },
       {
         period: "2020 — 2021",
@@ -74,8 +68,8 @@ const pt = {
 
   education: {
     entries: [
-      { title: "Bacharelado, Engenharia de Software", inst: "— PUC-Campinas", period: "2018–2022" },
       { title: "Pós-graduação, Desenvolvimento Blockchain", inst: "— UniFECAF", period: "2023 · nota 10/10" },
+      { title: "Bacharelado, Engenharia de Software", inst: "— PUC-Campinas", period: "2018–2022 · nota 10/10" },
       { title: "Técnico em TI", inst: "— ETEC", period: "2016–2017" },
     ],
   },
@@ -87,6 +81,16 @@ const pt = {
   term: {
     guiMode: "← modo gui",
     windowTitle: "rckmath@portfolio: ~",
+    boot: [
+      "erickOS BIOS v6.1 — inicializando…",
+      "teste de memória ........... 42 de 16 abas do navegador OK",
+      "cpu: 1× cérebro @ 3.2 GHz .. turbo de cafeína ativado",
+      "carregando kernel full-stack v6.0 ........... [ok]",
+      "montando /home/erick/portfolio .............. [ok]",
+      "subindo serviços: api · web · mobile · ia ... [ok]",
+      "calibração de fósforo ....................... [ok]",
+      "iniciando commandfolio v2.1…",
+    ],
     intro:
       "Commandfolio v2.1 — este prompt é de verdade. Tab completa, ↑ repete, `help` revela.\nÚltimo login: de São Paulo, Brasil",
     whoami:
@@ -95,10 +99,9 @@ const pt = {
       "> foco atual: liderando & idealizando produtos AI-first\n> workflows agênticos & ferramentas com LLM sobre APIs sólidas\n> primeiro lançado: plataforma para palestrantes — 2º lugar, superviz hackathon 2.0",
     photoCaption: "erick.png — 600×600",
     careerRows: [
-      { year: "[2025→]", role: "technical lead", company: "@ softwrench", note: "# remoto·EUA — plataforma de O&M solar, lidera o time de eng", current: true },
+      { year: "[2025→]", role: "technical lead", company: "@ softwrench", note: "# remoto·EUA — lidera 6+ devs em plataforma de O&M solar", current: true },
       { year: "[2021→]", role: "full-stack → sênior", company: "@ softwrench", note: "# C#/.NET · angular · react native · 400+ PRs" },
-      { year: "[2023 ]", role: "professor de TI", company: "@ etec hortolândia", note: "# redes · shell · react native · 2 anos" },
-      { year: "[2021 ]", role: "dev full-stack", company: "@ amlabs", note: "# micro-markets & pagamentos" },
+      { year: "[2023 ]", role: "professor de TI", company: "@ etec hortolândia", note: "# redes · shell · react native & mais · 2 anos" },
       { year: "[2020 ]", role: "dev back-end", company: "@ mb labs", note: "# node·ts·aws — estágio → júnior em 6 meses" },
       { year: "[2019 ]", role: "monitor", company: "@ puc-campinas", note: "# algoritmos & C" },
     ],
@@ -110,8 +113,8 @@ const pt = {
       about:
         "Erick Pacheco — technical lead & engenheiro full-stack.\n6+ anos entregando APIs, web & mobile. Liderando um time remoto na Softwrench (EUA)\ne idealizando produtos AI-first.",
       career:
-        "[2025→] technical lead       @ softwrench        remoto·EUA\n[2021→] full-stack → sênior  @ softwrench        C#/.NET · angular · react native\n[2023 ] professor de TI      @ etec hortolândia  redes · shell · react native\n[2021 ] dev full-stack       @ amlabs            micro-markets & pagamentos\n[2020 ] dev back-end         @ mb labs           node · ts · aws\n[2019 ] monitor              @ puc-campinas      algoritmos & C",
-      git: "* f4a9e2c (HEAD -> carreira) promote: sênior → technical lead @ softwrench\n* 8d3c7b1 promote: full-stack → engenheiro sênior\n* 2e9f6a4 feat: lecionar TI @ etec (side quest de 2 anos)\n* c7b2d90 feat: entrar na softwrench como engenheiro full-stack\n* 5a1e8f3 feat: dev full-stack @ amlabs\n* 91d4c6e promote: estágio → júnior back-end @ mb labs (6 meses)\n* 03b7a2f feat: primeiro estágio @ mb labs\n* 0000001 initial commit — hello.c @ etec, 2016",
+        "[2025→] technical lead       @ softwrench        lidera 6+ devs · deploys 1h→5min · bugs 50%→30%\n[2021→] full-stack → sênior  @ softwrench        C#/.NET · angular · react native\n[2023 ] professor de TI      @ etec hortolândia  redes · shell · react native & mais\n[2020 ] dev back-end         @ mb labs           node · ts · aws\n[2019 ] monitor              @ puc-campinas      algoritmos & C",
+      git: "* f4a9e2c (HEAD -> carreira) promote: sênior → technical lead @ softwrench\n* 8d3c7b1 promote: full-stack → engenheiro sênior\n* 2e9f6a4 feat: lecionar TI @ etec (side quest de 2 anos)\n* c7b2d90 feat: entrar na softwrench como engenheiro full-stack\n* 91d4c6e promote: estágio → júnior back-end @ mb labs (6 meses)\n* 03b7a2f feat: primeiro estágio @ mb labs\n* 0000001 initial commit — hello.c @ etec, 2016",
       ai: "> foco atual: liderando & idealizando produtos AI-first\n> workflows agênticos & ferramentas com LLM sobre APIs sólidas\n> primeiro lançado: plataforma para palestrantes — 2º lugar, superviz hackathon 2.0",
       projects:
         "imma-deploy/  deveria fazer deploy hoje? um app de barra de menu com a resposta\niron-rifas/   plataforma de gestão de rifas — gerenciador.ironrifas.com",
@@ -126,7 +129,7 @@ const pt = {
       catUsage: "uso: cat <arquivo> — tente `ls -la` primeiro",
       awards:
         "★ 2º lugar — SuperViz Hackathon 2.0 (2024) · plataforma de IA para palestrantes, solo · US$ 1.000\n★ Prêmio de Melhor TCC — PUC-Campinas (2022) · app de indexação de preços por geolocalização",
-      edu: "bacharelado em engenharia de software — PUC-Campinas (2018–2022)\npós em desenvolvimento blockchain — UniFECAF (2023, 10/10)\ntécnico em TI — ETEC (2016–2017)",
+      edu: "pós em desenvolvimento blockchain — UniFECAF (2023, 10/10)\nbacharelado em engenharia de software — PUC-Campinas (2018–2022, 10/10)\ntécnico em TI — ETEC (2016–2017)",
       contact:
         "mail      ericklopes02@outlook.com\ngithub    github.com/rckmath\nlinkedin  linkedin.com/in/rckmath\nsteam     steamcommunity.com/id/BossBR",
       resume: "baixando resume.pdf… a versão mais recente mora no linkedin.com/in/rckmath",

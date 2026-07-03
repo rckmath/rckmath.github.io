@@ -6,21 +6,50 @@ import { PROJECTS } from "../data/portfolio";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 
-const SKILLS = ["react", "react-native", "node", "typescript", "c#/.net", "python", "aws", "docker", "sql", "solidity"];
-const NOW_TAGS = ["agents", "llm-apps", "ai-ux"];
+const SKILLS = [
+  "react",
+  "react-native",
+  "node",
+  "typescript",
+  "c#/.net",
+  "python",
+  "aws",
+  "docker",
+  "sql",
+  "solidity",
+];
+const NOW_TAGS = ["agents", "llm-apps", "ai"];
 
-const mono = (fontSize, fontWeight = 400) => ({ fontFamily: fonts.mono, fontSize, fontWeight });
+const mono = (fontSize, fontWeight = 400) => ({
+  fontFamily: fonts.mono,
+  fontSize,
+  fontWeight,
+});
 
 const SectionHeader = ({ label, hint, mb = 3.25 }) => (
   <Box sx={{ display: "flex", alignItems: "baseline", gap: 1.75, mb }}>
-    <Typography sx={{ ...mono(13, 500), color: "var(--accent)" }}>{label}</Typography>
+    <Typography sx={{ ...mono(13, 500), color: "var(--accent)" }}>
+      {label}
+    </Typography>
     <Box sx={{ flex: 1, height: "1px", bgcolor: "var(--line)" }} />
-    {hint && <Typography sx={{ ...mono(11), color: "var(--faint)" }}>{hint}</Typography>}
+    {hint && (
+      <Typography sx={{ ...mono(11), color: "var(--faint)" }}>
+        {hint}
+      </Typography>
+    )}
   </Box>
 );
 
 const HashTags = ({ items }) => (
-  <Box sx={{ display: "flex", flexWrap: "wrap", gap: "8px 18px", ...mono(13), color: "var(--dim)" }}>
+  <Box
+    sx={{
+      display: "flex",
+      flexWrap: "wrap",
+      gap: "8px 18px",
+      ...mono(13),
+      color: "var(--dim)",
+    }}
+  >
     {items.map((item) => (
       <Box component="span" key={item}>
         <Box component="span" sx={{ color: "var(--accent)" }}>
@@ -34,12 +63,26 @@ const HashTags = ({ items }) => (
 
 const Hero = ({ t }) => (
   <Box sx={{ px: { xs: 2.5, sm: 6 }, pt: { xs: 6, sm: 9.5 }, pb: 7.5 }}>
-    <Box sx={{ display: "flex", alignItems: "center", gap: 3, mb: 3.75, flexWrap: "wrap" }}>
+    <Box
+      sx={{
+        display: "flex",
+        alignItems: "center",
+        gap: 3,
+        mb: 3.75,
+        flexWrap: "wrap",
+      }}
+    >
       <Box
         component="img"
         src="/me.png"
         alt="Erick"
-        sx={{ width: 64, height: 64, borderRadius: "50%", objectFit: "cover", border: "1px solid var(--line)" }}
+        sx={{
+          width: 64,
+          height: 64,
+          borderRadius: "50%",
+          objectFit: "cover",
+          border: "1px solid var(--line)",
+        }}
       />
       <Box>
         <Typography
@@ -67,12 +110,18 @@ const Hero = ({ t }) => (
             }}
           />
         </Typography>
-        <Typography sx={{ mt: 1.25, fontSize: 17, lineHeight: 1.5, color: "var(--dim)" }}>
+        <Typography
+          sx={{ mt: 1.25, fontSize: 17, lineHeight: 1.5, color: "var(--dim)" }}
+        >
           {t("hero.tagline")}
         </Typography>
       </Box>
     </Box>
-    <Typography sx={{ mb: 3.25, ...mono(13), lineHeight: 1.7, color: "var(--faint)" }}>{t("hero.meta")}</Typography>
+    <Typography
+      sx={{ mb: 3.25, ...mono(13), lineHeight: 1.7, color: "var(--faint)" }}
+    >
+      {t("hero.meta")}
+    </Typography>
     <HashTags items={SKILLS} />
   </Box>
 );
@@ -80,11 +129,33 @@ const Hero = ({ t }) => (
 const NowSection = ({ t }) => (
   <Box sx={{ px: { xs: 2.5, sm: 6 }, pb: 7 }}>
     <SectionHeader label="~/now" hint={t("now.hint")} mb={3} />
-    <Box sx={{ border: "1px solid var(--line)", borderRadius: "12px", p: "26px 28px" }}>
-      <Typography sx={{ mb: 1.75, fontSize: 15.5, lineHeight: 1.65, color: "var(--ink)", maxWidth: 760 }}>
+    <Box
+      sx={{
+        border: "1px solid var(--line)",
+        borderRadius: "12px",
+        p: "26px 28px",
+      }}
+    >
+      <Typography
+        sx={{
+          mb: 1.75,
+          fontSize: 15.5,
+          lineHeight: 1.65,
+          color: "var(--ink)",
+          maxWidth: 760,
+        }}
+      >
         {t("now.p1")}
       </Typography>
-      <Typography sx={{ mb: 2.25, fontSize: 13.5, lineHeight: 1.6, color: "var(--dim)", maxWidth: 760 }}>
+      <Typography
+        sx={{
+          mb: 2.25,
+          fontSize: 13.5,
+          lineHeight: 1.6,
+          color: "var(--dim)",
+          maxWidth: 760,
+        }}
+      >
         {t("now.p2")}
       </Typography>
       <HashTags items={NOW_TAGS} />
@@ -104,24 +175,48 @@ const ExperienceSection = ({ t }) => (
       }}
     >
       {t("experience.entries").map((entry) => (
-        <Box key={`${entry.period}-${entry.company}`} sx={{ display: "contents" }}>
-          <Typography sx={{ ...mono(13), lineHeight: 1.9, color: "var(--faint)" }}>{entry.period}</Typography>
+        <Box
+          key={`${entry.period}-${entry.company}`}
+          sx={{ display: "contents" }}
+        >
+          <Typography
+            sx={{ ...mono(13), lineHeight: 1.9, color: "var(--faint)" }}
+          >
+            {entry.period}
+          </Typography>
           <Box sx={{ mb: { xs: 2.5, sm: 0 } }}>
-            <Typography sx={{ fontSize: 16, fontWeight: 600, color: "var(--ink)" }}>
+            <Typography
+              sx={{ fontSize: 16, fontWeight: 600, color: "var(--ink)" }}
+            >
               {entry.role}{" "}
               <Box component="span" sx={{ color: "var(--accent)" }}>
                 {entry.company}
               </Box>
               {entry.meta && (
-                <Box component="span" sx={{ ...mono(11), color: "var(--faint)", ml: 1 }}>
+                <Box
+                  component="span"
+                  sx={{ ...mono(11), color: "var(--faint)", ml: 1 }}
+                >
                   {entry.meta}
                 </Box>
               )}
             </Typography>
             {entry.subtitle && (
-              <Typography sx={{ ...mono(12), color: "var(--faint)", mt: 0.75, mb: 1 }}>{entry.subtitle}</Typography>
+              <Typography
+                sx={{ ...mono(12), color: "var(--faint)", mt: 0.75, mb: 1 }}
+              >
+                {entry.subtitle}
+              </Typography>
             )}
-            <Typography sx={{ mt: entry.subtitle ? 0 : 0.75, fontSize: 14, lineHeight: 1.65, color: "var(--dim)", maxWidth: 640 }}>
+            <Typography
+              sx={{
+                mt: entry.subtitle ? 0 : 0.75,
+                fontSize: 14,
+                lineHeight: 1.65,
+                color: "var(--dim)",
+                maxWidth: 640,
+              }}
+            >
               {entry.description}
             </Typography>
           </Box>
@@ -134,7 +229,13 @@ const ExperienceSection = ({ t }) => (
 const ProjectsSection = ({ t }) => (
   <Box sx={{ px: { xs: 2.5, sm: 6 }, pb: 7 }}>
     <SectionHeader label="~/projects" />
-    <Box sx={{ display: "grid", gridTemplateColumns: { xs: "1fr", sm: "1fr 1fr" }, gap: 2 }}>
+    <Box
+      sx={{
+        display: "grid",
+        gridTemplateColumns: { xs: "1fr", sm: "1fr 1fr" },
+        gap: 2,
+      }}
+    >
       {PROJECTS.map((project) => (
         <Box
           key={project.id}
@@ -159,11 +260,20 @@ const ProjectsSection = ({ t }) => (
             component="img"
             src={project.image}
             alt=""
-            sx={{ width: 44, height: 44, borderRadius: "10px", objectFit: "cover" }}
+            sx={{
+              width: 44,
+              height: 44,
+              borderRadius: "10px",
+              objectFit: "cover",
+            }}
           />
           <Box sx={{ flex: 1 }}>
-            <Typography sx={{ ...mono(14, 500), color: "var(--ink)" }}>{project.name}</Typography>
-            <Typography sx={{ fontSize: 13, color: "var(--faint)" }}>{t(project.descKey)}</Typography>
+            <Typography sx={{ ...mono(14, 500), color: "var(--ink)" }}>
+              {project.name}
+            </Typography>
+            <Typography sx={{ fontSize: 13, color: "var(--faint)" }}>
+              {t(project.descKey)}
+            </Typography>
           </Box>
           <Box component="span" sx={{ color: "var(--accent)", fontSize: 16 }}>
             →
@@ -179,11 +289,16 @@ const AwardsSection = ({ t }) => (
     <SectionHeader label="~/awards" mb={2.75} />
     <Box sx={{ display: "flex", flexDirection: "column", gap: 1.75 }}>
       {t("awards.entries").map((award) => (
-        <Box key={award.title} sx={{ display: "flex", gap: 1.75, alignItems: "baseline" }}>
+        <Box
+          key={award.title}
+          sx={{ display: "flex", gap: 1.75, alignItems: "baseline" }}
+        >
           <Box component="span" sx={{ color: "var(--accent)" }}>
             ★
           </Box>
-          <Typography sx={{ fontSize: 14, lineHeight: 1.6, color: "var(--dim)" }}>
+          <Typography
+            sx={{ fontSize: 14, lineHeight: 1.6, color: "var(--dim)" }}
+          >
             <Box component="span" sx={{ color: "var(--ink)", fontWeight: 600 }}>
               {award.title}
             </Box>{" "}
@@ -198,9 +313,21 @@ const AwardsSection = ({ t }) => (
 const EducationSection = ({ t }) => (
   <Box sx={{ px: { xs: 2.5, sm: 6 }, pb: 7 }}>
     <SectionHeader label="~/education" mb={2.75} />
-    <Box sx={{ display: "flex", flexDirection: "column", gap: 1, fontSize: 13.5, lineHeight: 1.6, color: "var(--dim)" }}>
+    <Box
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        gap: 1,
+        fontSize: 13.5,
+        lineHeight: 1.6,
+        color: "var(--dim)",
+      }}
+    >
       {t("education.entries").map((item) => (
-        <Typography key={item.title} sx={{ fontSize: "inherit", lineHeight: "inherit" }}>
+        <Typography
+          key={item.title}
+          sx={{ fontSize: "inherit", lineHeight: "inherit" }}
+        >
           <Box component="span" sx={{ color: "var(--ink)" }}>
             {item.title}
           </Box>{" "}
