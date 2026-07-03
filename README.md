@@ -1,18 +1,17 @@
-# Erick Pacheco | Portfolio
+# Erick Pacheco | Commandfolio
 
-A modern, responsive personal portfolio website showcasing my work as a software engineer. Built with React 19 and featuring a glassmorphic design aesthetic with dark/light theme support and multilingual capabilities.
+A terminal-flavored personal portfolio with two faces: a clean GUI mode and a fully interactive terminal mode — one click (or `exit`) apart, with a smooth fade between them. Built with React 19, with dark/light theme support and full English/Portuguese localization.
 
 ![Portfolio Screenshot](screenshot.png)
 
 ## Features
 
-- **Responsive Design**: Optimized for desktop and mobile devices with adaptive layouts
-- **Theme Support**: Dark and light mode with smooth transitions and localStorage persistence
-- **Multilingual**: Full support for English and Portuguese with easy language switching
-- **Interactive Cards**: Flippable cards showcasing work history and education details
-- **Projects Showcase**: Icon-based project gallery with hover tooltips
-- **Glassmorphic UI**: Modern aesthetic with blur effects, gradients, and subtle animations
-- **Animated Elements**: Typewriter text effect, bounce animations, and smooth transitions
+- **Two modes, one page**: GUI portfolio and an interactive terminal, switched in-app with a smooth transition (no route change)
+- **Real terminal**: prompt with Tab completion and ↑/↓ history, 35+ commands (`help`, `career`, `git log`, `neofetch`, `cowsay`, `fortune`, …)
+- **Easter eggs**: playable snake, matrix rain, CRT scanline mode, phosphor color presets (`color amber`)
+- **Multilingual**: full English/Portuguese support everywhere — including terminal output (`lang en|pt`) — persisted in localStorage
+- **Theme support**: dark and light mode with persisted preference
+- **Backward compatible**: old `/cmd` deep links boot straight into terminal mode
 
 ## Tech Stack
 
@@ -20,9 +19,8 @@ A modern, responsive personal portfolio website showcasing my work as a software
 |----------|-------------|
 | Framework | React 19, Vite |
 | UI Library | Material-UI (MUI) v7 |
-| Styling | Emotion, CSS-in-JS |
-| Routing | React Router v7 |
-| Responsive | react-responsive |
+| Styling | Emotion, CSS variables (design tokens) |
+| Typography | Space Grotesk, JetBrains Mono (@fontsource) |
 | Deployment | GitHub Pages (gh-pages) |
 
 ## Getting Started
@@ -51,7 +49,7 @@ yarn dev
 | Command | Description |
 |---------|-------------|
 | `yarn dev` | Start development server |
-| `yarn build` | Create production build |
+| `yarn build` | Create production build (also emits `404.html` SPA fallback) |
 | `yarn preview` | Preview production build locally |
 | `yarn lint` | Run ESLint with zero warnings tolerance |
 | `yarn deploy` | Build and deploy to GitHub Pages |
@@ -60,18 +58,19 @@ yarn dev
 
 ```
 src/
-├── components/          # Reusable UI components
-│   ├── AboutMeContent/  # Bio, skills, contact button
-│   ├── Header.jsx       # Sticky header with typewriter effect
-│   ├── Footer.jsx       # Social links footer
-│   ├── MainCard/        # Flippable info cards
-│   ├── ProjectsSection/ # Project showcase gallery
-│   └── ScrollIndicator/ # Animated scroll button
+├── components/
+│   ├── Header.jsx       # GUI top bar: >_ terminal button, EN/PT, theme toggle
+│   └── Footer.jsx       # Social links + "$ say hello"
 ├── context/             # React context providers (Theme, Language)
-├── pages/               # Page components
+├── data/
+│   └── portfolio.js     # Shared data: projects, socials, email
+├── pages/
+│   ├── Portfolio.jsx    # Mode orchestrator (gui ⇄ term) with fade transition
+│   ├── Home.jsx         # GUI mode: hero, ~/now, ~/experience, ~/projects, …
+│   └── Terminal.jsx     # Terminal mode: boot session, commands, games
 ├── translations/        # i18n files (en.js, pt.js)
-├── theme.js             # MUI theme configuration
-└── App.jsx              # Main application component
+├── theme.js             # MUI theme + Commandfolio design tokens
+└── App.jsx              # Providers + Portfolio
 ```
 
 ## License
