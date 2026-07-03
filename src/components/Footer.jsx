@@ -1,111 +1,65 @@
-import { useMediaQuery } from "react-responsive";
-import styled from "@emotion/styled";
-import { alpha } from "@mui/material/styles";
-import { Box, Container, IconButton, Tooltip } from "@mui/material";
-import { useTheme } from "../context/ThemeContext";
-
-import EmailIcon from "@mui/icons-material/Email";
-import GitHubIcon from "@mui/icons-material/GitHub";
-import LinkedInIcon from "@mui/icons-material/LinkedIn";
-import SteamIcon from "/steam.svg";
-
-const StyledIconButton = styled(IconButton)(({ theme }) => ({
-  transition: "all 0.3s ease-in-out",
-  "&:hover": {
-    transform: "translateY(-4px)",
-    backgroundColor: alpha(theme.palette.primary.main, 0.1),
-    color: theme.palette.primary.main,
-  },
-}));
+import { Box } from "@mui/material";
+import { useLanguage } from "../context/LanguageContext";
+import { fonts } from "../theme";
+import { SOCIALS, EMAIL } from "../data/portfolio";
 
 const Footer = () => {
-  const isMobile = useMediaQuery({ maxWidth: 767 });
-  const { isDarkMode } = useTheme();
-  const fontSize = isMobile ? "2rem" : "2.25rem";
+  const { t } = useLanguage();
 
   return (
     <Box
       component="footer"
       sx={{
-        position: "fixed",
-        bottom: 0,
-        left: 0,
-        right: 0,
-        py: { xs: 1 },
-        px: { xs: 2, sm: 3 },
-        background: (theme) =>
-          alpha(theme.palette.background.paper, 0.95),
-        backdropFilter: "blur(10px)",
-        borderTop: (theme) =>
-          `1px solid ${alpha(theme.palette.divider, 0.1)}`,
-        zIndex: 1000,
-        boxShadow: (theme) => `0 4px 12px ${alpha(theme.palette.common.black, 0.1)}`,
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "space-between",
+        flexWrap: "wrap",
+        gap: 2,
+        px: { xs: 2.5, sm: 6 },
+        py: 3.25,
+        borderTop: "1px solid var(--line)",
       }}
     >
-      <Container maxWidth="xl" sx={{ px: { xs: 2, sm: 3 } }}>
-        <Box
-          sx={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            gap: { xs: 3, sm: 4 },
-            maxWidth: "600px",
-            mx: "auto",
-          }}
-        >
-          <Tooltip title="mailto:ericklopes02@outlook.com" placement="top" arrow>
-            <StyledIconButton
-              size="large"
-              color="inherit"
-              aria-label="Email"
-              onClick={() => (window.location.href = "mailto:ericklopes02@outlook.com")}
-            >
-              <EmailIcon sx={{ fontSize }} />
-            </StyledIconButton>
-          </Tooltip>
-
-          <Tooltip title="https://github.com/rckmath" placement="top" arrow>
-            <StyledIconButton
-              size="large"
-              color="inherit"
-              aria-label="GitHub"
-              onClick={() => window.open("https://github.com/rckmath", "_blank")}
-            >
-              <GitHubIcon sx={{ fontSize }} />
-            </StyledIconButton>
-          </Tooltip>
-
-          <Tooltip title="https://linkedin.com/in/rckmath" placement="top" arrow>
-            <StyledIconButton
-              size="large"
-              color="inherit"
-              aria-label="LinkedIn"
-              onClick={() => window.open("https://linkedin.com/in/rckmath", "_blank")}
-            >
-              <LinkedInIcon sx={{ fontSize }} />
-            </StyledIconButton>
-          </Tooltip>
-
-          <Tooltip title="https://steamcommunity.com/id/BossBR" placement="top" arrow>
-            <StyledIconButton
-              size="large"
-              color="inherit"
-              aria-label="Steam"
-              onClick={() => window.open("https://steamcommunity.com/id/BossBR", "_blank")}
-            >
-              <img
-                src={SteamIcon}
-                alt="Steam"
-                style={{
-                  width: fontSize,
-                  height: fontSize,
-                  filter: isDarkMode ? 'brightness(0) invert(1)' : 'brightness(0) invert(0)'
-                }}
-              />
-            </StyledIconButton>
-          </Tooltip>
-        </Box>
-      </Container>
+      <Box sx={{ display: "flex", gap: 2.75, fontFamily: fonts.mono, fontSize: 12.5 }}>
+        {SOCIALS.map(({ label, href }) => (
+          <Box
+            key={label}
+            component="a"
+            href={href}
+            target={href.startsWith("mailto:") ? undefined : "_blank"}
+            rel="noopener noreferrer"
+            sx={{
+              color: "var(--dim)",
+              textDecoration: "none",
+              cursor: "pointer",
+              transition: "color 0.2s",
+              "&:hover": { color: "var(--accent)" },
+            }}
+          >
+            {label}
+          </Box>
+        ))}
+      </Box>
+      <Box
+        component="a"
+        href={`mailto:${EMAIL}`}
+        sx={{
+          fontFamily: fonts.mono,
+          fontSize: 13,
+          fontWeight: 500,
+          color: "var(--accent)",
+          border: "1px solid var(--accent-brd)",
+          borderRadius: "7px",
+          px: 2.25,
+          py: 1.25,
+          textDecoration: "none",
+          cursor: "pointer",
+          transition: "all 0.2s",
+          "&:hover": { bgcolor: "var(--accent)", color: "var(--bg)" },
+        }}
+      >
+        {t("footer.hello")}
+      </Box>
     </Box>
   );
 };
