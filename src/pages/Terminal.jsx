@@ -25,7 +25,7 @@ const BANNER = [
 ];
 
 const NEOFETCH_ART =
-  " ┌─────────────┐\n │  >_         │\n │             │\n │   erickOS   │\n │             │\n │             │\n └─────────────┘";
+  " ┌─────────────┐\n │  >_         │\n │             │\n │  rckmathOS  │\n │             │\n │             │\n └─────────────┘";
 const NEOFETCH_PALETTE = ["#0B0E0C", "#DE5D5D", "#5DDEA6", "#FFB000", "#4AD8DE", "#8A5DDE", "#DE5D8A", "#E8EDE9"];
 
 const MATRIX_CHARS = "アイウエオカキクケコサシスセソタチツテト0123456789ABCDEF<>/{};$#@*+=";
@@ -69,7 +69,7 @@ const BootSession = ({ t }) => (
     <PromptEcho cmd="ai --status" />
     <Output sx={{ mb: 3.25 }}>{t("term.aiStatus")}</Output>
 
-    <PromptEcho cmd="open erick.png" />
+    <PromptEcho cmd="open rckmath.png" />
     <Box
       sx={{
         display: "inline-flex",
@@ -91,7 +91,7 @@ const BootSession = ({ t }) => (
       >
         {t("term.photoCaption")}
       </Box>
-      <Box component="img" src="/me.png" alt="Erick" sx={{ width: 132, height: 132, objectFit: "cover", display: "block" }} />
+      <Box component="img" src="/rckmath.png" alt="Erick" sx={{ width: 132, height: 132, objectFit: "cover", display: "block" }} />
     </Box>
 
     <PromptEcho cmd="cat career.log" />

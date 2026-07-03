@@ -16,7 +16,7 @@ const SKILLS = [
   "aws",
   "docker",
   "sql",
-  "solidity",
+  "ai",
 ];
 const NOW_TAGS = ["agents", "llm-apps", "ai"];
 
@@ -74,11 +74,11 @@ const Hero = ({ t }) => (
     >
       <Box
         component="img"
-        src="/me.png"
+        src="/rckmath.png"
         alt="Erick"
         sx={{
-          width: 64,
-          height: 64,
+          width: { xs: 72, sm: 88 },
+          height: { xs: 72, sm: 88 },
           borderRadius: "50%",
           objectFit: "cover",
           border: "1px solid var(--line)",

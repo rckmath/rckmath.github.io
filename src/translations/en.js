@@ -5,8 +5,9 @@ const en = {
   },
 
   hero: {
-    tagline: "Technical lead & full-stack engineer — APIs, web, mobile and AI products.",
-    meta: "// São Paulo, Brazil · leading a remote team on a US product · 6+ years shipping",
+    tagline:
+      "Technical lead & full-stack engineer — APIs, web, mobile and AI products.",
+    meta: "// Campinas, São Paulo, Brazil · leading a remote team on a US product · 6+ years shipping",
   },
 
   now: {
@@ -31,25 +32,28 @@ const en = {
         period: "2023 — 2025",
         role: "IT Teacher",
         company: "@ ETEC Hortolândia",
-        description: "Lectured networks, shell script, React Native and more; advised final course projects.",
+        description:
+          "Lectured networks, shell script, React Native and more; advised final course projects.",
       },
       {
         period: "2020 — 2021",
         role: "Back-end Developer",
         company: "@ MB Labs",
-        description: "Node.js/TypeScript APIs on AWS; promoted from intern to junior in six months.",
+        description:
+          "Node.js/TypeScript APIs on AWS; promoted from intern to junior in six months.",
       },
       {
         period: "2019",
         role: "Teaching Assistant",
         company: "@ PUC-Campinas",
-        description: "Algorithms and C for engineering students — where the teaching habit started.",
+        description:
+          "Algorithms and C for engineering students — where the teaching habit started.",
       },
     ],
   },
 
   projects: {
-    immaDeploy: "Should you deploy today? A menu bar app with the answer",
+    immaDeploy: "Should you deploy today? A macOS menu bar app with the answer",
     ironRifas: "Raffle management platform",
   },
 
@@ -57,19 +61,29 @@ const en = {
     entries: [
       {
         title: "2nd place — SuperViz Hackathon 2.0",
-        detail: "(2024) · solo-built an AI platform connecting speakers with their audience · US$1,000 prize",
+        detail:
+          "(2024) · solo-built an AI platform connecting speakers with their audience · US$1,000 prize",
       },
       {
         title: "Best Term Paper Awards — PUC-Campinas",
-        detail: "(2022) · geolocation price-indexing app in React Native, Node.js & React",
+        detail:
+          "(2022) · geolocation price-indexing app in React Native, Node.js & React",
       },
     ],
   },
 
   education: {
     entries: [
-      { title: "Postgrad, Blockchain Development", inst: "— UniFECAF", period: "2023 · grade 10/10" },
-      { title: "BE, Software Engineering", inst: "— PUC-Campinas", period: "2018–2022 · grade 10/10" },
+      {
+        title: "Postgrad, Blockchain Development",
+        inst: "— UniFECAF",
+        period: "2023 · grade 10/10",
+      },
+      {
+        title: "BE, Software Engineering",
+        inst: "— PUC-Campinas",
+        period: "2018–2022 · grade 10/10",
+      },
       { title: "IT Technician", inst: "— ETEC", period: "2016–2017" },
     ],
   },
@@ -82,28 +96,54 @@ const en = {
     guiMode: "← gui mode",
     windowTitle: "rckmath@portfolio: ~",
     boot: [
-      "erickOS BIOS v6.1 — initializing…",
+      "rckmathOS BIOS v6.1 — initializing…",
       "memory check ............... 42 of 16 browser tabs OK",
-      "cpu: 1× brain @ 3.2 GHz .... caffeine boost engaged",
+      "cpu: 1× brain @ 6.2 GHz .... caffeine boost engaged",
       "loading kernel full-stack v6.0 .............. [ok]",
-      "mounting /home/erick/portfolio .............. [ok]",
+      "mounting /home/rckmath/portfolio ............ [ok]",
       "starting services: api · web · mobile · ai .. [ok]",
       "phosphor calibration ........................ [ok]",
       "launching commandfolio v2.1…",
     ],
     intro:
-      "Commandfolio v2.1 — this prompt is live. Tab completes, ↑ recalls, `help` reveals.\nLast login: from São Paulo, Brazil",
+      "Commandfolio v2.1 — this prompt is live. Tab completes, ↑ recalls, `help` reveals.\nLast login: from Campinas, São Paulo, Brazil",
     whoami:
       "Erick Pacheco — technical lead & full-stack engineer.\n6+ years building APIs, web & mobile products. Currently leading a remote team at Softwrench (US). I also taught IT for two years, so I explain things properly.",
     aiStatus:
       "> current focus: leading & idealizing AI-first products\n> agentic workflows & LLM-powered tools on solid APIs\n> first shipped: speaker platform — 2nd place, superviz hackathon 2.0",
-    photoCaption: "erick.png — 600×600",
+    photoCaption: "rckmath.png — 600×600",
     careerRows: [
-      { year: "[2025→]", role: "technical lead", company: "@ softwrench", note: "# remote·US — leads 6+ devs on a solar O&M platform", current: true },
-      { year: "[2021→]", role: "full-stack → senior", company: "@ softwrench", note: "# C#/.NET · angular · react native · 400+ PRs" },
-      { year: "[2023 ]", role: "IT teacher", company: "@ etec hortolândia", note: "# networks · shell · react native & more · 2 yrs" },
-      { year: "[2020 ]", role: "back-end dev", company: "@ mb labs", note: "# node·ts·aws — intern → junior in 6 months" },
-      { year: "[2019 ]", role: "teaching assistant", company: "@ puc-campinas", note: "# algorithms & C" },
+      {
+        year: "[2025→]",
+        role: "technical lead",
+        company: "@ softwrench",
+        note: "# remote·US — leads 6+ devs on a solar O&M platform",
+        current: true,
+      },
+      {
+        year: "[2021→]",
+        role: "full-stack → senior",
+        company: "@ softwrench",
+        note: "# C#/.NET · angular · react native · 400+ PRs",
+      },
+      {
+        year: "[2023 ]",
+        role: "IT teacher",
+        company: "@ etec hortolândia",
+        note: "# networks · shell · react native & more · 2 yrs",
+      },
+      {
+        year: "[2020 ]",
+        role: "back-end dev",
+        company: "@ mb labs",
+        note: "# node·ts·aws — intern → junior in 6 months",
+      },
+      {
+        year: "[2019 ]",
+        role: "teaching assistant",
+        company: "@ puc-campinas",
+        note: "# algorithms & C",
+      },
     ],
     hint: "try: help · neofetch · snake · matrix · git log · fortune · color amber · crt",
     matrixWake: "press any key or click to wake up",
@@ -117,11 +157,12 @@ const en = {
       git: "* f4a9e2c (HEAD -> career) promote: senior → technical lead @ softwrench\n* 8d3c7b1 promote: full-stack → senior engineer\n* 2e9f6a4 feat: teach IT @ etec (2-year side quest)\n* c7b2d90 feat: join softwrench as full-stack engineer\n* 91d4c6e promote: intern → junior back-end @ mb labs (6 months)\n* 03b7a2f feat: first internship @ mb labs\n* 0000001 initial commit — hello.c @ etec, 2016",
       ai: "> current focus: leading & idealizing AI-first products\n> agentic workflows & LLM-powered tools on solid APIs\n> first shipped: speaker platform — 2nd place, superviz hackathon 2.0",
       projects:
-        "imma-deploy/  should you deploy today? a menu bar app with the answer\niron-rifas/   raffle management platform — gerenciador.ironrifas.com",
+        "imma-deploy/  should you deploy today? a macOS menu bar app with the answer\niron-rifas/   raffle management platform — gerenciador.ironrifas.com",
       ls: "projects/   career.log   awards.txt   education.txt",
-      lsLa: "drwxr-xr-x  erick  projects/\n-rw-r--r--  erick  career.log\n-rw-r--r--  erick  awards.txt\n-rw-r--r--  erick  education.txt\n-rw-r--r--  erick  .plan\n-r--------  erick  .secrets        # nice try",
+      lsLa: "drwxr-xr-x  rckmath  projects/\n-rw-r--r--  rckmath  career.log\n-rw-r--r--  rckmath  awards.txt\n-rw-r--r--  rckmath  education.txt\n-rw-r--r--  rckmath  .plan\n-r--------  rckmath  .secrets        # nice try",
       catPlan: "1. ship AI products\n2. teach someone something\n3. repeat",
-      catSecrets: "cat: .secrets: permission denied (some things stay off the internet)",
+      catSecrets:
+        "cat: .secrets: permission denied (some things stay off the internet)",
       catCareer: "use `career` — same file, nicer formatting.",
       catAwards: "use `awards`.",
       catEdu: "use `edu`.",
@@ -132,14 +173,15 @@ const en = {
       edu: "postgrad blockchain dev — UniFECAF (2023, 10/10)\nBE software engineering — PUC-Campinas (2018–2022, 10/10)\nIT technician — ETEC (2016–2017)",
       contact:
         "mail      ericklopes02@outlook.com\ngithub    github.com/rckmath\nlinkedin  linkedin.com/in/rckmath\nsteam     steamcommunity.com/id/BossBR",
-      resume: "fetching resume.pdf… the latest version lives on linkedin.com/in/rckmath",
+      resume:
+        "fetching resume.pdf… the latest version lives on linkedin.com/in/rckmath",
       openUsage: "usage: open <url> — e.g. open github.com",
       opening: "opening {url} …",
       uptime:
         "up {years} years (professionally) — load average: healthy · 0 unrecoverable prod incidents that we talk about",
       ver: "commandfolio v2.1.0 — now with 100% more nonsense",
       weather:
-        "são paulo: garoa (as always), 18°C\nforecast: 100% chance of shipping · sunshine deployed to aws sa-east-1",
+        "campinas: garoa (as always), 18°C\nforecast: 100% chance of shipping · sunshine deployed to aws sa-east-1",
       fortune: [
         "it works on my machine — and now my machine is a docker image.",
         "the best code review comment is a deleted line.",
@@ -149,7 +191,7 @@ const en = {
         "AI won’t replace you. someone using AI might — be that someone.",
         "there are two kinds of engineers: those who test in prod, and liars.",
       ],
-      cowsayDefault: "moo. hire erick.",
+      cowsayDefault: "moo. hire rckmath.",
       coffee: "brewing… done. productivity +40%.",
       crtOn: "CRT mode on — welcome back to 1987.",
       crtOff: "CRT mode off — back to the future.",
@@ -157,12 +199,12 @@ const en = {
       colorUsage: "usage: color <green|amber|cyan|white>",
       langSet: "language set to english.",
       langUsage: "usage: lang <en|pt>",
-      sudo: "erick is not in the sudoers file. this incident will be reported to santa.",
+      sudo: "rckmath is not in the sudoers file. this incident will be reported to santa.",
       rmRf: "deleting portfolio… ██████████ 100%\njust kidding. nice try though.",
       rm: "rm: this portfolio is read-only (and precious)",
       editor:
         "entering {editor}… you are now trapped forever.\n(type :q! — kidding, this isn’t real {editor}. or is it?)",
-      pwd: "/home/erick/portfolio",
+      pwd: "/home/rckmath/portfolio",
       cd: "there’s nowhere else you need to be.",
       notFound: "‘{cmd}’ is not recognized as a command. type ‘help’.",
       matrixEnter: "entering the matrix… (any key to exit)",
@@ -182,20 +224,21 @@ const en = {
         "64 bytes from {host}: icmp_seq=3 time=1.05 ms",
         "--- 3 packets, 0% loss — friendship established ---",
       ],
-      snakeOver: "game over — score: {score}. the snake thanks you for the {snacks}.",
+      snakeOver:
+        "game over — score: {score}. the snake thanks you for the {snacks}.",
       snakeSnack: "snack",
       snakeSnacks: "snacks",
       snakeControls: " score: {score}   [wasd/arrows] move · [q] quit",
       neofetch: {
         title: "rckmath@portfolio",
         rows: [
-          ["OS", "erickOS 6.1 LTS (human-compatible)"],
-          ["host", "são paulo, BR → scottsdale, AZ"],
+          ["OS", "rckmathOS 6.1 LTS (human-compatible)"],
+          ["host", "campinas, SP → scottsdale, AZ"],
           ["kernel", "full-stack v6.0 (2020-present)"],
           ["shell", "/bin/coffee"],
           ["DE", "react 19 (+ native)"],
           ["WM", "node · C#/.NET"],
-          ["CPU", "1× brain @ 3.2 GHz (caffeine boost)"],
+          ["CPU", "1× brain @ 6.2 GHz (caffeine boost)"],
           ["memory", "42 of 16 browser tabs used"],
         ],
       },
